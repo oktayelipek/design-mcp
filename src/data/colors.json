@@ -1,20 +1,418 @@
 {
-  "colors": {
-    "brand": {
-      "primary": "#005fae"
+  "modes": {
+    "Kripto Dark": {
+      "text": {
+        "focus": "#f0f4f7",
+        "secondary": "#858fa6",
+        "tertiary": "#4c5d72"
+      },
+      "icon": {
+        "focus": "#f0f4f7",
+        "inactive": "#858fa6",
+        "disabled": "#4c5d72"
+      },
+      "level": {
+        "basement": "#070910",
+        "basement-opacity-80": "#070910cc",
+        "surface": "#0b0f1a",
+        "surface-opacity-80": "#0b0f1acc",
+        "surface-opacity-0": "#0b0f1a00",
+        "elevation": "#131f2f",
+        "elevation +1": "#17273a",
+        "elevation +2": "#192f43",
+        "elevation +3": "#21374a",
+        "elevation +4": "#4c5d72"
+      },
+      "brand": {
+        "primary": "#005fae",
+        "secondary": "#005fae",
+        "tertiary": "#005fae",
+        "primary-10": "#005fae1a"
+      },
+      "inverse": {
+        "pureWhite": "#ffffff",
+        "pureDark": "#000000",
+        "swap": "#000000",
+        "focus": "#ffffff",
+        "brand": "#ffffff"
+      },
+      "actions": {
+        "action-01": "#4fa963",
+        "action-01-20%": "#4fa96333",
+        "action-01-10%": "#4fa9631a",
+        "action-02": "#e93a40",
+        "action-02-20%": "#e93a4033",
+        "action-02-10%": "#e93a401a",
+        "action-03": "#ffac2b",
+        "action-03-20%": "#ffac2b33",
+        "action-03-10%": "#ffac2b1a",
+        "gradients": {
+          "gradient-01": "#15ed45",
+          "gradient-02": "#b32b31"
+        }
+      },
+      "button": {
+        "primary": "#005fae",
+        "secondary": "#131f2f",
+        "focus": "#f0f4f7",
+        "buy": "#48aa5c",
+        "sell": "#b32b31"
+      },
+      "dedicated": {
+        "segmented": {
+          "Active": "#192f43"
+        },
+        "overlay": "#000000d9"
+      },
+      "theme": "dark",
+      "debug": "#c5ff00",
+      "section bg": "#000000"
     },
-    "text": {
-      "focus": "#f0f4f7",
-      "secondary": "#858fa6"
+    "Kripto Light": {
+      "text": {
+        "focus": "#070910",
+        "secondary": "#707070",
+        "tertiary": "#a3a3a3"
+      },
+      "icon": {
+        "focus": "#070910",
+        "inactive": "#707070",
+        "disabled": "#a3a3a3"
+      },
+      "level": {
+        "basement": "#f5f5f5",
+        "basement-opacity-80": "#f5f5f5cc",
+        "surface": "#ffffff",
+        "surface-opacity-80": "#ffffffcc",
+        "surface-opacity-0": "#ffffff00",
+        "elevation": "#f5f5f5",
+        "elevation +1": "#ebebeb",
+        "elevation +2": "#e0e0e0",
+        "elevation +3": "#d6d6d6",
+        "elevation +4": "#cccccc"
+      },
+      "brand": {
+        "primary": "#005fae",
+        "secondary": "#005fae",
+        "tertiary": "#005fae",
+        "primary-10": "#005fae1a"
+      },
+      "inverse": {
+        "pureWhite": "#ffffff",
+        "pureDark": "#000000",
+        "swap": "#ffffff",
+        "focus": "#000000",
+        "brand": "#005fae"
+      },
+      "actions": {
+        "action-01": "#4ba22d",
+        "action-01-20%": "#4ba22d33",
+        "action-01-10%": "#4ba22d1a",
+        "action-02": "#dc3323",
+        "action-02-20%": "#dc332333",
+        "action-02-10%": "#dc33231a",
+        "action-03": "#db8500",
+        "action-03-20%": "#db850033",
+        "action-03-10%": "#db85001a",
+        "gradients": {
+          "gradient-01": "#00f231",
+          "gradient-02": "#d50b14"
+        }
+      },
+      "button": {
+        "primary": "#005fae",
+        "secondary": "#f5f5f5",
+        "focus": "#070910",
+        "buy": "#48aa5c",
+        "sell": "#de393f"
+      },
+      "dedicated": {
+        "segmented": {
+          "Active": "#ffffff"
+        },
+        "overlay": "#000000bf"
+      },
+      "theme": "light",
+      "debug": "#0064ff",
+      "section bg": "#e8e8e8"
     },
-    "inverse": {
-      "focus": "#ffffff"
+    "Hisse Dark": {
+      "text": {
+        "focus": "#e7fefa",
+        "secondary": "#5d8e89",
+        "tertiary": "#245956"
+      },
+      "icon": {
+        "focus": "#e7fefa",
+        "inactive": "#5d8e89",
+        "disabled": "#245956"
+      },
+      "level": {
+        "basement": "#050a0a",
+        "basement-opacity-80": "#050a0acc",
+        "surface": "#070d0d",
+        "surface-opacity-80": "#070d0dcc",
+        "surface-opacity-0": "#070d0d00",
+        "elevation": "#0f1d1d",
+        "elevation +1": "#152a29",
+        "elevation +2": "#193433",
+        "elevation +3": "#1c3c3b",
+        "elevation +4": "#245956"
+      },
+      "brand": {
+        "primary": "#07ac92",
+        "secondary": "#07ac92",
+        "tertiary": "#07ac92",
+        "primary-10": "#07ac921a"
+      },
+      "inverse": {
+        "pureWhite": "#ffffff",
+        "pureDark": "#000000",
+        "swap": "#000000",
+        "focus": "#ffffff",
+        "brand": "#ffffff"
+      },
+      "actions": {
+        "action-01": "#6a992c",
+        "action-01-20%": "#6a992c33",
+        "action-01-10%": "#6a992c1a",
+        "action-02": "#ad403e",
+        "action-02-20%": "#ad403e33",
+        "action-02-10%": "#ad403e1a",
+        "action-03": "#ffac2b",
+        "action-03-20%": "#ffac2b33",
+        "action-03-10%": "#ffac2b1a",
+        "gradients": {
+          "gradient-01": "#4fed15",
+          "gradient-02": "#cf363c"
+        }
+      },
+      "button": {
+        "primary": "#07ac92",
+        "secondary": "#0f1d1d",
+        "focus": "#e7fefa",
+        "buy": "#6a992c",
+        "sell": "#ad403e"
+      },
+      "dedicated": {
+        "segmented": {
+          "Active": "#193433"
+        },
+        "overlay": "#000000d9"
+      },
+      "theme": "dark",
+      "debug": "#c5ff00",
+      "section bg": "#000000"
     },
-    "level": {
-      "surface": "#0b0f1a"
+    "Hisse Light": {
+      "text": {
+        "focus": "#0a0a0a",
+        "secondary": "#707070",
+        "tertiary": "#a3a3a3"
+      },
+      "icon": {
+        "focus": "#0a0a0a",
+        "inactive": "#707070",
+        "disabled": "#a3a3a3"
+      },
+      "level": {
+        "basement": "#f5f5f5",
+        "basement-opacity-80": "#f5f5f5cc",
+        "surface": "#ffffff",
+        "surface-opacity-80": "#ffffffcc",
+        "surface-opacity-0": "#ffffff00",
+        "elevation": "#f5f5f5",
+        "elevation +1": "#ebebeb",
+        "elevation +2": "#e0e0e0",
+        "elevation +3": "#d6d6d6",
+        "elevation +4": "#cccccc"
+      },
+      "brand": {
+        "primary": "#07ac92",
+        "secondary": "#07ac92",
+        "tertiary": "#07ac92",
+        "primary-10": "#07ac921a"
+      },
+      "inverse": {
+        "pureWhite": "#ffffff",
+        "pureDark": "#000000",
+        "swap": "#ffffff",
+        "focus": "#000000",
+        "brand": "#07ac92"
+      },
+      "actions": {
+        "action-01": "#4ba22d",
+        "action-01-20%": "#4ba22d33",
+        "action-01-10%": "#4ba22d1a",
+        "action-02": "#dc3323",
+        "action-02-20%": "#dc332333",
+        "action-02-10%": "#dc33231a",
+        "action-03": "#db8500",
+        "action-03-20%": "#db850033",
+        "action-03-10%": "#db85001a",
+        "gradients": {
+          "gradient-01": "#00f231",
+          "gradient-02": "#d50b14"
+        }
+      },
+      "button": {
+        "primary": "#07ac92",
+        "secondary": "#f5f5f5",
+        "focus": "#0a0a0a",
+        "buy": "#4ba22d",
+        "sell": "#dc3323"
+      },
+      "dedicated": {
+        "segmented": {
+          "Active": "#ffffff"
+        },
+        "overlay": "#000000bf"
+      },
+      "theme": "light",
+      "debug": "#0064ff",
+      "section bg": "#e8e8e8"
     },
-    "utility": {
-      "debug": "#c5ff00"
+    "Global Dark": {
+      "text": {
+        "focus": "#f0f4f7",
+        "secondary": "#858fa6",
+        "tertiary": "#4c5d72"
+      },
+      "icon": {
+        "focus": "#f0f4f7",
+        "inactive": "#858fa6",
+        "disabled": "#4c5d72"
+      },
+      "level": {
+        "basement": "#070910",
+        "basement-opacity-80": "#070910cc",
+        "surface": "#0b0f1a",
+        "surface-opacity-80": "#0b0f1acc",
+        "surface-opacity-0": "#0b0f1a00",
+        "elevation": "#131f2f",
+        "elevation +1": "#17273a",
+        "elevation +2": "#192f43",
+        "elevation +3": "#21374a",
+        "elevation +4": "#4c5d72"
+      },
+      "brand": {
+        "primary": "#005fae",
+        "secondary": "#005fae",
+        "tertiary": "#005fae",
+        "primary-10": "#005fae1a"
+      },
+      "inverse": {
+        "pureWhite": "#ffffff",
+        "pureDark": "#000000",
+        "swap": "#000000",
+        "focus": "#ffffff",
+        "brand": "#ffffff"
+      },
+      "actions": {
+        "action-01": "#4fa963",
+        "action-01-20%": "#4fa96333",
+        "action-01-10%": "#4fa9631a",
+        "action-02": "#e93a40",
+        "action-02-20%": "#e93a4033",
+        "action-02-10%": "#e93a401a",
+        "action-03": "#ffac2b",
+        "action-03-20%": "#ffac2b33",
+        "action-03-10%": "#ffac2b1a",
+        "gradients": {
+          "gradient-01": "#15ed45",
+          "gradient-02": "#b32b31"
+        }
+      },
+      "button": {
+        "primary": "#005fae",
+        "secondary": "#131f2f",
+        "focus": "#f0f4f7",
+        "buy": "#48aa5c",
+        "sell": "#b32b31"
+      },
+      "dedicated": {
+        "segmented": {
+          "Active": "#192f43"
+        },
+        "overlay": "#000000d9"
+      },
+      "theme": "dark",
+      "debug": "#c5ff00",
+      "section bg": "#000000"
+    },
+    "Global Light": {
+      "text": {
+        "focus": "#070910",
+        "secondary": "#707070",
+        "tertiary": "#a3a3a3"
+      },
+      "icon": {
+        "focus": "#070910",
+        "inactive": "#707070",
+        "disabled": "#a3a3a3"
+      },
+      "level": {
+        "basement": "#f5f5f5",
+        "basement-opacity-80": "#f5f5f5cc",
+        "surface": "#ffffff",
+        "surface-opacity-80": "#ffffffcc",
+        "surface-opacity-0": "#ffffff00",
+        "elevation": "#f5f5f5",
+        "elevation +1": "#ebebeb",
+        "elevation +2": "#e0e0e0",
+        "elevation +3": "#d6d6d6",
+        "elevation +4": "#cccccc"
+      },
+      "brand": {
+        "primary": "#005fae",
+        "secondary": "#005fae",
+        "tertiary": "#005fae",
+        "primary-10": "#005fae1a"
+      },
+      "inverse": {
+        "pureWhite": "#ffffff",
+        "pureDark": "#000000",
+        "swap": "#ffffff",
+        "focus": "#000000",
+        "brand": "#005fae"
+      },
+      "actions": {
+        "action-01": "#4ba22d",
+        "action-01-20%": "#4ba22d33",
+        "action-01-10%": "#4ba22d1a",
+        "action-02": "#dc3323",
+        "action-02-20%": "#dc332333",
+        "action-02-10%": "#dc33231a",
+        "action-03": "#db8500",
+        "action-03-20%": "#db850033",
+        "action-03-10%": "#db85001a",
+        "gradients": {
+          "gradient-01": "#00f231",
+          "gradient-02": "#d50b14"
+        }
+      },
+      "button": {
+        "primary": "#005fae",
+        "secondary": "#f5f5f5",
+        "focus": "#070910",
+        "buy": "#48aa5c",
+        "sell": "#de393f"
+      },
+      "dedicated": {
+        "segmented": {
+          "Active": "#ffffff"
+        },
+        "overlay": "#000000bf"
+      },
+      "theme": "light",
+      "debug": "#0064ff",
+      "section bg": "#e8e8e8"
+    },
+    "Dark": {
+      "Wrapper BG": "#ffffff08"
+    },
+    "Light": {
+      "Wrapper BG": "#00000014"
     }
   }
 }
