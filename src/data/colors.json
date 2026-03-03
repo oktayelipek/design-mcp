@@ -1,1 +1,20 @@
-{ "colors": { "primary": "#FF9900", "secondary": "#232F3E" } }
+{
+  "colors": {
+    "brand": {
+      "primary": "#005fae"
+    },
+    "text": {
+      "focus": "#f0f4f7",
+      "secondary": "#858fa6"
+    },
+    "inverse": {
+      "focus": "#ffffff"
+    },
+    "level": {
+      "surface": "#0b0f1a"
+    },
+    "utility": {
+      "debug": "#c5ff00"
+    }
+  }
+}

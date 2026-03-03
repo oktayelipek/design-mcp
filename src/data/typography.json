@@ -1,1 +1,189 @@
-{ "typography": { "h1": { "fontSize": "32px", "fontWeight": "700" } } }
+{
+  "typography": {
+    "primaryFont": "Inter Variable",
+    "helperFont": "IBM Plex Mono",
+    "fontWeights": {
+      "text": "400",
+      "medium": "500",
+      "semibold": "600"
+    },
+    "styles": {
+      "Large Number 02": {
+        "fontSize": "56px",
+        "lineHeight": "56px",
+        "variants": {
+          "Medium": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "500",
+            "fontSize": "56px",
+            "lineHeight": "56px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Large Title": {
+        "fontSize": "34px",
+        "lineHeight": "40px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "34px",
+            "lineHeight": "40px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Title 01": {
+        "fontSize": "28px",
+        "lineHeight": "34px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "28px",
+            "lineHeight": "34px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Title 02": {
+        "fontSize": "24px",
+        "lineHeight": "32px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "24px",
+            "lineHeight": "32px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Title 03": {
+        "fontSize": "20px",
+        "lineHeight": "24px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "20px",
+            "lineHeight": "24px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Title 04": {
+        "fontSize": "16px",
+        "lineHeight": "22px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "16px",
+            "lineHeight": "22px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "CallOut": {
+        "fontSize": "14px",
+        "lineHeight": "20px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "letterSpacing": "-0.01"
+          },
+          "Medium": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "500",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "letterSpacing": "-0.01"
+          }
+        }
+      },
+      "Body": {
+        "fontSize": "13px",
+        "lineHeight": "18px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "13px",
+            "lineHeight": "18px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Caption": {
+        "fontSize": "12px",
+        "lineHeight": "16px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "12px",
+            "lineHeight": "16px",
+            "letterSpacing": "0"
+          }
+        }
+      },
+      "Footnote": {
+        "fontSize": "11px",
+        "lineHeight": "16px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "11px",
+            "lineHeight": "16px",
+            "letterSpacing": "0.05"
+          }
+        }
+      },
+      "Micro UI 03": {
+        "fontSize": "8px",
+        "lineHeight": "12px",
+        "variants": {
+          "Medium": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "500",
+            "fontSize": "8px",
+            "lineHeight": "12px",
+            "letterSpacing": "1.0"
+          }
+        }
+      },
+      "Micro UI 02": {
+        "fontSize": "9px",
+        "lineHeight": "12px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "9px",
+            "lineHeight": "12px",
+            "letterSpacing": "0.22"
+          }
+        }
+      },
+      "Micro UI 01": {
+        "fontSize": "10px",
+        "lineHeight": "14px",
+        "variants": {
+          "Semibold": {
+            "fontFamily": "Inter Variable",
+            "fontWeight": "600",
+            "fontSize": "10px",
+            "lineHeight": "14px",
+            "letterSpacing": "0.2"
+          }
+        }
+      }
+    }
+  }
+}
