@@ -8,7 +8,7 @@ Design System'i (headless renkler, farklı dosyalardaki tipografi ve UI bileşen
 
 - [x] Task 1: Proje iskeletinin oluşturulması (Node.js, TypeScript, pnpm/npm) → Verify: `package.json` ve `tsconfig.json` dosyalarının varlığı.
 - [x] Task 2: `@modelcontextprotocol/sdk` ve gerekli paketlerin (Express ortamında SSE için) kurulması → Verify: SDK'nın node_modules içinde olması.
-- [ ] Task 3: Express/Hono tabanlı veya standart Node HTTP ile SSE Transport katmanının kurulması → Verify: `/sse` veya `/message` endpointlerinin çalışır durumda olması.
+- [x] Task 3: Express/Hono tabanlı veya standart Node HTTP ile SSE Transport katmanının kurulması → Verify: `/sse` veya `/message` endpointlerinin çalışır durumda olması.
 - [ ] Task 4: Tasarım sistemindeki "okunabilir" kaynakların (Resources) tanımlanması (`design-system://tokens/colors`, `design-system://tokens/typography`) → Verify: MCP sunucusunun `resources/list` isteğine doğru yanıt vermesi.
 - [ ] Task 5: Component bazlı "Tool" ların programlanması (örn: `get_button_component`, `get_input_component` vb. veya jenerik `get_component(name)`) → Verify: MCP sunucusunun `tools/call` ile istenen bileşenin import'unu ve kodunu dönmesi.
 - [ ] Task 6: LLM'leri yönlendirecek "Prompt"ların eklenmesi (örn: "Design system kullanarak form oluştur") → Verify: `prompts/list` isteğine yanıt alınması.
