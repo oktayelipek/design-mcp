@@ -1,0 +1,25 @@
+{
+  "name": "design-mcp",
+  "version": "1.0.0",
+  "description": "Design System MCP Server",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "design-system",
+    "design-tokens"
+  ],
+  "author": "oktayelipek",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
