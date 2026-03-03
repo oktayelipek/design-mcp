@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Top Nav",
+    "description": "Uygulamanın en üstünde yer alan, geri dönme aksiyonu, başlık ve ek aksiyonlar barındıran navigasyon modülü.",
+    "composedOf": ["Menu", "Typography", "Icons"],
+    "figmaNode": "Top Nav"
+  },
+  {
+    "name": "Basic Trade",
+    "description": "Kullanıcıların kripto varlık alıp satabildiği, miktar ve fiyat girilebilen ana işlem modülü.",
+    "composedOf": ["Input", "Button", "Segmented Control", "Price Row"],
+    "figmaNode": "Basic Trade"
+  },
+  {
+    "name": "Asset List",
+    "description": "Piyasadaki varlıkların filtrelenebilir ve sıralanabilir liste görünümü.",
+    "composedOf": ["Asset Row", "Filters", "Top Nav"],
+    "figmaNode": "Asset List"
+  },
+  {
+    "name": "PIN Code",
+    "description": "Kullanıcının uygulamaya girişte veya işlem onayı sırasında PIN girdiği güvenlik ekranı modülü.",
+    "composedOf": ["Keyboards", "Typography"],
+    "figmaNode": "PIN Code"
+  },
+  {
+    "name": "Trade Pages",
+    "description": "Alım satım akışını kapsayan tüm sekmeleri (Emir Defteri, Derinlik vs.) barındıran üst modül.",
+    "composedOf": ["Basic Trade", "Order List", "Charts", "Tables"],
+    "figmaNode": "Trade Pages"
+  },
+  {
+    "name": "Balance & PNL",
+    "description": "Kullanıcının toplam cüzdan bakiyesini ve kar/zarar durumunu grafiksel olarak gösteren modül.",
+    "composedOf": ["Charts", "Typography", "Asset Row"],
+    "figmaNode": "Balance & PNL"
+  }
+]
