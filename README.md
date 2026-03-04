@@ -64,26 +64,21 @@ If this key is set, the server will require it for every connection.
 
 Your friends can add your public URL to their **Claude Desktop** config.
 
-**Without API Key:**
+**Using NPX (No local files needed):**
 
 ```json
-"shared-design": {
-  "command": "node",
-  "args": ["/path/to/local/proxy/script.js", "https://your-server.up.railway.app/sse"]
-}
-```
-
-**With API Key (via query param):**
-
-```json
-"shared-design": {
-  "command": "node",
-  "args": ["/path/to/local/proxy/script.js", "https://your-server.up.railway.app/sse?apiKey=your_secret_key_here"]
+"design-system": {
+  "command": "npx",
+  "args": [
+    "-y",
+    "@modelcontextprotocol/server-sse",
+    "https://design-mcp-production-6cf0.up.railway.app/sse?apiKey=DesignTeam2026"
+  ]
 }
 ```
 
 > [!TIP]
-> Since Claude's native SSE transport doesn't allow custom headers easily, we've enabled `apiKey` support via query parameters for easier sharing.
+> Since Claude's native SSE transport doesn't allow custom headers easily, we use `npx @modelcontextprotocol/server-sse` as a bridge. This way, no local files are required on the client machine.
 
 ---
 
