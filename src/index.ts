@@ -13,12 +13,36 @@ import {
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { config } from "dotenv";
+
+config();
+
+const API_KEY = process.env.MCP_API_KEY;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
+
+// Simple Auth Middleware
+const authMiddleware = (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  if (!API_KEY) {
+    return next(); // If no key defined in env, allow all (local dev)
+  }
+
+  const key = req.headers["x-api-key"] || req.query.apiKey;
+  if (key !== API_KEY) {
+    console.log("Unauthorized access attempt");
+    res.status(401).send("Unauthorized: Invalid API Key");
+    return;
+  }
+  next();
+};
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
@@ -595,13 +619,13 @@ Before starting, please read the design guidelines from 'design-system://guideli
 });
 
 let transport: SSEServerTransport;
-app.get("/sse", async (req, res) => {
+app.get("/sse", authMiddleware, async (req, res) => {
   console.log("New SSE connection established");
   transport = new SSEServerTransport("/message", res);
   await server.connect(transport);
 });
 
-app.post("/message", express.json(), async (req, res) => {
+app.post("/message", authMiddleware, express.json(), async (req, res) => {
   if (!transport) {
     res.status(400).send("No active SSE connection.");
     return;

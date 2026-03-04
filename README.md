@@ -46,6 +46,47 @@ The server exposes several tools for AI assistants:
 
 ---
 
+## 👥 Sharing with Friends
+
+To share your Design System MCP with others, the server needs to be publicly accessible and (optionally) secured.
+
+### 1. Secure with an API Key
+
+In your environment variables (e.g., on Railway), set:
+
+```text
+MCP_API_KEY=your_secret_key_here
+```
+
+If this key is set, the server will require it for every connection.
+
+### 2. Client Connection (Remote)
+
+Your friends can add your public URL to their **Claude Desktop** config.
+
+**Without API Key:**
+
+```json
+"shared-design": {
+  "command": "node",
+  "args": ["/path/to/local/proxy/script.js", "https://your-server.up.railway.app/sse"]
+}
+```
+
+**With API Key (via query param):**
+
+```json
+"shared-design": {
+  "command": "node",
+  "args": ["/path/to/local/proxy/script.js", "https://your-server.up.railway.app/sse?apiKey=your_secret_key_here"]
+}
+```
+
+> [!TIP]
+> Since Claude's native SSE transport doesn't allow custom headers easily, we've enabled `apiKey` support via query parameters for easier sharing.
+
+---
+
 ## 🚦 Getting Started
 
 **Installation:**
