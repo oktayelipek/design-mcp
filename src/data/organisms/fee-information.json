@@ -1,0 +1,28 @@
+{
+  "name": "Fee Information",
+  "category": "organism",
+  "description": "Kullanıcının işlem hacmine göre komisyon oranlarını ve VIP seviyelerini görüntülediği ana modül.",
+  "figmaNodeId": "OJM0GrJL1IZnj7EZxTra58 / [M] FK-Fee Information",
+  "composedOf": ["Fee Summary", "Fee Tab", "Fee Level Row"],
+  "props": {
+    "showVIP": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation",
+          "divider": "border.basement"
+        }
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Summary", "component": "Fee Summary" },
+      { "name": "Tabs", "component": "Fee Tab" },
+      { "name": "Table", "component": "Fee Level Row", "repeat": true }
+    ]
+  }
+}

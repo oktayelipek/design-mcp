@@ -1,0 +1,20 @@
+{
+  "name": "Market Status Indicator",
+  "category": "molecule",
+  "description": "Borsanın veya paritenin işlem durumunu (Açık, Kapalı, Seans Sonrası) gösteren indikator.",
+  "figmaNodeId": "860JxpULNmSZShDDKc8dZD / Market Status",
+  "composedOf": ["Icon", "Typography"],
+  "props": {
+    "state": { "type": "enum", "values": ["Closed", "Pre-Market", "After-Market", "Open"], "default": "Open" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Closed": { "icon": "actions.error", "text": "actions.error" },
+        "Open": { "icon": "actions.success", "text": "actions.success" },
+        "Pre-Market": { "icon": "text.tertiary", "text": "text.tertiary" },
+        "After-Market": { "icon": "text.secondary", "text": "text.secondary" }
+      }
+    }
+  }
+}

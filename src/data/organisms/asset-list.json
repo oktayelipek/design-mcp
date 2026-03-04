@@ -1,0 +1,25 @@
+{
+  "name": "Asset List",
+  "category": "organism",
+  "description": "Varlık listesi modülü. Banner ve Disclaimer eklendi.",
+  "figmaNodeId": "GoZDoZVaxgKT3lwn5ERr5B / [M] FK-Asset List",
+  "composedOf": [
+    "Asset List Search",
+    "Connection Banner",
+    "Asset List Disclaimer",
+    "Table Header",
+    "Asset Row",
+    "Segmented Control"
+  ],
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Banner", "component": "Connection Banner" },
+      { "name": "Search & Filter", "component": "Asset List Search" },
+      { "name": "Tabs", "component": "Segmented Control" },
+      { "name": "Header", "component": "Table Header" },
+      { "name": "Items", "component": "Asset Row", "repeat": true },
+      { "name": "Footer", "component": "Asset List Disclaimer" }
+    ]
+  }
+}

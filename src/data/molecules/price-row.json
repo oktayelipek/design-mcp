@@ -1,0 +1,73 @@
+{
+  "name": "Price Row",
+  "category": "molecule",
+  "description": "Fiyat listelerindeki ve emir defterlerindeki her bir satırı (varlık fiyatı, hacim, grafik, değişim oranı) detaylı bir şekilde gösteren bileşen.",
+  "figmaNodeId": "ADqYI5EermvB9JpEOByLH9 / Price List Row ½",
+  "composedOf": ["Typography", "Icon", "Graph Small ½", "_Price Change", "_Left Media"],
+  "states": ["Default", "Action"],
+  "props": {
+    "action": {
+      "type": "enum",
+      "values": ["Buy", "Sell"],
+      "default": "Buy"
+    },
+    "type": {
+      "type": "enum",
+      "values": ["Default", "Action"],
+      "default": "Default"
+    },
+    "leftMedia": {
+      "type": "enum",
+      "values": ["Crypto", "Stock", "Fav", "Fav Fill", "None"],
+      "default": "Crypto"
+    },
+    "showGraph": { "type": "boolean", "default": true },
+    "showChange": { "type": "boolean", "default": true },
+    "showVolume": { "type": "boolean", "default": true },
+    "tickerText": { "type": "string" },
+    "priceText": { "type": "string" },
+    "pairText": { "type": "string" },
+    "nameText": { "type": "string" }
+  },
+  "variants": {
+    "Buy": {
+      "description": "Alış yönlü liste elemanı.",
+      "tokenMap": {
+        "Default": {
+          "background": "level.surface",
+          "tickerText": "text.focus",
+          "priceText": "text.focus",
+          "changeText": "actions.action-01",
+          "pairText": "text.secondary",
+          "volumeText": "text.secondary"
+        },
+        "Action": {
+          "background": "actions.action-01-10%",
+          "tickerText": "text.focus",
+          "priceText": "text.focus",
+          "changeText": "actions.action-01"
+        }
+      }
+    },
+    "Sell": {
+      "description": "Satış yönlü liste elemanı.",
+      "tokenMap": {
+        "Default": {
+          "background": "level.surface",
+          "tickerText": "text.focus",
+          "priceText": "text.focus",
+          "changeText": "actions.action-02",
+          "pairText": "text.secondary",
+          "volumeText": "text.secondary"
+        },
+        "Action": {
+          "background": "actions.action-02-10%",
+          "tickerText": "text.focus",
+          "priceText": "text.focus",
+          "changeText": "actions.action-02"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

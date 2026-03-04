@@ -1,0 +1,24 @@
+{
+  "name": "Order Card",
+  "category": "molecule",
+  "description": "Açık emirlerin detaylarını (fiyat, miktar, gerçekleşen, tip) gösteren kart bileşeni. Kaydırma (Swipe) desteği içerir.",
+  "figmaNodeId": "z2XpEnXNMxwhKf4qUFyOW9 / FK Open Order Card",
+  "composedOf": ["Typography", "Icon", "Badge"],
+  "props": {
+    "type": { "type": "enum", "values": ["Buy", "Sell"], "default": "Buy" },
+    "pair": { "type": "string" },
+    "price": { "type": "string" },
+    "amount": { "type": "string" },
+    "status": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Buy": { "indicator": "brand.buy", "text": "text.focus" },
+        "Sell": { "indicator": "brand.sell", "text": "text.focus" },
+        "background": "level.elevation",
+        "divider": "border.basement"
+      }
+    }
+  }
+}

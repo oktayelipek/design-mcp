@@ -1,0 +1,55 @@
+{
+  "name": "Input",
+  "category": "atom",
+  "description": "Kullanıcının metin, sayı veya şifre girmesini sağlayan temel giriş alanı bileşeni.",
+  "figmaNodeId": "366GFBWgYcSAnuiMmBZSlm / FK-Input",
+  "states": ["Default", "Focus", "Error", "Success", "Disabled"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Text", "Password", "Number", "Encrypted (PIN)"],
+      "default": "Text"
+    },
+    "placeholder": { "type": "string" },
+    "label": { "type": "string" },
+    "errorText": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart giriş kutusu görünümü.",
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "border": "border.basement",
+          "text": "text.focus"
+        },
+        "Focus": {
+          "background": "level.elevation +2",
+          "border": "brand.primary"
+        },
+        "Error": {
+          "background": "level.elevation +1",
+          "border": "actions.action-02"
+        },
+        "Disabled": {
+          "background": "level.basement",
+          "text": "text.tertiary"
+        }
+      }
+    },
+    "encrypted": {
+      "description": "PIN kodu gibi gizli karakter girişleri için kare kutucuklı yapı.",
+      "tokenMap": {
+        "Active": {
+          "background": "level.elevation +2",
+          "border": "brand.primary"
+        },
+        "Inactive": {
+          "background": "level.elevation +1",
+          "border": "border.basement"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

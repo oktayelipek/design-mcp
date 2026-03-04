@@ -1,0 +1,31 @@
+{
+  "name": "Exception",
+  "category": "organism",
+  "description": "Hata, internet yok, güvenli internet gibi özel durumları ve modal diyalogları yöneten modül.",
+  "figmaNodeId": "MRFmDHubvRXb6gb52owX0p / {FK-Exceptions-Dialogs}",
+  "composedOf": ["Icon", "Button", "Typography", "Overlay"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Internet NA", "Secure Internet", "Soft Update", "Maintenance"],
+      "default": "Internet NA"
+    },
+    "brand": {
+      "type": "enum",
+      "values": ["Kripto", "Hisse", "Wallet"],
+      "default": "Kripto"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation",
+          "title": "text.focus",
+          "description": "text.tertiary",
+          "overlay": "dedicated.overlay.Default"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "components": [
+    {
+      "name": "Asset Row",
+      "category": "molecule",
+      "file": "asset-row.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": [
+        "Asset List",
+        "Balance & PNL"
+      ]
+    },
+    {
+      "name": "Price Row",
+      "category": "molecule",
+      "file": "price-row.json",
+      "variants": [
+        "Buy",
+        "Sell"
+      ],
+      "usedIn": [
+        "Basic Trade"
+      ]
+    },
+    {
+      "name": "Row",
+      "category": "molecule",
+      "file": "row.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Tabs",
+      "category": "molecule",
+      "file": "tabs.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "InfoRow",
+      "category": "molecule",
+      "file": "info-row.json",
+      "variants": [
+        "Low",
+        "High"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Button Group",
+      "category": "molecule",
+      "file": "button-group.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Drawer",
+      "category": "molecule",
+      "file": "drawer.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Tooltip",
+      "category": "molecule",
+      "file": "tooltip.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Progress Stepper",
+      "category": "molecule",
+      "file": "progress-stepper.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Range Selector",
+      "category": "molecule",
+      "file": "range-selector.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Table Header",
+      "category": "molecule",
+      "file": "table-header.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Combo List",
+      "category": "molecule",
+      "file": "combo-list.json",
+      "variants": ["default"],
+      "usedIn": ["Dropdown Combo"]
+    },
+    {
+      "name": "Dropdown Combo",
+      "category": "molecule",
+      "file": "dropdown-combo.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Header Filter",
+      "category": "molecule",
+      "file": "header-filter.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Segmented Control",
+      "category": "molecule",
+      "file": "segmented-control.json",
+      "variants": ["default"],
+      "usedIn": ["Basic Trade"]
+    },
+    {
+      "name": "Ticker",
+      "category": "molecule",
+      "file": "ticker.json",
+      "variants": ["default"],
+      "usedIn": ["Price Row", "Asset Row"]
+    },
+    {
+      "name": "FK Row",
+      "category": "molecule",
+      "file": "row.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Keyboard Toolbar",
+      "category": "molecule",
+      "file": "keyboard-toolbar.json",
+      "variants": ["default"],
+      "usedIn": ["Keyboard"]
+    },
+    {
+      "name": "Menu Item",
+      "category": "molecule",
+      "file": "menu-item.json",
+      "variants": ["default"],
+      "usedIn": ["Menu"]
+    },
+    {
+      "name": "Date Picker Button",
+      "category": "molecule",
+      "file": "date-picker-button.json",
+      "variants": ["default"],
+      "usedIn": ["Date Picker"]
+    },
+    {
+      "name": "Pair Switcher",
+      "category": "molecule",
+      "file": "pair-switcher.json",
+      "variants": ["default"],
+      "usedIn": ["Basic Trade"]
+    },
+    {
+      "name": "Trade Action Button",
+      "category": "molecule",
+      "file": "trade-action-button.json",
+      "variants": ["default"],
+      "usedIn": ["Basic Trade"]
+    },
+    {
+      "name": "Fee Tab",
+      "category": "molecule",
+      "file": "fee-tab.json",
+      "variants": ["default"],
+      "usedIn": ["Fee Information"]
+    },
+    {
+      "name": "Fee Level Row",
+      "category": "molecule",
+      "file": "fee-level-row.json",
+      "variants": ["default"],
+      "usedIn": ["Fee Information"]
+    },
+    {
+      "name": "Fee Maker Taker",
+      "category": "molecule",
+      "file": "fee-maker-taker.json",
+      "variants": ["default"],
+      "usedIn": ["Fee Summary"]
+    },
+    {
+      "name": "Fee Summary",
+      "category": "molecule",
+      "file": "fee-summary.json",
+      "variants": ["default"],
+      "usedIn": ["Fee Information"]
+    },
+    {
+      "name": "Asset List Search",
+      "category": "molecule",
+      "file": "asset-list-search.json",
+      "variants": ["default"],
+      "usedIn": ["Asset List"]
+    },
+    {
+      "name": "Trade Page Navigator",
+      "category": "molecule",
+      "file": "trade-page-navigator.json",
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Asset List Disclaimer",
+      "category": "molecule",
+      "file": "asset-list-disclaimer.json",
+      "variants": ["default"],
+      "usedIn": ["Asset List"]
+    },
+    {
+      "name": "Connection Banner",
+      "category": "molecule",
+      "file": "connection-banner.json",
+      "variants": ["default"],
+      "usedIn": ["Asset List"]
+    },
+    {
+      "name": "Order Book Row",
+      "category": "molecule",
+      "file": "order-book-row.json",
+      "variants": ["default"],
+      "usedIn": ["Order Book"]
+    },
+    {
+      "name": "Order Card",
+      "category": "molecule",
+      "file": "order-card.json",
+      "variants": ["default"],
+      "usedIn": ["Order List"]
+    },
+    {
+      "name": "PNL Summary",
+      "category": "molecule",
+      "file": "pnl-summary.json",
+      "variants": ["default"],
+      "usedIn": ["Balance & PNL"]
+    },
+    {
+      "name": "Bottom Navigation",
+      "category": "molecule",
+      "file": "bottom-navigation.json",
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Graph Head",
+      "category": "molecule",
+      "file": "graph-head.json",
+      "variants": ["default"],
+      "usedIn": ["Price Detail Graph"]
+    },
+    {
+      "name": "Market Status Indicator",
+      "category": "molecule",
+      "file": "market-status-indicator.json",
+      "variants": ["default"],
+      "usedIn": ["Price Detail Graph", "Graph Head"]
+    },
+    {
+      "name": "Price Summary Highlight",
+      "category": "molecule",
+      "file": "price-summary-highlight.json",
+      "variants": ["default"],
+      "usedIn": ["Price Detail Graph"]
+    },
+    {
+      "name": "Wallet Balance Summary",
+      "category": "molecule",
+      "file": "wallet-balance-summary.json",
+      "variants": ["default"],
+      "usedIn": ["Wallet Balance Card"]
+    },
+    {
+      "name": "Wallet Asset Item",
+      "category": "molecule",
+      "file": "wallet-asset-item.json",
+      "variants": ["Crypto", "Fiat"],
+      "usedIn": ["Wallet Asset List"]
+    }
+  ]
+}

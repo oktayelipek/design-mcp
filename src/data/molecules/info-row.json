@@ -1,0 +1,84 @@
+{
+  "name": "InfoRow",
+  "category": "molecule",
+  "description": "Bilgilendirme, uyarı veya rehber niteliğindeki metinleri liste içinde veya form aralarında göstermek için kullanılan bilgi satırı.",
+  "figmaNodeId": "6GFF7T7fU5i6xDYgvPLX0j / FK-InfoRow",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["info", "error", "success", "warning"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Left Align", "Right Align", "Dismissable"],
+      "default": "Left Align"
+    },
+    "presence": {
+      "type": "enum",
+      "values": ["Low", "High"],
+      "default": "Low"
+    },
+    "tone": {
+      "type": "enum",
+      "values": ["Info", "Error", "Success", "Warning"],
+      "default": "Info"
+    },
+    "boxed": {
+      "type": "boolean",
+      "default": true
+    },
+    "text": { "type": "string" },
+    "showIcon": { "type": "boolean", "default": true }
+  },
+  "variants": {
+    "Low": {
+      "description": "Daha az dikkat çeken, arkaplanı şeffaf olan bilgilendirme satırı. Genelde Boxed?=False ile kullanılır.",
+      "tokenMap": {
+        "Info": {
+          "background": "transparent",
+          "text": "text.secondary",
+          "icon": "icon.inactive"
+        },
+        "Error": {
+          "background": "transparent",
+          "text": "actions.action-02",
+          "icon": "actions.action-02"
+        },
+        "Success": {
+          "background": "transparent",
+          "text": "actions.action-01",
+          "icon": "actions.action-01"
+        },
+        "Warning": {
+          "background": "transparent",
+          "text": "actions.action-03",
+          "icon": "actions.action-03"
+        }
+      }
+    },
+    "High": {
+      "description": "Dikkat çeken, renkli arkaplana sahip bilgilendirme satırı. Genelde Boxed?=True ile kullanılır.",
+      "tokenMap": {
+        "Info": {
+          "background": "level.elevation +2",
+          "text": "text.focus",
+          "icon": "icon.focus"
+        },
+        "Error": {
+          "background": "actions.action-02-10%",
+          "text": "actions.action-02",
+          "icon": "actions.action-02"
+        },
+        "Success": {
+          "background": "actions.action-01-10%",
+          "text": "actions.action-01",
+          "icon": "actions.action-01"
+        },
+        "Warning": {
+          "background": "actions.action-03-10%",
+          "text": "actions.action-03",
+          "icon": "actions.action-03"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

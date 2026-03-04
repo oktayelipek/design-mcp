@@ -1,0 +1,28 @@
+{
+  "name": "Keyboard",
+  "category": "organism",
+  "description": "Sayısal veya alfabetik veri girişi için kullanılan tam ekran veya modal klavye bileşeni.",
+  "figmaNodeId": "rei2CMYXJD1qsA34KQ4hRO / {FK-Keyboards}",
+  "composedOf": ["Keyboard Action", "Keyboard Toolbar", "Range Selector"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Numeric", "Alphabetical"],
+      "default": "Numeric"
+    },
+    "platform": {
+      "type": "enum",
+      "values": ["iOS", "Android"],
+      "default": "iOS"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "border.basement"
+        }
+      }
+    }
+  }
+}

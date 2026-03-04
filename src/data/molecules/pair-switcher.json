@@ -1,0 +1,25 @@
+{
+  "name": "Pair Switcher",
+  "category": "molecule",
+  "description": "Alım satım yapılacak varlık çiftini değiştirmek için kullanılan tetikleyici.",
+  "figmaNodeId": "NXig2szKnNmuPMIF0JYFxE / _Pair Switcher",
+  "composedOf": ["Price Row", "Icon"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Crypto", "Stock"],
+      "default": "Crypto"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "transparent",
+          "text": "text.focus",
+          "icon": "icon.tertiary"
+        }
+      }
+    }
+  }
+}

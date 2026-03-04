@@ -1,0 +1,39 @@
+{
+  "name": "Radio",
+  "category": "atom",
+  "description": "Kullanıcının bir grup seçenek arasından tek bir seçim yapmasını sağlayan radyo butonu bileşeni.",
+  "figmaNodeId": "pONZ7MnnWFyThMVh1BVeHD / FK-Radio",
+  "states": ["Default", "Enable", "Disabled"],
+  "props": {
+    "checked": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart radyo butonu durumu.",
+      "tokenMap": {
+        "Default": {
+          "border": "icon.inactive",
+          "background": "transparent"
+        },
+        "Enable": {
+          "border": "brand.primary",
+          "background": "transparent",
+          "activeDot": "brand.primary"
+        },
+        "Disabled": {
+          "border": "icon.disabled",
+          "background": "level.elevation +1",
+          "diagonalLine": "icon.disabled"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

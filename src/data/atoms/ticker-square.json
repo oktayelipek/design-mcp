@@ -1,0 +1,21 @@
+{
+  "name": "Ticker Square",
+  "category": "atom",
+  "description": "Convert ekranında kullanılan, içerisinde varlık logosu ve miktar girişi barındıran kare formda giriş alanı.",
+  "figmaNodeId": "0DXxACZsHL2P8NGEsRVpxJ / {FK-Ticker-Square}",
+  "composedOf": ["Icon", "Typography"],
+  "props": {
+    "asset": { "type": "string" },
+    "amount": { "type": "string" },
+    "isSource": { "type": "boolean", "default": true }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "background": "level.elevation",
+        "text": "text.focus",
+        "subText": "text.tertiary"
+      }
+    }
+  }
+}

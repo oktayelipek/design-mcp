@@ -1,0 +1,13 @@
+{
+  "name": "Wallet Balance Summary",
+  "category": "molecule",
+  "description": "Toplam bakiye, yaklaşık değer karşılığı ve PNL özetini içeren bakiye bloğu.",
+  "figmaNodeId": "19270:114884 / Total Amount",
+  "composedOf": ["Typography", "Ticker", "PNL Indicator"],
+  "variants": ["Default", "Simplified"],
+  "rules": {
+    "spacing": "20px vertical gap",
+    "pnlColor": "Positive: #4fa963, Negative: #e93a40",
+    "typography": "Title: 24px SemiBold, SubPrice: 12px Medium"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Balance & PNL",
+  "category": "organism",
+  "description": "Kullanıcının bakiyelerini ve kar/zarar (PNL) verilerini detaylı olarak görüntülediği ana modül.",
+  "figmaNodeId": "2ZTHbEHReUPqN1b1au4JIX / [M] FK-Balance & PNL",
+  "composedOf": ["PNL Summary", "Asset Row", "Tabs", "Graph"],
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Summary", "component": "PNL Summary" },
+      { "name": "HistoryChart", "component": "Graph" },
+      { "name": "Filters", "component": "Tabs" },
+      { "name": "AssetList", "component": "Asset Row", "repeat": true }
+    ]
+  }
+}

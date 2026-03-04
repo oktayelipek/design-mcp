@@ -1,0 +1,38 @@
+{
+  "name": "Button Group",
+  "category": "molecule",
+  "description": "Fiyat ekranları gibi alanlarda çoklu seçim, sekme veya filtre geçişleri için kullanılan, birbirine yapışık veya gruplanmış butonlar.",
+  "figmaNodeId": "4R7A5OLRKJ9GmsdQ5JIPN9 / Tech/Prices/Filter",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["Default", "Active"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Icon", "Text"],
+      "default": "Text"
+    },
+    "state": {
+      "type": "enum",
+      "values": ["Default", "Both Active", "Wallet Active", "Favorites Active"],
+      "default": "Default"
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart filtre/seçim grubu (Örn: Sık Kullanılanlar / Cüzdan)",
+      "tokenMap": {
+        "Default": {
+          "background": "level.basement",
+          "text": "text.tertiary",
+          "icon": "icon.inactive"
+        },
+        "Active": {
+          "background": "level.elevation +1",
+          "text": "text.focus",
+          "icon": "icon.focus"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

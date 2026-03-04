@@ -1,0 +1,24 @@
+{
+  "name": "Fee Summary",
+  "category": "molecule",
+  "description": "Kullanıcının mevcut komisyon seviyesini, oranlarını ve bir sonraki seviyeye olan ilerlemesini gösteren özet kartı.",
+  "figmaNodeId": "OJM0GrJL1IZnj7EZxTra58 / FK-Fee Summary",
+  "composedOf": ["Typography", "Fee Maker Taker", "Segmented Control"],
+  "props": {
+    "currentLevel": { "type": "string", "default": "Level 1" },
+    "progress": { "type": "number", "default": 0 }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "title": "text.tertiary",
+          "levelText": "text.focus",
+          "progressBarActive": "brand.primary",
+          "progressBarBackground": "level.elevation +2"
+        }
+      }
+    }
+  }
+}

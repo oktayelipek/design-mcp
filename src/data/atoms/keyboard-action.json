@@ -1,0 +1,22 @@
+{
+  "name": "Keyboard Action",
+  "category": "atom",
+  "description": "Klavyelerde kullanılan özel işlem butonları (Face ID, Touch ID, Silme, Klavye Kapatma).",
+  "figmaNodeId": "rei2CMYXJD1qsA34KQ4hRO / FK-Keyboards [Actions]",
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Remove", "Face ID", "Keyboard", "Touch ID"],
+      "default": "Remove"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "iconColor": "text.tertiary"
+        }
+      }
+    }
+  }
+}

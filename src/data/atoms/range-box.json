@@ -1,0 +1,29 @@
+{
+  "name": "Range Box",
+  "category": "atom",
+  "description": "Range Selector içerisinde kullanılan, bakiye oranlarını (25%, 50%, 75%, 100%) temsil eden küçük kutucuklar.",
+  "figmaNodeId": "YRnObGVc1Gjz2wvudqFFgk / _Range-Box",
+  "states": ["active", "inactive"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Outline", "Inline"],
+      "default": "Outline"
+    },
+    "label": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "active": {
+          "background": "text.focus",
+          "text": "level.basement"
+        },
+        "inactive": {
+          "background": "level.basement",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

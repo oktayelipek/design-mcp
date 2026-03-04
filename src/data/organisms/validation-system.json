@@ -1,0 +1,41 @@
+{
+  "name": "Validation System",
+  "category": "organism",
+  "description": "SMS, E-posta veya 2FA doğrulama kodlarının girildiği, zamanlayıcı ve hata mesajlarını içeren güvenlik modülü.",
+  "figmaNodeId": "jeftAuSQnnJnEFSgRHhE8s / {FK-Validation}",
+  "composedOf": ["Top Nav", "Input", "Button", "Typography", "Icon"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["SMS", "Email", "2FA", "Mobile"],
+      "default": "SMS"
+    },
+    "state": {
+      "type": "enum",
+      "values": ["Default", "Error", "Loading"],
+      "default": "Default"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.basement",
+          "label": "text.tertiary",
+          "inputGroup": "level.elevation",
+          "errorText": "actions.error"
+        }
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Top Nav" },
+      { "name": "Instruction", "component": "Typography" },
+      { "name": "VerificationInputs", "component": "Input", "repeat": 6 },
+      { "name": "ErrorMessage", "component": "Typography" },
+      { "name": "Actions", "components": ["Button", "Typography(Timer)"] }
+    ]
+  }
+}

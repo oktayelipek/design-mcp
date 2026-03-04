@@ -1,0 +1,43 @@
+{
+  "name": "Graph",
+  "category": "atom",
+  "description": "Fiyat değişimlerini gösteren, fiyat listelerinde (mini) veya varlık detay sayfalarında (büyük) kullanılan vektörel alan grafiği.",
+  "figmaNodeId": "DiVyjfM8iWfJeQVZoGfOf1 / Graph Small ½ & Big Graph",
+  "composedOf": ["Vector"],
+  "states": ["UP", "DOWN", "NA"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Large"],
+      "default": "Small"
+    },
+    "chartStyle": {
+      "type": "enum",
+      "values": ["Dummy", "Kripto", "Kripto (Low)", "Hisse", "Hisse (Low)"],
+      "default": "Kripto"
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Grafik çizgisi ve altındaki gradient dolgusu.",
+      "tokenMap": {
+        "UP": {
+          "line": "actions.action-01",
+          "fillGradientStart": "actions.action-01-10%",
+          "fillGradientEnd": "transparent"
+        },
+        "DOWN": {
+          "line": "actions.action-02",
+          "fillGradientStart": "actions.action-02-10%",
+          "fillGradientEnd": "transparent"
+        },
+        "NA": {
+          "line": "icon.disabled",
+          "fillGradientStart": "transparent",
+          "fillGradientEnd": "transparent"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

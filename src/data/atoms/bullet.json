@@ -1,0 +1,36 @@
+{
+  "name": "Bullet",
+  "category": "atom",
+  "description": "Sayfalama (pagination), carousel geçişlerinde ve adımlı işlemlerde hangi sayfada/adımda olunduğunu gösteren nokta (Dot) veya yatay çizgi (Line) şeklindeki göstergeler.",
+  "figmaNodeId": "5PRWsNFWTDJAZYBkJsFsfX / Bullet [Line] & Bullet [Dots]",
+  "states": ["ON", "OFF"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Line", "Dots"],
+      "default": "Dots"
+    },
+    "count": {
+      "type": "number",
+      "default": 3
+    },
+    "activeIndex": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart bullet (Dot veya Line) göstergesi.",
+      "tokenMap": {
+        "ON": {
+          "background": "text.focus"
+        },
+        "OFF": {
+          "background": "level.basement"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

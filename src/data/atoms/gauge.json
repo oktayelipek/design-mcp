@@ -1,0 +1,53 @@
+{
+  "name": "Gauge",
+  "category": "atom",
+  "description": "Alış/satış baskısı veya doluluk oranını gösteren yarım daire veya tam daire şeklindeki gösterge (ibre) bileşeni.",
+  "figmaNodeId": "bHav3vCFOlMn8TWnwaciXD / Gauge",
+  "composedOf": ["Typography", "Vector"],
+  "states": ["Active"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium", "Large"],
+      "default": "Large"
+    },
+    "type": {
+      "type": "enum",
+      "values": ["Buy", "Sell", "Partial 1", "Partial 2", "Partial 3"],
+      "default": "Buy"
+    }
+  },
+  "variants": {
+    "Buy": {
+      "description": "Alış yönünün (yeşil) baskın olduğu gösterge.",
+      "tokenMap": {
+        "Active": {
+          "text": "actions.action-01",
+          "fill": "actions.action-01",
+          "background": "level.basement"
+        }
+      }
+    },
+    "Sell": {
+      "description": "Satış yönünün (kırmızı) baskın olduğu gösterge.",
+      "tokenMap": {
+        "Active": {
+          "text": "actions.action-02",
+          "fill": "actions.action-02",
+          "background": "level.basement"
+        }
+      }
+    },
+    "Partial": {
+      "description": "Parçalı oran gösterimleri (Alış, Satış ve Nötr/Diğer kısımların oransal gösterimi).",
+      "tokenMap": {
+        "Active": {
+          "buyFill": "actions.action-01",
+          "sellFill": "actions.action-02",
+          "neutralFill": "actions.action-03"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

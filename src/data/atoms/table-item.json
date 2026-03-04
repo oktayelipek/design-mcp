@@ -1,0 +1,33 @@
+{
+  "name": "Table Item",
+  "category": "atom",
+  "description": "Tablodaki her bir veri hücresi (cell).",
+  "figmaNodeId": "I8VF3iKT4wXpGziooEGK1O / {FK-Table-Item}",
+  "composedOf": ["Typography", "Ticker"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium", "Large"],
+      "default": "Medium"
+    },
+    "align": {
+      "type": "enum",
+      "values": ["Left", "Right"],
+      "default": "Left"
+    },
+    "style": {
+      "type": "enum",
+      "values": ["Default", "Ticker"],
+      "default": "Default"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "text": "text.focus"
+        }
+      }
+    }
+  }
+}

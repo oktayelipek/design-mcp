@@ -1,0 +1,50 @@
+{
+  "name": "Segmented Item",
+  "category": "atom",
+  "description": "Segmented Control içerisindeki her bir seçim alanı (sekme).",
+  "figmaNodeId": "k6PMBkpjwmpKnwCdevrNA9 / Segmented Control/Base (Variable System)",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["Selected", "Default"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium"],
+      "default": "Medium"
+    },
+    "hasIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "style": {
+      "type": "enum",
+      "values": ["UI", "Color"],
+      "default": "UI"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Selected": {
+          "background": "level.elevation +2",
+          "text": "text.focus"
+        },
+        "Default": {
+          "background": "transparent",
+          "text": "text.tertiary"
+        }
+      }
+    },
+    "color": {
+      "tokenMap": {
+        "Selected": {
+          "background": "actions.action-01",
+          "text": "inverse.pureWhite"
+        },
+        "Default": {
+          "background": "transparent",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

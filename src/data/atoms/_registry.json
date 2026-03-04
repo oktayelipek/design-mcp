@@ -1,0 +1,193 @@
+{
+  "components": [
+    {
+      "name": "Button",
+      "category": "atom",
+      "file": "button.json",
+      "variants": [
+        "primary",
+        "secondary",
+        "buy",
+        "sell"
+      ],
+      "usedIn": [
+        "Basic Trade",
+        "Top Nav",
+        "PIN Code"
+      ]
+    },
+    {
+      "name": "Input",
+      "category": "atom",
+      "file": "input.json",
+      "variants": [
+        "default",
+        "error",
+        "success"
+      ],
+      "usedIn": [
+        "Basic Trade"
+      ]
+    },
+    {
+      "name": "Combo List Item",
+      "category": "atom",
+      "file": "combo-list-item.json",
+      "variants": ["default"],
+      "usedIn": ["Combo List"]
+    },
+    {
+      "name": "Toast",
+      "category": "atom",
+      "file": "toast.json",
+      "variants": [
+        "success",
+        "error",
+        "info",
+        "warning"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Segmented Item",
+      "category": "atom",
+      "file": "segmented-item.json",
+      "variants": ["default"],
+      "usedIn": ["Segmented Control"]
+    },
+    {
+      "name": "Radio",
+      "category": "atom",
+      "file": "radio.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Checkbox",
+      "category": "atom",
+      "file": "checkbox.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Toggle",
+      "category": "atom",
+      "file": "toggle.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Bullet",
+      "category": "atom",
+      "file": "bullet.json",
+      "variants": [
+        "default"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Gauge",
+      "category": "atom",
+      "file": "gauge.json",
+      "variants": ["Buy", "Sell", "Partial"],
+      "usedIn": []
+    },
+    {
+      "name": "Graph",
+      "category": "atom",
+      "file": "graph.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Chips",
+      "category": "atom",
+      "file": "chips.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Notification Badge",
+      "category": "atom",
+      "file": "notification-badge.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Overlay",
+      "category": "atom",
+      "file": "overlay.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Progress Step Item",
+      "category": "atom",
+      "file": "progress-step-item.json",
+      "variants": ["default"],
+      "usedIn": ["Progress Stepper"]
+    },
+    {
+      "name": "Range Box",
+      "category": "atom",
+      "file": "range-box.json",
+      "variants": ["default"],
+      "usedIn": ["Range Selector"]
+    },
+    {
+      "name": "Sorter Item",
+      "category": "atom",
+      "file": "sorter-item.json",
+      "variants": ["default"],
+      "usedIn": ["Table Header"]
+    },
+    {
+      "name": "Loader",
+      "category": "atom",
+      "file": "loader.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Table Item",
+      "category": "atom",
+      "file": "table-item.json",
+      "variants": ["default"],
+      "usedIn": ["Table"]
+    },
+    {
+      "name": "Icon",
+      "category": "atom",
+      "file": "icon.json",
+      "variants": ["default"],
+      "usedIn": ["Button", "Input", "Keyboard", "Menu", "Price Row"]
+    },
+    {
+      "name": "Keyboard Action",
+      "category": "atom",
+      "file": "keyboard-action.json",
+      "variants": ["default"],
+      "usedIn": ["Keyboard"]
+    },
+    {
+      "name": "Badge",
+      "category": "atom",
+      "file": "badge.json",
+      "variants": ["default"],
+      "usedIn": ["Asset Row"]
+    },
+    {
+      "name": "Bottom Nav Item",
+      "category": "atom",
+      "file": "bottom-nav-item.json",
+      "variants": ["default"],
+      "usedIn": ["Bottom Navigation"]
+    }
+  ]
+}

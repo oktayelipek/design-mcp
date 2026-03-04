@@ -1,0 +1,27 @@
+{
+  "name": "PIN Code",
+  "category": "organism",
+  "description": "Kullanıcının uygulamaya girişte veya güvenli işlem onayı (örn. kripto çekimi) sırasında PIN girdiği tam ekran modül.",
+  "figmaNodeId": "hj56hdvkKyWrul6P9uf5sV / PIN Entry",
+  "composedOf": ["Keyboard", "Typography", "Icon"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Login", "Crypto Withdrawal"],
+      "default": "Login"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.basement",
+          "title": "text.focus",
+          "subtitle": "text.tertiary",
+          "pinDotActive": "brand.primary",
+          "pinDotInactive": "level.elevation +2"
+        }
+      }
+    }
+  }
+}

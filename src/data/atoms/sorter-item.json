@@ -1,0 +1,33 @@
+{
+  "name": "Sorter Item",
+  "category": "atom",
+  "description": "Tablo başlıklarında sıralama (ascending/descending) işlevini kontrol eden oklar ve metin bileşeni.",
+  "figmaNodeId": "moFa24gGdMnmyNzJyscO0O / Sorter/Item",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["Default", "Up Active", "Down Active"],
+  "props": {
+    "brand": {
+      "type": "enum",
+      "values": ["Kripto", "Hisse", "Global"],
+      "default": "Kripto"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "text": "text.tertiary",
+          "icon": "icon.disabled"
+        },
+        "Up Active": {
+          "text": "text.focus",
+          "icon": "brand.primary"
+        },
+        "Down Active": {
+          "text": "text.focus",
+          "icon": "brand.primary"
+        }
+      }
+    }
+  }
+}

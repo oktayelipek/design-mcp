@@ -1,0 +1,18 @@
+{
+  "name": "Table Header",
+  "category": "molecule",
+  "description": "Varlık listeleri veya fiyat tablolarının en üstünde yer alan, sütun başlıklarını ve sıralama araçlarını içeren bileşen.",
+  "figmaNodeId": "moFa24gGdMnmyNzJyscO0O / {Table Header}",
+  "composedOf": ["Sorter Item"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Price Listing", "Generic", "Assets (Simple)", "Assets (Detailed)"],
+      "default": "Generic"
+    },
+    "calculation": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

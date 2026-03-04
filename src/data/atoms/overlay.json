@@ -1,0 +1,24 @@
+{
+  "name": "Overlay",
+  "category": "atom",
+  "description": "Modal, Drawer veya dialog gibi öğelerin arkasında ekranı karartmak veya odak sağlamak için kullanılan katman.",
+  "figmaNodeId": "QKqC0qDVRzrlRkUZbxT6eA / FK-Overlay",
+  "states": ["Default"],
+  "props": {
+    "opacity": {
+      "type": "number",
+      "default": 0.85
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart siyah transparan overlay.",
+      "tokenMap": {
+        "Default": {
+          "background": "border.basement"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

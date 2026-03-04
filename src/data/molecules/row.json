@@ -1,0 +1,33 @@
+{
+  "name": "FK Row",
+  "category": "molecule",
+  "description": "Metin, ikon, toggle veya badge gibi farklı elementleri yan yana getiren, genel amaçlı satır bileşeni.",
+  "figmaNodeId": "4DtqKs7Lzzp8ayZEbakx1X / FKRow ½",
+  "props": {
+    "left": {
+      "type": "enum",
+      "values": ["Title [14px]", "Title [16px]", "Icon + Title"],
+      "default": "Title [16px]"
+    },
+    "right": {
+      "type": "enum",
+      "values": ["N/A", "Chevron", "Segmented", "Toggle", "Badge", "Text"],
+      "default": "N/A"
+    },
+    "hasMargin": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "transparent",
+          "hover": "level.elevation +1",
+          "divider": "border.basement"
+        }
+      }
+    }
+  }
+}

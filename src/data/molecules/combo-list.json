@@ -1,0 +1,36 @@
+{
+  "name": "Combo List",
+  "category": "molecule",
+  "description": "Dropdown veya Combo'nun açılan penceresi (listesi).",
+  "figmaNodeId": "PXi811WxncaFFdn2Ul5X7m / FK-Combo -> List",
+  "composedOf": ["Combo List Item", "Input"],
+  "props": {
+    "hasSearch": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasScroll": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEmpty": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "enum",
+      "values": ["Default", "Icon", "Checkbox", "Country"],
+      "default": "Default"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "border": "border.basement"
+        }
+      }
+    }
+  }
+}

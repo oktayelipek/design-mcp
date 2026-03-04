@@ -1,0 +1,31 @@
+{
+  "name": "Confirmation Drawer",
+  "category": "organism",
+  "description": "Herhangi bir işlemi onaylama veya geri alma (Confirmaion/Cancellation) için alt panel (Drawer) bileşeni.",
+  "figmaNodeId": "qeprfeadWXeFygq3RKoo4b / [M] FK-Confirmation Drawer",
+  "composedOf": ["Drawer Header", "Typography", "Row", "Button"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Donation", "Transfer", "Rüçhan", "Withdrawal"],
+      "default": "Donation"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "background": "level.elevation",
+        "divider": "border.basement"
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Drawer Header" },
+      { "name": "Content", "component": "Typography(Summary)" },
+      { "name": "Details", "component": "Row", "repeat": true },
+      { "name": "Actions", "components": ["Button(Cancel)", "Button(Confirm)"] }
+    ]
+  }
+}

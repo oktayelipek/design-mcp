@@ -1,0 +1,41 @@
+{
+  "name": "Dropdown Combo",
+  "category": "molecule",
+  "description": "Kullanıcının veri girmesini veya listeden seçim yapmasını sağlayan birleşik giriş ve seçim bileşeni.",
+  "figmaNodeId": "PXi811WxncaFFdn2Ul5X7m / FK-Combo",
+  "composedOf": ["Input", "Combo List"],
+  "states": ["Inactive", "Focus", "Typing", "Loading", "No Results", "Error"],
+  "props": {
+    "title": { "type": "string" },
+    "placeholder": { "type": "string" },
+    "description": { "type": "string" },
+    "hasLeftIcon": { "type": "boolean", "default": false },
+    "hasCountryCode": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Inactive": {
+          "background": "level.elevation +1",
+          "title": "text.tertiary",
+          "text": "text.focus"
+        },
+        "Focus": {
+          "background": "level.elevation +2",
+          "border": "brand.primary"
+        },
+        "Typing": {
+          "background": "level.elevation +2",
+          "border": "brand.primary"
+        },
+        "Loading": {
+          "background": "level.elevation +2"
+        },
+        "Error": {
+          "background": "level.elevation +2",
+          "border": "actions.action-02"
+        }
+      }
+    }
+  }
+}

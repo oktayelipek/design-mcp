@@ -1,0 +1,21 @@
+{
+  "name": "Graph Head",
+  "category": "molecule",
+  "description": "Fiyat, değişim oranı ve pazar durumunu (Market Status) içeren grafik başlık alanı.",
+  "figmaNodeId": "860JxpULNmSZShDDKc8dZD / Graph Head",
+  "composedOf": ["Typography", "Icon", "Market Status Indicator"],
+  "props": {
+    "type": { "type": "enum", "values": ["Increase", "Decrease", "Notr"], "default": "Notr" },
+    "price": { "type": "string" },
+    "change": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Increase": { "text": "actions.success", "icon": "actions.success" },
+        "Decrease": { "text": "actions.error", "icon": "actions.error" },
+        "Notr": { "text": "text.focus", "icon": "icon.tertiary" }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "templates": [
+    {
+      "name": "Trade Pages",
+      "file": "trade-pages.json",
+      "modules": ["Top Nav", "Basic Trade", "Asset List"]
+    },
+    {
+      "name": "Wallet",
+      "file": "wallet.json",
+      "modules": ["Page Header", "Wallet Balance Card", "Wallet Asset List", "Bottom Navigation"]
+    },
+    {
+      "name": "Home Page",
+      "file": "home.json",
+      "modules": ["Top Nav", "Balance PNL", "Trade Action Button", "Home Positions List", "Marketing Banner Carousel"]
+    }
+  ]
+}

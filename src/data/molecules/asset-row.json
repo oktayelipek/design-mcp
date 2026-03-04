@@ -1,0 +1,25 @@
+{
+  "name": "Asset Row",
+  "category": "molecule",
+  "description": "Varlık listesi satırı. Rozet (Badge) ve PNL desteği eklendi.",
+  "figmaNodeId": "GoZDoZVaxgKT3lwn5ERr5B / Asset Row",
+  "composedOf": ["Icon", "Typography", "Badge"],
+  "props": {
+    "assetName": { "type": "string" },
+    "symbol": { "type": "string" },
+    "price": { "type": "string" },
+    "badge": { "type": "enum", "values": ["None", "New", "Delist", "Air Drop"], "default": "None" },
+    "showPNL": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "transparent",
+          "text": "text.focus",
+          "subText": "text.tertiary"
+        }
+      }
+    }
+  }
+}

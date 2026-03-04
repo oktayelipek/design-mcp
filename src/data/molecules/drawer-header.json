@@ -1,0 +1,18 @@
+{
+  "name": "Drawer Header",
+  "category": "molecule",
+  "description": "Onay drawer'ı (Confirmation Drawer) için başlık alanı. Genellikle bir başlık metni ve kapatma ikonu içerir.",
+  "figmaNodeId": "qeprfeadWXeFygq3RKoo4b / Drawer Header",
+  "composedOf": ["Typography", "Icon"],
+  "props": {
+    "title": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "text": "text.focus",
+        "icon": "icon.secondary"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Range Selector",
+  "category": "molecule",
+  "description": "Alış veya satış emirlerinde miktar belirlemek için kullanılan oran seçim (Range) bileşeni.",
+  "figmaNodeId": "YRnObGVc1Gjz2wvudqFFgk / Range Selector½",
+  "composedOf": ["Range Box"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Outline", "Inline"],
+      "default": "Outline"
+    },
+    "state": {
+      "type": "enum",
+      "values": ["Inactive", "25", "50", "75", "100"],
+      "default": "Inactive"
+    }
+  }
+}

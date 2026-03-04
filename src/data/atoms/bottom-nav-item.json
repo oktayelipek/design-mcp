@@ -1,0 +1,20 @@
+{
+  "name": "Bottom Nav Item",
+  "category": "atom",
+  "description": "Alt navigasyon barındaki her bir menü öğesi. İkon ve etiket içerir.",
+  "figmaNodeId": "lXP90rO5s6pXUOCk338x4F / Bottom Navigation Item",
+  "composedOf": ["Icon", "Typography"],
+  "props": {
+    "label": { "type": "string" },
+    "isActive": { "type": "boolean", "default": false },
+    "badgeCount": { "type": "number", "default": 0 }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "active": { "icon": "text.focus", "text": "text.focus" },
+        "inactive": { "icon": "text.tertiary", "text": "text.tertiary" }
+      }
+    }
+  }
+}

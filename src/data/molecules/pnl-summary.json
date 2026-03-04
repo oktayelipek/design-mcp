@@ -1,0 +1,23 @@
+{
+  "name": "PNL Summary",
+  "category": "molecule",
+  "description": "Portföyün toplam değerini, kar/zarar durumunu ve 24 saatlik değişimleri gösteren özet bileşeni.",
+  "figmaNodeId": "2ZTHbEHReUPqN1b1au4JIX / Balance & PNL Summary",
+  "composedOf": ["Typography", "Icon"],
+  "props": {
+    "totalBalance": { "type": "string" },
+    "pnlAmount": { "type": "string" },
+    "pnlPercentage": { "type": "string" },
+    "isPositive": { "type": "boolean", "default": true }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "positive": { "text": "actions.success" },
+        "negative": { "text": "actions.error" },
+        "label": "text.tertiary",
+        "balance": "text.focus"
+      }
+    }
+  }
+}

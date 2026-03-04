@@ -1,0 +1,34 @@
+{
+  "name": "Ticker",
+  "category": "molecule",
+  "description": "Kripto para veya diğer varlıkların sembol, logo, fiyat ve değişim bilgilerini gösteren satır bileşeni.",
+  "figmaNodeId": "aYJZ11gzeieWPIyAyfsvmF / {FK-Ticker}",
+  "composedOf": ["Icon", "Typography"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium"],
+      "default": "Medium"
+    },
+    "showPair": {
+      "type": "boolean",
+      "default": false
+    },
+    "symbol": { "type": "string" },
+    "pair": { "type": "string" },
+    "price": { "type": "string" },
+    "change": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "tickerText": "text.focus",
+          "pairText": "text.tertiary",
+          "priceText": "text.focus",
+          "logoBackground": "transparent"
+        }
+      }
+    }
+  }
+}

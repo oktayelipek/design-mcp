@@ -1,0 +1,239 @@
+{
+  "components": [
+    {
+      "name": "Top Nav",
+      "category": "organism",
+      "file": "top-nav.json",
+      "composedOf": [
+        "Icon",
+        "Typography",
+        "Button"
+      ],
+      "usedIn": [
+        "Trade Pages",
+        "Asset List"
+      ]
+    },
+    {
+      "name": "Basic Trade",
+      "category": "organism",
+      "file": "basic-trade.json",
+      "composedOf": [
+        "Pair Switcher",
+        "Trade Action Button",
+        "Input",
+        "Segmented Control"
+      ],
+      "usedIn": [
+        "Trade Pages"
+      ]
+    },
+    {
+      "name": "Asset List",
+      "category": "organism",
+      "file": "asset-list.json",
+      "composedOf": [
+        "Asset List Search",
+        "Connection Banner",
+        "Asset List Disclaimer",
+        "Table Header",
+        "Asset Row",
+        "Segmented Control"
+      ],
+      "usedIn": [
+        "Trade Pages"
+      ]
+    },
+
+    {
+      "name": "PIN Code",
+      "category": "organism",
+      "file": "pin-code.json",
+      "composedOf": [
+        "Typography",
+        "Button"
+      ],
+      "usedIn": []
+    },
+    {
+      "name": "Bottom Nav Item",
+      "category": "atom",
+      "file": "bottom-nav-item.json",
+      "variants": ["default"],
+      "usedIn": ["Bottom Navigation"]
+    },
+    {
+      "name": "Ticker Square",
+      "category": "atom",
+      "file": "ticker-square.json",
+      "variants": ["default"],
+      "usedIn": ["Convert Module"]
+    },
+    {
+      "name": "Drawer Header",
+      "category": "molecule",
+      "file": "drawer-header.json",
+      "composedOf": ["Typography", "Icon"],
+      "variants": ["default"],
+      "usedIn": ["Confirmation Drawer"]
+    },
+    {
+      "name": "Table",
+      "category": "organism",
+      "file": "table.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Price Row",
+      "category": "organism",
+      "file": "price-row.json",
+      "variants": ["default"],
+      "usedIn": ["Basic Trade", "Price List"]
+    },
+    {
+      "name": "Asset Row",
+      "category": "organism",
+      "file": "asset-row.json",
+      "variants": ["default"],
+      "usedIn": ["Asset List", "Balance & PNL"]
+    },
+    {
+      "name": "Chart",
+      "category": "organism",
+      "file": "chart.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Keyboard",
+      "category": "organism",
+      "file": "keyboard.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Menu",
+      "category": "organism",
+      "file": "menu.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Exception",
+      "category": "organism",
+      "file": "exception.json",
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Date Picker",
+      "category": "organism",
+      "file": "date-picker.json",
+      "composedOf": ["Top Nav", "Date Picker Button"],
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Fee Information",
+      "category": "organism",
+      "file": "fee-information.json",
+      "composedOf": [
+        "Fee Summary",
+        "Fee Tab",
+        "Fee Level Row",
+        "Table"
+      ],
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Numpad Unit",
+      "category": "organism",
+      "file": "numpad-unit.json",
+      "composedOf": ["Top Nav", "Keyboard", "Input", "Button"],
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Picker Modal",
+      "category": "organism",
+      "file": "picker-modal.json",
+      "composedOf": ["Top Nav", "Input", "Row", "Menu Item"],
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Validation System",
+      "category": "organism",
+      "file": "validation-system.json",
+      "composedOf": ["Top Nav", "Input", "Button", "Typography", "Icon"],
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Order Book",
+      "category": "organism",
+      "file": "order-book.json",
+      "composedOf": ["Table Header", "Order Book Row", "Segmented Control"],
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Price Detail Graph",
+      "category": "organism",
+      "file": "price-detail-graph.json",
+      "composedOf": ["Graph Head", "Graph", "Price Summary Highlight", "Trade Action Button"],
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Order List",
+      "category": "organism",
+      "file": "order-list.json",
+      "composedOf": ["Table Header", "Order Card", "Segmented Control", "Empty State"],
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Balance & PNL",
+      "category": "organism",
+      "file": "balance-pnl.json",
+      "composedOf": ["PNL Summary", "Asset Row", "Tabs", "Graph"],
+      "variants": ["default"],
+      "usedIn": ["Trade Pages"]
+    },
+    {
+      "name": "Convert Module",
+      "category": "organism",
+      "file": "convert-module.json",
+      "composedOf": ["Top Nav", "Ticker Square", "Button", "Typography", "Icon"],
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Confirmation Drawer",
+      "category": "organism",
+      "file": "confirmation-drawer.json",
+      "composedOf": ["Drawer Header", "Typography", "Row", "Button"],
+      "variants": ["default"],
+      "usedIn": []
+    },
+    {
+      "name": "Wallet Balance Card",
+      "category": "organism",
+      "file": "wallet-balance-card.json",
+      "composedOf": ["Wallet Balance Summary", "Button Group", "Info Row"],
+      "variants": ["Default", "With Warning"],
+      "usedIn": ["Wallet Page"]
+    },
+    {
+      "name": "Wallet Asset List",
+      "category": "organism",
+      "file": "wallet-asset-list.json",
+      "composedOf": ["Asset List Search Button", "Table Header", "Wallet Asset Item"],
+      "variants": ["Default"],
+      "usedIn": ["Wallet Page"]
+    }
+  ]
+}

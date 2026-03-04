@@ -1,0 +1,52 @@
+{
+  "name": "Dropdown / Combo",
+  "category": "atom",
+  "description": "Kullanıcının bir liste içerisinden seçim yapmasını sağlayan açılır menü bileşeni.",
+  "figmaNodeId": "Dropdown / Combo",
+  "states": ["default", "pressed", "disabled"],
+  "props": {
+    "options": {
+      "type": "object[]",
+      "default": []
+    },
+    "selected": {
+      "type": "string | null",
+      "default": null
+    },
+    "onSelect": {
+      "type": "function",
+      "default": null
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart dropdown bileşeni.",
+      "tokenMap": {
+        "default": {
+          "background": "level.elevation",
+          "text": "text.focus",
+          "placeholder": "text.tertiary",
+          "icon": "icon.inactive",
+          "border": "level.elevation +2",
+          "typography": "CallOut/Medium",
+          "borderRadius": "8px",
+          "menuBackground": "level.elevation +1",
+          "menuItemText": "text.focus",
+          "menuItemHoverBackground": "level.elevation +2"
+        },
+        "pressed": {
+          "background": "level.elevation",
+          "border": "brand.primary",
+          "icon": "icon.focus"
+        },
+        "disabled": {
+          "background": "level.elevation +1",
+          "text": "text.tertiary",
+          "icon": "icon.disabled",
+          "border": "level.elevation +2"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

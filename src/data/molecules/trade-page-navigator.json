@@ -1,0 +1,29 @@
+{
+  "name": "Trade Page Navigator",
+  "category": "molecule",
+  "description": "Alım satım sayfaları arasında (Açık Emirler, Grafik, Bilgi vb.) geçiş yapmayı sağlayan navigasyon barı.",
+  "figmaNodeId": "nrsqqSsjRtYatCoixuKSmX / Trade -> Page Nav",
+  "composedOf": ["Icon", "Typography"],
+  "props": {
+    "activeTab": {
+      "type": "enum",
+      "values": ["Open Orders", "Last Trades", "Graphics", "Info"],
+      "default": "Open Orders"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Active": {
+          "background": "transparent",
+          "text": "text.focus",
+          "indicator": "brand.primary"
+        },
+        "Default": {
+          "background": "transparent",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

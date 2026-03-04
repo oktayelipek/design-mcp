@@ -1,0 +1,127 @@
+{
+  "name": "Button",
+  "category": "atom",
+  "description": "Temel aksiyon butonu. Primary, Secondary, Buy ve Sell varyantları bulunur.",
+  "figmaNodeId": "Button",
+  "states": ["default", "pressed", "disabled"],
+  "props": {
+    "variant": {
+      "type": "enum",
+      "values": ["primary", "secondary", "buy", "sell"],
+      "default": "primary"
+    },
+    "size": {
+      "type": "enum",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "icon": {
+      "type": "string | null",
+      "default": null
+    }
+  },
+  "variants": {
+    "primary": {
+      "description": "Ana marka aksiyonu için kullanılır. Kripto'da mavi (#005fae), Hisse'de yeşil (#07ac92).",
+      "tokenMap": {
+        "default": {
+          "background": "button.primary",
+          "text": "inverse.focus",
+          "border": "none",
+          "typography": "CallOut/Semibold",
+          "borderRadius": "8px"
+        },
+        "pressed": {
+          "background": "button.primary",
+          "text": "inverse.focus",
+          "border": "none",
+          "opacity": "0.8"
+        },
+        "disabled": {
+          "background": "level.elevation +2",
+          "text": "text.tertiary",
+          "border": "none"
+        }
+      }
+    },
+    "secondary": {
+      "description": "İkincil aksiyonlar için kullanılır. Arka plan elevation rengindedir.",
+      "tokenMap": {
+        "default": {
+          "background": "button.secondary",
+          "text": "button.focus",
+          "border": "none",
+          "typography": "CallOut/Semibold",
+          "borderRadius": "8px"
+        },
+        "pressed": {
+          "background": "button.secondary",
+          "text": "button.focus",
+          "border": "none",
+          "opacity": "0.8"
+        },
+        "disabled": {
+          "background": "level.elevation +1",
+          "text": "text.tertiary",
+          "border": "none"
+        }
+      }
+    },
+    "buy": {
+      "description": "Alım işlemleri için yeşil buton.",
+      "tokenMap": {
+        "default": {
+          "background": "button.buy",
+          "text": "inverse.pureWhite",
+          "border": "none",
+          "typography": "CallOut/Semibold",
+          "borderRadius": "8px"
+        },
+        "pressed": {
+          "background": "button.buy",
+          "text": "inverse.pureWhite",
+          "border": "none",
+          "opacity": "0.8"
+        },
+        "disabled": {
+          "background": "level.elevation +2",
+          "text": "text.tertiary",
+          "border": "none"
+        }
+      }
+    },
+    "sell": {
+      "description": "Satım işlemleri için kırmızı buton.",
+      "tokenMap": {
+        "default": {
+          "background": "button.sell",
+          "text": "inverse.pureWhite",
+          "border": "none",
+          "typography": "CallOut/Semibold",
+          "borderRadius": "8px"
+        },
+        "pressed": {
+          "background": "button.sell",
+          "text": "inverse.pureWhite",
+          "border": "none",
+          "opacity": "0.8"
+        },
+        "disabled": {
+          "background": "level.elevation +2",
+          "text": "text.tertiary",
+          "border": "none"
+        }
+      }
+    }
+  },
+  "sizes": {
+    "sm": { "height": "32px", "paddingX": "12px", "typography": "Caption/Semibold" },
+    "md": { "height": "40px", "paddingX": "16px", "typography": "CallOut/Semibold" },
+    "lg": { "height": "48px", "paddingX": "20px", "typography": "Title 04/Semibold" }
+  },
+  "modeOverrides": {}
+}

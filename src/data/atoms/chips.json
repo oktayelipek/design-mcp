@@ -1,0 +1,38 @@
+{
+  "name": "Chips",
+  "category": "atom",
+  "description": "Etiket (tag), zaman aralığı (1G, 1Y) seçimi veya filtrelemelerde kullanılan seçilebilir çip bileşeni.",
+  "figmaNodeId": "aJtIIFR51thwzjYAAhf6H6 / Chip ½",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["ON", "OFF"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium", "Large", "X-Small"],
+      "default": "Medium"
+    },
+    "type": {
+      "type": "enum",
+      "values": ["Primary", "Secondary", "Tertiary", "Solid", "Line"],
+      "default": "Secondary"
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Chip standart görünümü ve seçim (ON/OFF) durumu.",
+      "tokenMap": {
+        "ON": {
+          "text": "text.focus",
+          "background": "brand.primary",
+          "border": "transparent"
+        },
+        "OFF": {
+          "text": "text.tertiary",
+          "background": "level.elevation +1",
+          "border": "border.basement"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Trade Action Button",
+  "category": "molecule",
+  "description": "Alım veya Satım emirlerini onaylamak için kullanılan büyük işlem butonu.",
+  "figmaNodeId": "NXig2szKnNmuPMIF0JYFxE / Basic Trade Button",
+  "composedOf": ["Button"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Buy", "Sell"],
+      "default": "Buy"
+    },
+    "active": { "type": "boolean", "default": true }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Buy": {
+          "background": "brand.buy",
+          "text": "text.static.white"
+        },
+        "Sell": {
+          "background": "brand.sell",
+          "text": "text.static.white"
+        },
+        "Disabled": {
+          "background": "level.elevation +2",
+          "text": "text.disabled"
+        }
+      }
+    }
+  }
+}

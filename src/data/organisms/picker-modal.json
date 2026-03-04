@@ -1,0 +1,34 @@
+{
+  "name": "Picker Modal",
+  "category": "organism",
+  "description": "Kullanıcının liste üzerinden seçim yapmasını sağlayan (örn. Meslek, Ülke seçimi) tam ekran veya alt panel modülü.",
+  "figmaNodeId": "tj3tKUoyT8fw0oJVA3TID9 / [M] FK-Picker Modal",
+  "composedOf": ["Top Nav", "Input", "Row", "Menu Item"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Occupations", "Countries", "Generic"],
+      "default": "Generic"
+    },
+    "showSearch": { "type": "boolean", "default": true }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.basement",
+          "divider": "border.basement",
+          "rowBackground": "level.elevation"
+        }
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Top Nav" },
+      { "name": "Search", "component": "Input" },
+      { "name": "List", "component": "Row", "repeat": true }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Header Filter",
+  "category": "molecule",
+  "description": "Sayfa başlıklarında veya liste üstlerinde kategorilere göre filtreleme yapmak için kullanılan kontrol grubu.",
+  "figmaNodeId": "NtzBKUfAuAVIiALPZOejV9 / Header Filter",
+  "composedOf": ["Chips", "Icon"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Text", "Icon + Text", "Multi-Icon"],
+      "default": "Text"
+    },
+    "status": {
+      "type": "enum",
+      "values": ["Default", "Selected"],
+      "default": "Default"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Selected": {
+          "background": "brand.primary",
+          "text": "inverse.pureWhite"
+        },
+        "Default": {
+          "background": "level.elevation +1",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

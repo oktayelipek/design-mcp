@@ -1,0 +1,32 @@
+{
+  "name": "Wallet Page",
+  "category": "template",
+  "description": "Cüzdan sayfa yapısı - Bakiye kartı, aksiyon butonları ve varlık listesi.",
+  "figmaNodeId": "15421:106614",
+  "layout": {
+    "type": "Vertical Stack",
+    "spacing": "16px",
+    "padding": "16px horizontal"
+  },
+  "sections": [
+    {
+      "name": "Header",
+      "component": "Page Header",
+      "props": { "title": "Cüzdan" }
+    },
+    {
+      "name": "Balance Section",
+      "component": "Wallet Balance Card",
+      "props": { "variant": "Kripto" }
+    },
+    {
+      "name": "Asset List Section",
+      "component": "Wallet Asset List",
+      "props": { "showLowBalancesToggle": true }
+    },
+    {
+      "name": "Navigation",
+      "component": "Bottom Navigation"
+    }
+  ]
+}

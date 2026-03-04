@@ -1,0 +1,26 @@
+{
+  "name": "Order List",
+  "category": "organism",
+  "description": "Kullanıcının aktif emirlerini listeleyen, filtreleme ve iptal aksiyonlarını barındıran modül.",
+  "figmaNodeId": "z2XpEnXNMxwhKf4qUFyOW9 / [M] FK-Order List",
+  "composedOf": ["Table Header", "Order Card", "Segmented Control", "Empty State"],
+  "props": {
+    "isEmpty": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "background": "level.basement"
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Filters", "component": "Segmented Control" },
+      { "name": "Header", "component": "Table Header" },
+      { "name": "List", "component": "Order Card", "repeat": true },
+      { "name": "EmptyState", "component": "Empty State", "conditional": "isEmpty" }
+    ]
+  }
+}

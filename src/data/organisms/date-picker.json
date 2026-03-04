@@ -1,0 +1,26 @@
+{
+  "name": "Date Picker",
+  "category": "organism",
+  "description": "Kullanıcının tarih veya tarih aralığı seçmesini sağlayan takvim modülü.",
+  "figmaNodeId": "Jwbl0CcwkodmmmxNmMWoOw / FK-Date Picker",
+  "composedOf": ["Top Nav", "Button", "Typography", "Icon"],
+  "props": {
+    "state": {
+      "type": "enum",
+      "values": ["Default", "Selected", "Error"],
+      "default": "Default"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation",
+          "calendarBackground": "level.elevation +1",
+          "selectedDay": "brand.primary",
+          "text": "text.focus"
+        }
+      }
+    }
+  }
+}

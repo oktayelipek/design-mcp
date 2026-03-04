@@ -1,13 +1,16 @@
-# 🎨 Design System MCP Server
+# 🎨 Design System MCP Server (v2.1)
 
-This project is a **Model Context Protocol (MCP)** server built with Node.js and TypeScript. Its primary goal is to expose a UI Design System (colors, typography, and component specifications) to AI assistants (like Claude, Cursor, ChatGPT) via the Server-Sent Events (SSE) transport protocol. By doing so, AI tools can generate code that strictly adheres to the provided design rules and components.
+This project is a **Model Context Protocol (MCP)** server built with Node.js and TypeScript. It exposes a structured UI Design System (Atoms, Molecules, Organisms, Templates) and module-specific design guidelines to AI assistants (Claude, Cursor, ChatGPT).
+
+By providing this context, AI tools can generate code that strictly adheres to the provided design rules, token sets, and component architectures.
 
 ## 🚀 Features
 
-- **SSE Transport:** Designed to run continuously and communicate efficiently with MCP clients.
-- **Resources Architecture:** Exposes static design data such as `colors` and `typography` JSON payloads directly as readable URIs.
-- **Component Tooling:** (WIP) Will allow AIs to specifically request code/import examples of components (e.g., getting a React `<Button>`).
-- **Headless & Scalable:** By separating "tokens" (JSON) and "components" (MD/TS), it supports current React-based implementations but is modular enough for future expansion into Flutter or Swift.
+- **SSE Transport:** Communication via Server-Sent Events for real-time integration.
+- **Atomic Design Registry:** Fully categorized UI components (Atoms, Molecules, Organisms).
+- **Page Templates:** Ready-to-use page layouts (Home Page, Wallet Page).
+- **Design Guidelines:** Module-specific visual rules (Spacing, PNL indicators, Typography hierarchy) in Markdown format.
+- **Smart Color Resolution:** Tools to resolve semantic tokens (e.g., `text.focus`) based on different modes (Kripto, Hisse, Global - Light/Dark).
 
 ---
 
@@ -15,57 +18,60 @@ This project is a **Model Context Protocol (MCP)** server built with Node.js and
 
 ```text
 ├── src/
-│   ├── data/                 # The actual Design System values!
-│   │   ├── colors.json       # Headless color tokens
-│   │   ├── typography.json   # Headless font and text styles
-│   │   └── components/       # Component specs (React, Flutter etc.)
-│   │       └── Button.md     # Example component spec
-│   └── index.ts              # Express Server & MCP SSE Initialization
+│   ├── data/                 # Design System Registry
+│   │   ├── tokens/           # Color & Typography tokens
+│   │   ├── atoms/            # Single elements (Icons, Badges)
+│   │   ├── molecules/        # Composite elements (Asset Items)
+│   │   ├── organisms/        # Complex modules (Balance Card, Lists)
+│   │   ├── templates/        # Page structures (Home, Wallet)
+│   │   └── guidelines/       # Visual rules & Module patterns (MD)
+│   └── index.ts              # MCP Server Implementation
 ├── package.json
 └── tsconfig.json
 ```
 
 ---
 
-## 🛠️ Installation
+## 🛠️ MCP Tools
 
-```bash
-# Install dependencies
-npm install
+The server exposes several tools for AI assistants:
 
-# Build the TypeScript code
-npm run build
-```
+- `get_tokens`: Fetches all raw design tokens.
+- `get_atoms_list` / `get_atom_detail`: Browse UI atoms.
+- `get_molecules_list` / `get_molecule_detail`: Browse UI molecules.
+- `get_templates_list` / `get_template_detail`: Access page layouts.
+- `get_guidelines(module)`: Get specific design rules (e.g., `home`, `wallet`).
+- `resolve_token(tokenPath, mode)`: Resolve a semantic token to its hex value.
+- `get_component_colors`: Get full theme colors for a specific component.
 
 ---
 
-## 🚦 Running the Server
+## 🚦 Getting Started
 
-**Development Mode:**
+**Installation:**
+
+```bash
+npm install
+npm run build
+```
+
+**Run Development Mode:**
 
 ```bash
 npm run dev
 ```
 
-**Production Mode:**
+**Run Production Server:**
 
 ```bash
-npm run build
 npm start
 ```
 
-Once running, the server will output two endpoints:
-
-- **SSE Endpoint:** `http://localhost:3001/sse`
-- **Message Endpoint:** `http://localhost:3001/message`
-
 ---
 
-## 🤖 Connecting to a Client
+## 🤖 Connection Logic
 
-To connect this to an MCP client like **Claude Desktop**, add the server configuration using this logic (for SSE, wait for the cloud deployment URL, or run a local proxy script):
-
-If converted to Stdio in the future, it would look like this in `claude_desktop_config.json`:
+For **Claude Desktop**, add the server configuration:
 
 ```json
 "design-mcp": {
@@ -76,12 +82,12 @@ If converted to Stdio in the future, it would look like this in `claude_desktop_
 
 ---
 
-## 📈 Roadmap & Tasks
+## 📈 Roadmap
 
-You can find the active development tasks inside [`design-system-mcp-server.md`](./design-system-mcp-server.md).
-
-**Current Status:** Building out the "Resources" (`Task 5`) to stream the JSON token configurations.
-
----
+- [x] Atomic Design Registry implementation.
+- [x] Home Page & Wallet Page templates.
+- [x] Multi-mode token resolution (Kripto/Hisse/Global).
+- [ ] Automated Figma-to-JSON extraction scripts.
+- [ ] Component implementation prompt generators.
 
 _Powered by Model Context Protocol (MCP)._

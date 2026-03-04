@@ -1,0 +1,34 @@
+{
+  "name": "Toggle",
+  "category": "atom",
+  "description": "Bir ayarı veya durumu anında açıp kapatmak (Açık/Kapalı) için kullanılan kaydırmalı anahtar bileşeni.",
+  "figmaNodeId": "Rai40im5wuttEk7ori4dkF / {FK-Toggle}",
+  "states": ["Active", "Inactive"],
+  "props": {
+    "platform": {
+      "type": "enum",
+      "values": ["iOS", "Android", "Material 3"],
+      "default": "iOS"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Platform bazlı (iOS/Android) toggle görünümü.",
+      "tokenMap": {
+        "Active": {
+          "background": "brand.primary",
+          "knob": "inverse.pureWhite"
+        },
+        "Inactive": {
+          "background": "level.elevation +2",
+          "knob": "inverse.pureWhite"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

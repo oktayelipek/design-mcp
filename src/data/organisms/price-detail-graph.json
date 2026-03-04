@@ -1,0 +1,16 @@
+{
+  "name": "Price Detail Graph",
+  "category": "organism",
+  "description": "Gelişmiş grafikli varlık detay modülü.",
+  "figmaNodeId": "860JxpULNmSZShDDKc8dZD / Price Detail Graph",
+  "composedOf": ["Graph Head", "Graph", "Price Summary Highlight", "Trade Action Button"],
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Graph Head" },
+      { "name": "Chart", "component": "Graph" },
+      { "name": "Summary", "component": "Price Summary Highlight" },
+      { "name": "Footer", "component": "Trade Action Button" }
+    ]
+  }
+}

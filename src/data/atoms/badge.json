@@ -1,0 +1,31 @@
+{
+  "name": "Badge",
+  "category": "atom",
+  "description": "Durum, yeni varlık veya özel etkinlikleri belirtmek için kullanılan küçük etiketler.",
+  "figmaNodeId": "GoZDoZVaxgKT3lwn5ERr5B / Badge",
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["New", "Delist", "Air Drop"],
+      "default": "New"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "New": {
+          "background": "brand.primary-10%",
+          "text": "brand.primary"
+        },
+        "Delist": {
+          "background": "actions.error-10%",
+          "text": "actions.error"
+        },
+        "Air Drop": {
+          "background": "brand.secondary-10%",
+          "text": "brand.secondary"
+        }
+      }
+    }
+  }
+}

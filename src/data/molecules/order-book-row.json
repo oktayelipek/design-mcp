@@ -1,0 +1,27 @@
+{
+  "name": "Order Book Row",
+  "category": "molecule",
+  "description": "Emir defterindeki her bir fiyat ve miktar satırı. Derinlik çubuğu (depth bar) desteği içerir.",
+  "figmaNodeId": "qMBvu90hoseTWLK0Hf5JMF / Order Book Row",
+  "composedOf": ["Typography"],
+  "props": {
+    "type": { "type": "enum", "values": ["Buy", "Sell"], "default": "Buy" },
+    "price": { "type": "string" },
+    "amount": { "type": "string" },
+    "depth": { "type": "number", "default": 0 }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Buy": {
+          "text": "brand.buy",
+          "depthBar": "brand.buy-10%"
+        },
+        "Sell": {
+          "text": "brand.sell",
+          "depthBar": "brand.sell-10%"
+        }
+      }
+    }
+  }
+}

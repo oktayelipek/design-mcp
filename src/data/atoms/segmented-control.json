@@ -1,0 +1,47 @@
+{
+  "name": "Segmented Control",
+  "category": "atom",
+  "description": "Birbirini dışlayan iki veya daha fazla seçenek arasında hızlı geçiş yapmayı sağlayan sekme yapısı.",
+  "figmaNodeId": "Segmented Control",
+  "states": ["default", "pressed", "disabled"],
+  "props": {
+    "options": {
+      "type": "string[]",
+      "default": []
+    },
+    "activeOption": {
+      "type": "string",
+      "default": ""
+    },
+    "onChange": {
+      "type": "function",
+      "default": null
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart segmented control.",
+      "tokenMap": {
+        "default": {
+          "containerBackground": "level.elevation",
+          "activeSegmentBackground": "dedicated.segmented.Active",
+          "inactiveSegmentBackground": "transparent",
+          "activeText": "text.focus",
+          "inactiveText": "text.secondary",
+          "typography": "CallOut/Semibold",
+          "borderRadius": "8px"
+        },
+        "pressed": {
+          "activeSegmentBackground": "dedicated.segmented.Active",
+          "opacity": "0.8"
+        },
+        "disabled": {
+          "containerBackground": "level.elevation +1",
+          "activeText": "text.tertiary",
+          "inactiveText": "text.tertiary"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Convert Module",
+  "category": "organism",
+  "description": "Varlıkların birbirine hızlıca dönüştürülmesini sağlayan (Swap) modül. Yatay ve dikey yerleşimleri destekler.",
+  "figmaNodeId": "0DXxACZsHL2P8NGEsRVpxJ / [M] FK-Convert",
+  "composedOf": ["Top Nav", "Ticker Square", "Button", "Typography", "Icon"],
+  "props": {
+    "version": { "type": "enum", "values": ["1.0", "2.0", "3.0"], "default": "1.0" },
+    "layout": { "type": "enum", "values": ["Horizontal", "Vertical"], "default": "Horizontal" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "background": "level.basement",
+        "switcherIcon": "brand.primary",
+        "disclaimerText": "text.tertiary"
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Top Nav" },
+      { "name": "Converters", "components": ["Ticker Square(Source)", "Icon(Switcher)", "Ticker Square(Target)"] },
+      { "name": "Disclaimer", "component": "Typography" },
+      { "name": "Action", "component": "Button" }
+    ]
+  }
+}

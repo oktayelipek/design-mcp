@@ -1,0 +1,42 @@
+{
+  "name": "Combo List Item",
+  "category": "atom",
+  "description": "Dropdown veya Combo listesi içerisindeki her bir seçim satırı.",
+  "figmaNodeId": "PXi811WxncaFFdn2Ul5X7m / FK-Combo -> List Item",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["Default", "Disabled", "Focus", "Hover"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Default", "Icon", "Checkbox", "Country"],
+      "default": "Default"
+    },
+    "selected": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasDescription": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "text": "text.focus",
+          "description": "text.tertiary",
+          "background": "transparent"
+        },
+        "Focus": {
+          "text": "text.focus",
+          "background": "level.elevation +2"
+        },
+        "Disabled": {
+          "text": "text.disabled",
+          "background": "transparent"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Menu",
+  "category": "organism",
+  "description": "Kullanıcıya seçim yapabileceği bir liste sunan, genellikle bir tetikleyici (trigger) ile açılan bileşen grubu.",
+  "figmaNodeId": "OD1CPbCRN4dPrOntLUYff1 / Menu [Group]",
+  "composedOf": ["Menu Item"],
+  "props": {
+    "itemCount": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "border": "border.basement",
+          "shadow": "shadow.medium"
+        }
+      }
+    }
+  }
+}

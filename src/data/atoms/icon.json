@@ -1,0 +1,30 @@
+{
+  "name": "Icon",
+  "category": "atom",
+  "description": "Sistem genelinde kullanılan standart vektörel semboller.",
+  "figmaNodeId": "1foGqXD8NLxXLs97OXRjy5 / FK-Icons",
+  "props": {
+    "name": { "type": "string" },
+    "size": {
+      "type": "enum",
+      "values": ["16px", "20px", "24px", "32px"],
+      "default": "24px"
+    },
+    "color": { "type": "string", "default": "icon.disabled" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "color": "icon.disabled"
+        },
+        "Focus": {
+          "color": "icon.focus"
+        },
+        "Brand": {
+          "color": "brand.primary"
+        }
+      }
+    }
+  }
+}

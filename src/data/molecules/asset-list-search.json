@@ -1,0 +1,22 @@
+{
+  "name": "Asset List Search",
+  "category": "molecule",
+  "description": "Varlık listelerinde arama yapmak ve filtrelemek (örn. düşük bakiyeleri gizle) için kullanılan kontrol alanı.",
+  "figmaNodeId": "GoZDoZVaxgKT3lwn5ERr5B / Asset List Search+Button",
+  "composedOf": ["Input", "Checkbox", "Button"],
+  "props": {
+    "showHideCheckbox": { "type": "boolean", "default": true },
+    "showFilterButton": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "transparent",
+          "placeholderColor": "text.disabled",
+          "checkboxLabel": "text.tertiary"
+        }
+      }
+    }
+  }
+}

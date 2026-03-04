@@ -1,0 +1,24 @@
+{
+  "name": "Trade Pages",
+  "category": "template",
+  "description": "Alım satım akışını kapsayan tüm sekmeleri (Emir Defteri, Derinlik, Grafik, Bilgi) barındıran üst şablon.",
+  "figmaNodeId": "nrsqqSsjRtYatCoixuKSmX / {FK-Trade Pages}",
+  "composedOf": ["Top Nav", "Trade Page Navigator", "Basic Trade", "Chart", "Table"],
+  "templates": [
+    {
+      "name": "Open Orders",
+      "layout": ["Top Nav", "Trade Page Navigator", "Basic Trade", "Table"]
+    },
+    {
+      "name": "Graphics",
+      "layout": ["Top Nav", "Trade Page Navigator", "Chart"]
+    },
+    {
+      "name": "Info",
+      "layout": ["Top Nav", "Trade Page Navigator", "Fee Information"]
+    }
+  ],
+  "tokenMap": {
+    "background": "level.basement"
+  }
+}

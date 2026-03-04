@@ -1,0 +1,41 @@
+{
+  "name": "Numpad Unit",
+  "category": "organism",
+  "description": "Farklı işlem türleri (Çekme, Transfer, Bağış vb.) için miktar girişini ve onayını sağlayan modül.",
+  "figmaNodeId": "L4PR4CRZ7lbfnhVaNUbXFn / [M] FK-Numpad Unit",
+  "composedOf": ["Top Nav", "Keyboard", "Input", "Button"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": [
+        "Withdrawal",
+        "Transfer",
+        "Rüçhan",
+        "T+0",
+        "Donation",
+        "Currency Buy-Sell"
+      ],
+      "default": "Withdrawal"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.basement",
+          "inputBackground": "level.elevation",
+          "text": "text.focus"
+        }
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Top Nav" },
+      { "name": "AmountInput", "component": "Input" },
+      { "name": "Numpad", "component": "Keyboard" },
+      { "name": "Action", "component": "Button" }
+    ]
+  }
+}

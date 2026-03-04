@@ -1,0 +1,33 @@
+{
+  "name": "Basic Trade",
+  "category": "organism",
+  "description": "Kullanıcıların kripto varlık alıp satabildiği, miktar ve fiyat girilebilen ana işlem modülü.",
+  "figmaNodeId": "NXig2szKnNmuPMIF0JYFxE / [M] FK-Basic Trade",
+  "composedOf": ["Pair Switcher", "Trade Action Button", "Input", "Segmented Control"],
+  "props": {
+    "state": {
+      "type": "enum",
+      "values": ["Buy", "Sell"],
+      "default": "Buy"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.surface",
+          "divider": "border.basement"
+        }
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Tabs", "component": "Segmented Control" },
+      { "name": "Asset", "component": "Pair Switcher" },
+      { "name": "Inputs", "components": ["Input", "Input"] },
+      { "name": "Action", "component": "Trade Action Button" }
+    ]
+  }
+}

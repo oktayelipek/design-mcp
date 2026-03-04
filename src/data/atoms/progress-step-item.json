@@ -1,0 +1,33 @@
+{
+  "name": "Progress Step Item",
+  "category": "atom",
+  "description": "Progress Stepper içerisindeki her bir adımın (step) görünümü.",
+  "figmaNodeId": "fglj1Gyg683cRrFzVklsrO / {FKProgress Step Item}",
+  "states": ["current", "inactive"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium"],
+      "default": "Medium"
+    },
+    "isCurrent": {
+      "type": "boolean",
+      "default": false
+    },
+    "text": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "current": {
+          "line": "text.focus",
+          "text": "text.focus"
+        },
+        "inactive": {
+          "line": "level.basement",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

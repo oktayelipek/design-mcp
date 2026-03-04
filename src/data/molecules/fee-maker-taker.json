@@ -1,0 +1,21 @@
+{
+  "name": "Fee Maker Taker",
+  "category": "molecule",
+  "description": "Maker ve Taker komisyon oranlarını gösteren bilgi bloğu.",
+  "figmaNodeId": "OJM0GrJL1IZnj7EZxTra58 / Fee [Maker/Taker]",
+  "composedOf": ["Typography", "Icon"],
+  "props": {
+    "maker": { "type": "string", "default": "%0.00" },
+    "taker": { "type": "string", "default": "%0.00" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "label": "text.tertiary",
+          "value": "text.focus"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Segmented Control",
+  "category": "molecule",
+  "description": "Birden fazla seçenek arasında seçim yapmayı sağlayan, iOS tarzı kaydırmalı veya dokunmatik seçim grubu.",
+  "figmaNodeId": "k6PMBkpjwmpKnwCdevrNA9 / Segmented Control (Variable System)",
+  "composedOf": ["Segmented Item"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium"],
+      "default": "Medium"
+    },
+    "hasIcons": {
+      "type": "boolean",
+      "default": false
+    },
+    "optionsCount": {
+      "type": "number",
+      "default": 2
+    },
+    "style": {
+      "type": "enum",
+      "values": ["UI", "Color"],
+      "default": "UI"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "border": "border.basement"
+        }
+      }
+    }
+  }
+}

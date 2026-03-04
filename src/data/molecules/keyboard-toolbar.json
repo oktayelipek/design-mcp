@@ -1,0 +1,28 @@
+{
+  "name": "Keyboard Toolbar",
+  "category": "molecule",
+  "description": "Klavyenin hemen üzerinde yer alan, bakiye bilgisi veya ek kontroller sunan araç çubuğu.",
+  "figmaNodeId": "rei2CMYXJD1qsA34KQ4hRO / FK-Keyboards [Toolbar]",
+  "props": {
+    "feature": {
+      "type": "enum",
+      "values": ["Withdrawal", "Donation", "Rüçhan", "Basic Trade"],
+      "default": "Basic Trade"
+    },
+    "balanceAvailable": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "title": "text.tertiary",
+          "amount": "text.focus"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Bottom Navigation",
+  "category": "molecule",
+  "description": "Uygulamanın ana sayfaları arasında geçiş yapmayı sağlayan alt navigasyon barı veya aksiyon çubuğu.",
+  "figmaNodeId": "lXP90rO5s6pXUOCk338x4F / {FKBottom}",
+  "composedOf": ["Bottom Nav Item", "Button", "Typography"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Navigation", "Action", "StickyMessage", "Browser"],
+      "default": "Navigation"
+    },
+    "actionLabel": { "type": "string" }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "background": "level.basement",
+        "homeIndicator": "text.focus",
+        "border": "border.basement"
+      }
+    }
+  }
+}

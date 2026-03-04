@@ -1,0 +1,23 @@
+{
+  "name": "Loader",
+  "category": "atom",
+  "description": "Veri yüklenirken kullanıcıya işlemin devam ettiğini gösteren animasyonlu yükleme göstergesi.",
+  "figmaNodeId": "C1rZmbQpk3gZDaeC1SQ16d / FK-Loader",
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium", "Large"],
+      "default": "Medium"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "color": "brand.primary",
+          "trackColor": "level.basement"
+        }
+      }
+    }
+  }
+}

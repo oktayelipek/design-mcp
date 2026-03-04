@@ -1,0 +1,34 @@
+{
+  "name": "Asset Row",
+  "category": "organism",
+  "description": "Varlıklarım ekranında kullanılan, varlık bakiyesi, PNL bilgisi ve diğer detayları gösteren satır.",
+  "figmaNodeId": "MYLV177LGYkYrKXD5TtKIe / {FK-Asset-Row}",
+  "composedOf": ["Ticker", "Typography", "Badge"],
+  "props": {
+    "brand": {
+      "type": "enum",
+      "values": ["Kripto", "Hisse"],
+      "default": "Kripto"
+    },
+    "isDetailed": {
+      "type": "boolean",
+      "default": false
+    },
+    "showPNL": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "transparent",
+          "text": "text.focus",
+          "pnlPositive": "dedicated.status.Success",
+          "pnlNegative": "dedicated.status.Error"
+        }
+      }
+    }
+  }
+}

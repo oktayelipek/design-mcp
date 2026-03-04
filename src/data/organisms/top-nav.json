@@ -1,0 +1,33 @@
+{
+  "name": "Top Nav",
+  "category": "organism",
+  "description": "Sayfanın en üstünde yer alan, logo, başlık, bildirimler ve profil bilgilerini içeren ana navigasyon modülü.",
+  "figmaNodeId": "y0fqsC9RIiddun3581BQhH / [M] FK-TopNav",
+  "composedOf": ["Icon", "Button", "Typography", "Notification Badge"],
+  "props": {
+    "platform": {
+      "type": "enum",
+      "values": ["iOS", "Android"],
+      "default": "iOS"
+    },
+    "title": { "type": "string", "default": "" },
+    "showBack": { "type": "boolean", "default": true },
+    "rightActions": {
+      "type": "enum",
+      "values": ["None", "Search", "Settings", "More", "Notifications"],
+      "default": "Notifications"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.elevation +1",
+          "titleColor": "text.focus",
+          "iconColor": "icon.focus",
+          "divider": "border.basement"
+        }
+      }
+    }
+  }
+}

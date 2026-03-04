@@ -1,0 +1,12 @@
+{
+  "name": "Wallet Asset List",
+  "category": "organism",
+  "description": "Cüzdan varlık listesi - Filtreler, tablo başlıkları ve varlık satırlarını içerir.",
+  "figmaNodeId": "15421:106617",
+  "composedOf": ["Asset List Search Button", "Table Header", "Wallet Asset Item"],
+  "variants": ["Kripto", "Fiat"],
+  "rules": {
+    "stickyHeader": true,
+    "listPadding": "0px"
+  }
+}

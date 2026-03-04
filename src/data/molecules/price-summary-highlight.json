@@ -1,0 +1,19 @@
+{
+  "name": "Price Summary Highlight",
+  "category": "molecule",
+  "description": "Günlük en yüksek/en düşük fiyatlar ve hacim gibi özet verilerin ızgara yapısında gösterildiği blok.",
+  "figmaNodeId": "860JxpULNmSZShDDKc8dZD / Summary Highlight",
+  "composedOf": ["Typography"],
+  "props": {
+    "items": { "type": "array", "default": [] }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "label": "text.tertiary",
+        "value": "text.focus",
+        "background": "level.elevation +1"
+      }
+    }
+  }
+}

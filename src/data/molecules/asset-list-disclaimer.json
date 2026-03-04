@@ -1,0 +1,17 @@
+{
+  "name": "Asset List Disclaimer",
+  "category": "molecule",
+  "description": "Varlık listesinin altında yer alan yaklaşık değer bilgilendirmesi.",
+  "figmaNodeId": "GoZDoZVaxgKT3lwn5ERr5B / Asser List Disclaimer",
+  "composedOf": ["Typography", "Icon"],
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "text": "text.tertiary",
+          "icon": "icon.tertiary"
+        }
+      }
+    }
+  }
+}

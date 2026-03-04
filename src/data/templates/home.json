@@ -1,0 +1,38 @@
+{
+  "name": "Home Page",
+  "category": "template",
+  "description": "Ana sayfa yapısı - Bakiye özeti, hızlı aksiyonlar, takip edilen pozisyonlar ve pazarlama banner'ları.",
+  "figmaNodeId": "16971:469584",
+  "layout": {
+    "type": "Vertical Stack",
+    "spacing": "24px",
+    "padding": "16px horizontal"
+  },
+  "sections": [
+    {
+      "name": "Home Header",
+      "component": "Top Nav",
+      "props": { "variant": "Home" }
+    },
+    {
+      "name": "Main Balance",
+      "component": "Balance PNL",
+      "props": { "isVurgulu": true }
+    },
+    {
+      "name": "Quick Actions",
+      "component": "Trade Action Button",
+      "props": { "layout": "grid" }
+    },
+    {
+      "name": "Positions List",
+      "component": "Home Positions List",
+      "props": { "title": "Takip Ettiğim Pozisyonlar" }
+    },
+    {
+      "name": "Marketing Banners",
+      "component": "Marketing Banner Carousel",
+      "props": { "type": "Colored" }
+    }
+  ]
+}

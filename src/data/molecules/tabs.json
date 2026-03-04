@@ -1,0 +1,44 @@
+{
+  "name": "Tabs",
+  "category": "molecule",
+  "description": "Sayfa içi veya içerik bölümleri arasında geçiş yapmayı sağlayan, alt çizgi vurgulu (rail) tırnaklı gezinme bileşeni.",
+  "figmaNodeId": "b9bDpsrcp4dT22xgaD7ipR / {Tab}",
+  "composedOf": ["Typography", "Icon"],
+  "states": ["ON", "OFF"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium", "Large", "X-Large"],
+      "default": "Medium"
+    },
+    "text": { "type": "string" },
+    "showIcon": { "type": "boolean", "default": false },
+    "hasBorder": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart sekmeli geçiş butonu.",
+      "tokenMap": {
+        "ON": {
+          "text": "text.focus",
+          "icon": "icon.focus",
+          "railBackground": "text.focus",
+          "wrapperBackground": "transparent"
+        },
+        "OFF": {
+          "text": "text.tertiary",
+          "icon": "icon.disabled",
+          "railBackground": "transparent",
+          "wrapperBackground": "transparent"
+        }
+      }
+    }
+  },
+  "sizes": {
+    "Small": { "typography": "Caption/Semibold" },
+    "Medium": { "typography": "CallOut/Semibold" },
+    "Large": { "typography": "Title 04/Semibold" },
+    "X-Large": { "typography": "Title 03/Semibold" }
+  },
+  "modeOverrides": {}
+}

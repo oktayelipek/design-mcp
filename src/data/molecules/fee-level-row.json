@@ -1,0 +1,27 @@
+{
+  "name": "Fee Level Row",
+  "category": "molecule",
+  "description": "Her bir komisyon seviyesini (Level 1, VIP vb.) temsil eden tablo satırı.",
+  "figmaNodeId": "OJM0GrJL1IZnj7EZxTra58 / Fee [Level]",
+  "composedOf": ["Typography", "Icon"],
+  "props": {
+    "level": { "type": "string", "default": "1" },
+    "vip": { "type": "boolean", "default": false },
+    "isCurrent": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Current": {
+          "background": "level.elevation +1",
+          "highlighter": "brand.primary",
+          "text": "text.focus"
+        },
+        "Default": {
+          "background": "transparent",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

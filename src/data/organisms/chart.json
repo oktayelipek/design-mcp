@@ -1,0 +1,24 @@
+{
+  "name": "Chart",
+  "category": "organism",
+  "description": "Fiyat değişimlerini, hacmi veya diğer metrikleri görselleştiren kompleks grafik bileşeni.",
+  "figmaNodeId": "KJLraiSuClOfcJWkqbH2nw / Graph",
+  "composedOf": ["Typography", "Icon"],
+  "props": {
+    "showGrid": { "type": "boolean", "default": true },
+    "showXAxis": { "type": "boolean", "default": true },
+    "showYAxis": { "type": "boolean", "default": true },
+    "yAxisOnGraph": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "lineColor": "brand.primary",
+          "gridColor": "border.basement",
+          "axisText": "text.tertiary"
+        }
+      }
+    }
+  }
+}

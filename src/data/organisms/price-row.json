@@ -1,0 +1,33 @@
+{
+  "name": "Price Row",
+  "category": "organism",
+  "description": "Fiyat listesi ekranlarında kullanılan, varlık bilgilerini, grafik önizlemesini ve alım-satım butonlarını içeren satır.",
+  "figmaNodeId": "ADqYI5EermvB9JpEOByLH9 / Price List Row ½",
+  "composedOf": ["Ticker", "Graph", "Button", "Typography"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Default", "Action"],
+      "default": "Default"
+    },
+    "action": {
+      "type": "enum",
+      "values": ["Buy", "Sell"],
+      "default": "Buy"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Buy": {
+          "actionBackground": "brand.primary",
+          "text": "text.focus"
+        },
+        "Sell": {
+          "actionBackground": "actions.action-02",
+          "text": "text.focus"
+        }
+      }
+    }
+  }
+}

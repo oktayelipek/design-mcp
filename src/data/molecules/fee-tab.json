@@ -1,0 +1,29 @@
+{
+  "name": "Fee Tab",
+  "category": "molecule",
+  "description": "Komisyon oranları ekranındaki sekmeli geçiş alanları.",
+  "figmaNodeId": "OJM0GrJL1IZnj7EZxTra58 / Fee [Tab]",
+  "composedOf": ["Typography"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Tab 1", "Tab 2"],
+      "default": "Tab 1"
+    },
+    "vip": { "type": "boolean", "default": false }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Active": {
+          "background": "brand.primary",
+          "text": "text.static.white"
+        },
+        "Default": {
+          "background": "level.elevation +1",
+          "text": "text.tertiary"
+        }
+      }
+    }
+  }
+}

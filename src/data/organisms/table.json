@@ -1,0 +1,28 @@
+{
+  "name": "Table",
+  "category": "organism",
+  "description": "Verilerin satır ve sütunlar halinde düzenlendiği ana tablo bileşeni. Header ve Item bileşenlerini birleştirir.",
+  "figmaNodeId": "I8VF3iKT4wXpGziooEGK1O / {FK-Tables}",
+  "composedOf": ["Table Header", "Table Item", "Ticker"],
+  "props": {
+    "rows": {
+      "type": "number",
+      "default": 5
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "transparent",
+          "rowHover": "level.elevation +1",
+          "divider": "border.basement"
+        }
+      }
+    }
+  }
+}

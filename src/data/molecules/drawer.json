@@ -1,0 +1,27 @@
+{
+  "name": "Drawer",
+  "category": "molecule",
+  "description": "Ekranın altından veya yanından kayarak açılan, içerisinde menüler, filtreler veya detay bilgiler barındıran çekmece bileşeni.",
+  "figmaNodeId": "xtfDipMq69j91GSzrJQhzY / FK-Drawer",
+  "composedOf": ["Swipe Bar"],
+  "states": ["opened"],
+  "props": {
+    "wrapperPadding": {
+      "type": "enum",
+      "values": ["24px", "32px"],
+      "default": "24px"
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart drawer / bottom sheet arka planı ve swipe bar alanı.",
+      "tokenMap": {
+        "opened": {
+          "background": "level.elevation +1",
+          "swipeBar": "icon.disabled"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

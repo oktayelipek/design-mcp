@@ -1,0 +1,22 @@
+{
+  "name": "Progress Stepper",
+  "category": "molecule",
+  "description": "Birden fazla adımdan oluşan süreçlerde kullanıcıya hangi adımda olduğunu gösteren yatay ilerleme çubuğu.",
+  "figmaNodeId": "fglj1Gyg683cRrFzVklsrO / {FKProgress Step}",
+  "composedOf": ["Progress Step Item"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Medium"],
+      "default": "Medium"
+    },
+    "options": {
+      "type": "number",
+      "default": 3
+    },
+    "selected": {
+      "type": "string",
+      "default": "1st"
+    }
+  }
+}

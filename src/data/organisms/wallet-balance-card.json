@@ -1,0 +1,13 @@
+{
+  "name": "Wallet Balance Card",
+  "category": "organism",
+  "description": "Bakiye özeti ve hızlı işlem butonlarını (Yatır, Çek, Transfer) içeren ana kart.",
+  "figmaNodeId": "19270:114865",
+  "composedOf": ["Wallet Balance Summary", "Button Group", "Info Row"],
+  "variants": ["Default", "With Warning"],
+  "rules": {
+    "cardBg": "var(--level/elevation, #131f2f)",
+    "borderRadius": "10px",
+    "buttonSpacing": "10px horizontal gap between action buttons"
+  }
+}

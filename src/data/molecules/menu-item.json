@@ -1,0 +1,39 @@
+{
+  "name": "Menu Item",
+  "category": "molecule",
+  "description": "Açılır menü (dropdown) veya yan menü içerisindeki her bir işlevsel satır.",
+  "figmaNodeId": "OD1CPbCRN4dPrOntLUYff1 / Menu [Item]",
+  "composedOf": ["FK Row"],
+  "states": ["Active", "Deactive", "Default"],
+  "props": {
+    "type": {
+      "type": "enum",
+      "values": ["Title", "Title + Desc."],
+      "default": "Title"
+    },
+    "view": {
+      "type": "enum",
+      "values": ["Line"],
+      "default": "Line"
+    }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Active": {
+          "background": "level.elevation +2",
+          "text": "text.focus"
+        },
+        "Default": {
+          "background": "transparent",
+          "text": "text.tertiary"
+        },
+        "Deactive": {
+          "background": "transparent",
+          "text": "text.disabled",
+          "opacity": "0.5"
+        }
+      }
+    }
+  }
+}

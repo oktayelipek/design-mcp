@@ -1,0 +1,49 @@
+{
+  "name": "Tooltip",
+  "category": "molecule",
+  "description": "Kullanıcıya kısa ipuçları göstermek veya onboarding süreçlerinde adımlı rehberlik (stepper) yapmak için kullanılan baloncuk bileşeni.",
+  "figmaNodeId": "YuRDNMsrweog6Dd3PbCYYF / {FK-Tooltip} & {FK-Tooltip+Stepper}",
+  "composedOf": ["Typography", "Icon", "Bullet"],
+  "states": ["Level 1", "Level 2"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium"],
+      "default": "Small"
+    },
+    "direction": {
+      "type": "enum",
+      "values": ["Top", "Bottom", "Left", "Right"],
+      "default": "Top"
+    },
+    "position": {
+      "type": "enum",
+      "values": ["Right Align", "Center Align", "Left Align"],
+      "default": "Center Align"
+    },
+    "hasStepper": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Tooltip balonu ve Controller (Stepper/Bullets) arka planı.",
+      "tokenMap": {
+        "Level 1": {
+          "background": "level.elevation +1",
+          "title": "text.focus",
+          "controllerBackground": "level.elevation +1",
+          "controllerBullets": "border.focus"
+        },
+        "Level 2": {
+          "background": "level.elevation +2",
+          "title": "text.focus",
+          "controllerBackground": "level.elevation +2",
+          "controllerBullets": "border.focus"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

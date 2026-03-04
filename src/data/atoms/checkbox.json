@@ -1,0 +1,52 @@
+{
+  "name": "Checkbox",
+  "category": "atom",
+  "description": "Kullanıcının bir veya daha fazla seçeneği işaretlemesini sağlayan onay kutusu bileşeni.",
+  "figmaNodeId": "vkwVeHZiBCX3lSiZLR2upK / FK-Checkbox",
+  "states": ["Default", "Selected", "Disabled", "Error"],
+  "props": {
+    "size": {
+      "type": "enum",
+      "values": ["Small", "Medium", "Large"],
+      "default": "Medium"
+    },
+    "checked": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "error": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart onay kutusu durumu.",
+      "tokenMap": {
+        "Default": {
+          "border": "icon.inactive",
+          "background": "transparent"
+        },
+        "Selected": {
+          "border": "brand.primary",
+          "background": "brand.primary",
+          "checkIcon": "inverse.pureWhite"
+        },
+        "Disabled": {
+          "border": "icon.disabled",
+          "background": "level.elevation +1",
+          "checkIcon": "icon.disabled"
+        },
+        "Error": {
+          "border": "actions.action-02",
+          "background": "transparent"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

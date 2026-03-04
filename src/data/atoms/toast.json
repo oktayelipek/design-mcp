@@ -1,0 +1,86 @@
+{
+  "name": "Toast",
+  "category": "molecule",
+  "description": "Kullanıcıya kısa süreli bildirimler göstermek için kullanılan Toast bileşeni. Figma'da FK-Toast-Row ve FK-Toast-Centered olmak üzere iki ayrı yapıda tutulur.",
+  "figmaNodeId": "8ByBHoDrIX38XoEU9rXEVh / {FK-Toast-Row}",
+  "states": ["default"],
+  "props": {
+    "message": { "type": "string", "default": "" },
+    "title": { "type": "string", "default": "" },
+    "showIcon": { "type": "boolean", "default": true },
+    "showDismiss": { "type": "boolean", "default": true },
+    "showButton": { "type": "boolean", "default": false },
+    "variantType": {
+      "type": "enum",
+      "values": ["Neutral", "Focus", "Warning", "Important", "Success", "Centered"],
+      "default": "Neutral"
+    }
+  },
+  "variants": {
+    "Neutral": {
+      "description": "Standart bilgilendirme mesajı.",
+      "tokenMap": {
+        "default": {
+          "background": "level.elevation +1",
+          "titleText": "text.focus",
+          "messageText": "text.secondary",
+          "icon": "icon.inactive"
+        }
+      }
+    },
+    "Focus": {
+      "description": "Dikkat çekici marka / bilgilendirme durumu.",
+      "tokenMap": {
+        "default": {
+          "background": "brand.primary-10",
+          "titleText": "brand.primary",
+          "messageText": "text.secondary",
+          "icon": "brand.primary"
+        }
+      }
+    },
+    "Warning": {
+      "description": "Uyarı mesajları (Sarı/Turuncu).",
+      "tokenMap": {
+        "default": {
+          "background": "actions.action-03-10%",
+          "titleText": "actions.action-03",
+          "messageText": "text.secondary",
+          "icon": "actions.action-03"
+        }
+      }
+    },
+    "Important": {
+      "description": "Kritik bir hata veya önemli uyarı mesajı (Kırmızı).",
+      "tokenMap": {
+        "default": {
+          "background": "actions.action-02-10%",
+          "titleText": "actions.action-02",
+          "messageText": "text.secondary",
+          "icon": "actions.action-02"
+        }
+      }
+    },
+    "Success": {
+      "description": "Başarılı bir işlemi gösteren mesaj (Yeşil).",
+      "tokenMap": {
+        "default": {
+          "background": "actions.action-01-10%",
+          "titleText": "actions.action-01",
+          "messageText": "text.secondary",
+          "icon": "actions.action-01"
+        }
+      }
+    },
+    "Centered": {
+      "description": "Tam ortalı büyük bildirim (Figma'daki FK-Toast-Centered set'i)",
+      "tokenMap": {
+        "default": {
+          "background": "level.elevation +2",
+          "messageText": "text.focus"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Notification Badge",
+  "category": "atom",
+  "description": "Menülerde, ikonların köşesinde veya uyarı alanlarında okunmamış bildirim sayısını göstermek için kullanılan kırmızı rozet bileşeni.",
+  "figmaNodeId": "FRKkPJh45bCELWgmAe9vHA / Notification Badge",
+  "composedOf": ["Typography"],
+  "states": ["Default"],
+  "props": {
+    "count": {
+      "type": "string",
+      "default": "1"
+    }
+  },
+  "variants": {
+    "default": {
+      "description": "Standart bildirim rozeti (badge).",
+      "tokenMap": {
+        "Default": {
+          "background": "actions.action-02",
+          "text": "inverse.pureWhite"
+        }
+      }
+    }
+  },
+  "modeOverrides": {}
+}

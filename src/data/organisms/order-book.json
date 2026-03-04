@@ -1,0 +1,30 @@
+{
+  "name": "Order Book",
+  "category": "organism",
+  "description": "Seçili işlem çifti için bekleyen alım ve satım emirlerini listeleyen modül.",
+  "figmaNodeId": "qMBvu90hoseTWLK0Hf5JMF / {FK-Order Book}",
+  "composedOf": ["Table Header", "Order Book Row", "Segmented Control"],
+  "props": {
+    "precision": { "type": "number", "default": 2 }
+  },
+  "variants": {
+    "default": {
+      "tokenMap": {
+        "Default": {
+          "background": "level.surface",
+          "headerText": "text.tertiary"
+        }
+      }
+    }
+  },
+  "layout": {
+    "direction": "vertical",
+    "sections": [
+      { "name": "Header", "component": "Table Header" },
+      { "name": "Sells", "component": "Order Book Row", "repeat": true },
+      { "name": "Spread", "component": "Typography" },
+      { "name": "Buys", "component": "Order Book Row", "repeat": true },
+      { "name": "Controls", "component": "Segmented Control" }
+    ]
+  }
+}

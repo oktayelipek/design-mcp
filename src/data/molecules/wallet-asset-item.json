@@ -1,0 +1,14 @@
+{
+  "name": "Wallet Asset Item",
+  "category": "molecule",
+  "description": "Cüzdan listesinde her bir varlığın miktar, maliyet, değer ve PNL verilerini gösteren satır.",
+  "figmaNodeId": "14004:18846 / Asset List Item",
+  "composedOf": ["Icon", "Typography", "PNL Indicator"],
+  "variants": ["Crypto", "Fiat"],
+  "rules": {
+    "padding": "16px",
+    "border": "Bottom border solid #131f2f",
+    "layout": "Flex space-between",
+    "dataStack": "Vertical gap 8px for data groups"
+  }
+}
