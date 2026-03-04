@@ -18,7 +18,7 @@ Design System'i (headless renkler, farklı dosyalardaki tipografi ve UI bileşen
 
 ## Done When
 
-- [ ] MCP Sunucusu SSE protokolünde ayağa kalkıyor.
-- [ ] `resources`, `tools`, `prompts` endpointleri listeleme yapabiliyor.
-- [ ] Belirli bir bileşenin (örn: Button) kodu MCP üzerinden string olarak eksiksiz alınabiliyor.
-- [ ] Platforma (React, Flutter vb.) göre bileşen/token getirme mantığı kurgulanmış durumda.
+- [x] MCP Sunucusu SSE protokolünde ayağa kalkıyor.
+- [x] `resources`, `tools`, `prompts` endpointleri listeleme yapabiliyor.
+- [x] Belirli bir bileşenin (örn: Button) kodu MCP üzerinden string olarak eksiksiz alınabiliyor.
+- [x] Platforma (React, Flutter vb.) göre bileşen/token getirme mantığı kurgulanmış durumda.
