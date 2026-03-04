@@ -72,7 +72,7 @@ Your friends can add your public URL to their **Claude Desktop** config.
   "args": [
     "-y",
     "@modelcontextprotocol/server-sse",
-    "https://design-mcp-production-6cf0.up.railway.app/sse?apiKey=DesignTeam2026"
+    "https://design-mcp-production-6cf0.up.railway.app/sse?apiKey=YOUR_API_KEY"
   ]
 }
 ```
