@@ -1,44 +1,77 @@
 [
   {
     "name": "Button",
-    "description": "Temel aksiyon butonu. Birincil (Primary), İkincil (Secondary), Al (Buy) ve Sat (Sell) varyantları bulunur.",
-    "props": ["variant", "size", "disabled", "icon"],
+    "description": "Temel aksiyon butonu. Birincil (Primary), İkincil (Secondary), Al (Buy) ve Sat (Sell) varyantları bulunurlar.",
+    "props": [
+      "variant",
+      "size",
+      "disabled",
+      "icon"
+    ],
     "figmaNode": "Button"
   },
   {
     "name": "Input",
     "description": "Kullanıcıdan metin veya sayısal veri almak için kullanılan temel girdi alanı.",
-    "props": ["type", "placeholder", "error", "label"],
+    "props": [
+      "type",
+      "placeholder",
+      "error",
+      "label"
+    ],
     "figmaNode": "Input"
   },
   {
     "name": "Dropdown / Combo",
     "description": "Kullanıcının bir liste içerisinden seçim yapmasını sağlayan açılır menü bileşeni.",
-    "props": ["options", "selected", "onSelect"],
+    "props": [
+      "options",
+      "selected",
+      "onSelect"
+    ],
     "figmaNode": "Dropdown / Combo"
   },
   {
     "name": "Toast",
     "description": "Kullanıcıya kısa süreli bildirimler (başarılı, hata, bilgi) göstermek için kullanılan bileşen.",
-    "props": ["message", "type", "duration"],
+    "props": [
+      "message",
+      "type",
+      "duration"
+    ],
     "figmaNode": "Toast"
   },
   {
     "name": "Segmented Control",
     "description": "Birbirini dışlayan iki veya daha fazla seçenek arasında hızlı geçiş yapmayı sağlayan sekme yapısı.",
-    "props": ["options", "activeOption", "onChange"],
+    "props": [
+      "options",
+      "activeOption",
+      "onChange"
+    ],
     "figmaNode": "Segmented Control"
   },
   {
     "name": "Asset Row",
     "description": "Kripto varlık listelerinde her bir varlığın logo, isim, fiyat ve değişim yüzdesiyle gösterildiği yatay satır bileşeni.",
-    "props": ["assetName", "symbol", "price", "changePercentage", "iconUrl"],
+    "props": [
+      "assetName",
+      "symbol",
+      "price",
+      "changePercentage",
+      "iconUrl"
+    ],
     "figmaNode": "Asset Row"
   },
   {
     "name": "Price Row",
     "description": "Emir defterindeki veya fiyat listelerindeki miktar ve fiyat bilgilerini gösteren satır.",
-    "props": ["price", "amount", "total", "type"],
+    "props": [
+      "price",
+      "amount",
+      "total",
+      "type"
+    ],
     "figmaNode": "Price Row"
   }
 ]
