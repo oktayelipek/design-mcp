@@ -1,0 +1,10 @@
+node_modules
+dist
+data_dump
+.git
+.env
+README.md
+Dockerfile
+.dockerignore
+design-system-mcp-server.md
+scripts
