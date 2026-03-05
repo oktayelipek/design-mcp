@@ -658,9 +658,9 @@ app.get("/sse", authMiddleware, async (req, res) => {
   }
 });
 
-// NO authMiddleware here — session was already authenticated during SSE connection.
-// mcp-remote POSTs to /message?sessionId=xxx WITHOUT apiKey, causing OAuth loop if auth is required.
-app.post("/message", express.json(), async (req, res) => {
+// NO authMiddleware — session was already authenticated during SSE connection.
+// NO express.json() — handlePostMessage reads the raw body stream itself.
+app.post("/message", async (req, res) => {
   const sessionId = req.query.sessionId as string;
   const transport = transports.get(sessionId);
   if (!transport) return res.status(400).send(`Unknown session: ${sessionId}`);
