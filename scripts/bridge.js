@@ -21,19 +21,33 @@ const isHttps = url.protocol === "https:";
 const httpClient = isHttps ? https : http;
 
 let sessionId = null;
+let connectionStarted = false;
+
+// Health Check before full SSE (Optional but good for 500 debugging)
+const healthUrl = new URL(url);
+healthUrl.pathname = "/health";
+httpClient.get(healthUrl, (res) => {
+  if (res.statusCode !== 200) {
+    console.error(`⚠️  Health check failed (${res.statusCode}). Service might be booting or unstable.`);
+  } else {
+    console.error(`✅ Remote health check passed.`);
+  }
+}).on('error', () => { /* Ignore health check errors, move to SSE */ });
 
 // 1. Establish SSE Connection
 const sseReq = httpClient.request(remoteUrl, {
   method: "GET",
   headers: {
     "Accept": "text/event-stream",
-    "Cache-Control": "no-cache"
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive"
   }
 }, (res) => {
-  // If we get a 301/302, technically we should follow, but Railway is direct.
+  connectionStarted = true;
   if (res.statusCode !== 200) {
     console.error(`🔴 Remote connection failed with status: ${res.statusCode}`);
     if (res.statusCode === 401) console.error("   Reason: Invalid or missing apiKey.");
+    if (res.statusCode === 500) console.error("   Reason: Server Internal Error. Check Railway logs.");
     process.exit(1);
   }
 
@@ -42,29 +56,34 @@ const sseReq = httpClient.request(remoteUrl, {
     
     // Check for sessionId in the first message
     if (!sessionId && data.includes("endpoint=")) {
-      const match = data.match(/sessionId=([^&\s]+)/);
+      const match = data.match(/sessionId=([^&\s"]+)/);
       if (match) {
         sessionId = match[1];
-        console.error(`🟢 Connected to remote SSE! Session: ${sessionId}`);
+        console.error(`🟢 Connected! Session: ${sessionId}`);
       }
     }
 
-    // Forward SSE messages (excluding comment/session lines) to STDOUT for Claude
-    // MCP SDK sends data in "event: message\ndata: { ... }\n\n" format
+    // Forward SSE messages to STDOUT for Claude/MCP Client
     const lines = data.split("\n");
     for (const line of lines) {
       if (line.startsWith("data: ")) {
         const payload = line.replace("data: ", "").trim();
         if (payload) {
-          process.stdout.write(payload + "\n");
+          try {
+            // Verify if it's valid JSON before sending to Claude
+            JSON.parse(payload);
+            process.stdout.write(payload + "\n");
+          } catch (e) {
+            console.error(`⚠️  Filtering malformed JSON from remote: ${payload.substring(0, 50)}...`);
+          }
         }
       }
     }
   });
 
   res.on("end", () => {
-    console.error("🔴 SSE Connection closed by remote server.");
-    process.exit(0);
+    console.error("🔴 SSE Connection closed by remote server (EOF).");
+    process.exit(1);
   });
 });
 
@@ -72,6 +91,15 @@ sseReq.on("error", (err) => {
   console.error(`🔴 SSE Connection error: ${err.message}`);
   process.exit(1);
 });
+
+// Timeout if we can't connect at all in 15 seconds
+setTimeout(() => {
+  if (!connectionStarted) {
+    console.error("🔴 Connection timeout: Remote server didn't respond in 15s.");
+    sseReq.destroy();
+    process.exit(1);
+  }
+}, 15000);
 
 sseReq.end();
 
@@ -82,19 +110,17 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", (line) => {
-  if (!line.trim() || !sessionId) return;
+  if (!line.trim() || !sessionId) {
+    if (!sessionId) console.error("⏳ Waiting for sessionId before forwarding message...");
+    return;
+  }
 
-  // The endpoint for POST messages is established during SSE connection.
-  // In our server, it's always /message?sessionId=...
   const postUrl = new URL(url);
   postUrl.pathname = "/message";
   postUrl.searchParams.set("sessionId", sessionId);
   
-  // If the original URL had an apiKey, we should pass it too!
   const originalApiKey = url.searchParams.get("apiKey");
-  if (originalApiKey) {
-    postUrl.searchParams.set("apiKey", originalApiKey);
-  }
+  if (originalApiKey) postUrl.searchParams.set("apiKey", originalApiKey);
 
   const postReq = httpClient.request(postUrl, {
     method: "POST",
@@ -103,11 +129,7 @@ rl.on("line", (line) => {
       "Content-Length": Buffer.byteLength(line)
     }
   }, (res) => {
-    if (res.statusCode >= 400) {
-      console.error(`🔴 POST message failed: ${res.statusCode} for session ${sessionId}`);
-    }
-    // We don't need to read the body unless we want to debug.
-    res.resume();
+    res.resume(); // Consume response
   });
 
   postReq.on("error", (err) => {
@@ -118,4 +140,4 @@ rl.on("line", (line) => {
   postReq.end();
 });
 
-console.error(`📡 Bridge starting for ${remoteUrl}...`);
+console.error(`📡 Bridge starting for ${url.hostname}...`);
