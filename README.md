@@ -62,23 +62,37 @@ If this key is set, the server will require it for every connection.
 
 ### 2. Client Connection (Remote)
 
-Your friends can add your public URL to their **Claude Desktop** config.
+Select your client to see the correct connection method:
 
-**Using NPX (No local files needed):**
+#### 🔹 Case A: Cursor
+
+Cursor supports **SSE natively**. You don't need any local files or bridge.
+
+1. Go to **Settings > Models > MCP Servers**.
+2. Click **+ Add New MCP Server**.
+3. Name: `Design-System`
+4. Type: `SSE`
+5. URL: `https://design-mcp-production-6cf0.up.railway.app/sse?apiKey=YOUR_API_KEY`
+
+#### 🔹 Case B: Claude Desktop
+
+Claude Desktop only supports **stdio**. You need a local bridge script.
+We have provided a zero-dependency bridge in this repo: `scripts/bridge.js`.
+
+**Update your `claude_desktop_config.json`:**
 
 ```json
 "design-system": {
-  "command": "npx",
+  "command": "node",
   "args": [
-    "-y",
-    "@modelcontextprotocol/server-sse",
+    "/Users/btcyz456/btcturk_design-mcp/scripts/bridge.js",
     "https://design-mcp-production-6cf0.up.railway.app/sse?apiKey=YOUR_API_KEY"
   ]
 }
 ```
 
-> [!TIP]
-> Since Claude's native SSE transport doesn't allow custom headers easily, we use `npx @modelcontextprotocol/server-sse` as a bridge. This way, no local files are required on the client machine.
+> [!IMPORTANT]
+> Since Claude's native SSE transport doesn't allow custom headers or query params easily, we use our local bridge. This also helps with Railway/Varnish buffering issues by forcing a stable stream connection.
 
 ---
 

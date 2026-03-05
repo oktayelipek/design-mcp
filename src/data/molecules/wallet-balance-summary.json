@@ -6,8 +6,20 @@
   "composedOf": ["Typography", "Ticker", "PNL Indicator"],
   "variants": ["Default", "Simplified"],
   "rules": {
-    "spacing": "20px vertical gap",
-    "pnlColor": "Positive: #4fa963, Negative: #e93a40",
-    "typography": "Title: 24px SemiBold, SubPrice: 12px Medium"
-  }
+    "spacing": {
+      "verticalGapHeader": "20px",
+      "verticalGapActions": "16px"
+    },
+    "tokens": {
+      "title": "text/focus",
+      "subPrice": "text/secondary",
+      "pnlPositive": "actions/action-01",
+      "pnlNegative": "actions/action-02"
+    },
+    "typography": {
+      "title": "24px SemiBold (Inter)",
+      "ticker": "12px Medium"
+    }
+  },
+  "guideline": "src/data/guidelines/wallet.md"
 }

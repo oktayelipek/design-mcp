@@ -618,30 +618,48 @@ Before starting, please read the design guidelines from 'design-system://guideli
   throw new Error("Prompt not found");
 });
 
-let transport: SSEServerTransport;
+const transports = new Map<string, SSEServerTransport>();
+
 app.get("/sse", authMiddleware, async (req, res) => {
-  console.log("New SSE connection established");
-  transport = new SSEServerTransport("/message", res);
+  console.log("New SSE connection attempt...");
+
+  // SSE Headers & Varnish Fix
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache, no-transform");
+  res.setHeader("Connection", "keep-alive");
+  res.setHeader("X-Accel-Buffering", "no");
+
+  const transport = new SSEServerTransport("/message", res);
+  // The transport.sessionId is generated automatically by SSEServerTransport
+  transports.set(transport.sessionId, transport);
+
+  console.log(`Connection established. Session: ${transport.sessionId}`);
+
+  transport.onclose = () => {
+    console.log(`Connection closed. Session: ${transport.sessionId}`);
+    transports.delete(transport.sessionId);
+  };
+
   await server.connect(transport);
 });
 
 app.post("/message", authMiddleware, express.json(), async (req, res) => {
+  const sessionId = req.query.sessionId as string;
+  const transport = transports.get(sessionId);
+
   if (!transport) {
-    res.status(400).send("No active SSE connection.");
+    console.log(`Message received for unknown session: ${sessionId}`);
+    res.status(400).send(`Unknown session: ${sessionId}`);
     return;
   }
+
   await transport.handlePostMessage(req, res);
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Design System MCP Server v2.1 is running!`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Design System MCP Server v2.1.1 is running!`);
   console.log(`📡 SSE Endpoint: http://localhost:${PORT}/sse`);
-  console.log(`\n📦 Available tools:`);
-  console.log(`   • get_atoms_list / get_atom_detail`);
-  console.log(`   • get_molecules_list / get_molecule_detail`);
-  console.log(`   • get_organisms_list / get_organism_detail`);
-  console.log(`   • get_templates_list / get_template_detail`);
-  console.log(`   • get_component_colors`);
-  console.log(`   • get_guidelines`);
-  console.log(`   • resolve_token`);
+  console.log(
+    `\n📦 Available tools: get_atoms_list, get_molecules_list, get_guidelines...`,
+  );
 });

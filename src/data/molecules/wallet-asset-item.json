@@ -3,12 +3,23 @@
   "category": "molecule",
   "description": "Cüzdan listesinde her bir varlığın miktar, maliyet, değer ve PNL verilerini gösteren satır.",
   "figmaNodeId": "14004:18846 / Asset List Item",
-  "composedOf": ["Icon", "Typography", "PNL Indicator"],
+  "composedOf": ["Icon/28px", "Typography", "PNL Indicator"],
   "variants": ["Crypto", "Fiat"],
   "rules": {
-    "padding": "16px",
-    "border": "Bottom border solid #131f2f",
-    "layout": "Flex space-between",
-    "dataStack": "Vertical gap 8px for data groups"
-  }
+    "padding": {
+      "vertical": "12px",
+      "horizontal": "16px"
+    },
+    "tokens": {
+      "ticker": "text/focus",
+      "amount": "text/focus",
+      "subAmount": "text/secondary"
+    },
+    "typography": {
+      "ticker": "Asset/Semibold (15px)",
+      "amount": "Asset/Semibold (15px)",
+      "subAmount": "Footnote/Medium (11px)"
+    }
+  },
+  "guideline": "src/data/guidelines/wallet.md"
 }
