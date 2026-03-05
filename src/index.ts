@@ -621,31 +621,31 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
 const transports = new Map<string, SSEServerTransport>();
 
 app.get("/sse", authMiddleware, async (req, res) => {
-  console.log(`[SSE] New connection attempt from ${req.ip}`);
-
-  // Set headers to prevent buffering
-  res.setHeader("Content-Type", "text/event-stream");
-  res.setHeader("Cache-Control", "no-cache, no-transform");
-  res.setHeader("Connection", "keep-alive");
-  res.setHeader("X-Accel-Buffering", "no");
+  console.log(`[SSE] Connection attempt from ${req.ip}`);
 
   try {
+    // Note: SSEServerTransport handles Content-Type and Cache-Control headers internally.
+    // Manual overrides here can conflict with the SDK's internal state management.
     const transport = new SSEServerTransport("/message", res);
     const sessionId = transport.sessionId;
 
     transports.set(sessionId, transport);
-    console.log(`[SSE] Connected. Session: ${sessionId}`);
+    console.log(`[SSE] Transport created. Session: ${sessionId}`);
 
     transport.onclose = () => {
-      console.log(`[SSE] Disconnected. Session: ${sessionId}`);
+      console.log(`[SSE] Transport closed. Session: ${sessionId}`);
       transports.delete(sessionId);
     };
 
+    // Connect the server to the transport
     await server.connect(transport);
-  } catch (err) {
-    console.error(`[SSE] Failed to establish transport:`, err);
+    console.log(
+      `[SSE] Server connected to transport for session: ${sessionId}`,
+    );
+  } catch (err: any) {
+    console.error(`[SSE] CRITICAL ERROR:`, err);
     if (!res.headersSent) {
-      res.status(500).send("Failed to establish SSE transport");
+      res.status(500).send(`SSE Error: ${err.message}`);
     }
   }
 });
@@ -662,13 +662,28 @@ app.post("/message", authMiddleware, express.json(), async (req, res) => {
 
   try {
     await transport.handlePostMessage(req, res);
-  } catch (err) {
-    console.error(`[MSG] Error handling message for ${sessionId}:`, err);
+  } catch (err: any) {
+    console.error(`[MSG] Message Error (Session ${sessionId}):`, err);
     if (!res.headersSent) {
-      res.status(500).send("Error handling message");
+      res.status(500).send(`Message processing error: ${err.message}`);
     }
   }
 });
+
+// Global Error Handler for Express
+app.use(
+  (
+    err: any,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) => {
+    console.error("[GLOBAL ERROR]", err);
+    if (!res.headersSent) {
+      res.status(500).send(`Internal Server Error: ${err.message}`);
+    }
+  },
+);
 
 // Health check endpoint for Railway
 app.get("/health", (req, res) => {
@@ -676,7 +691,7 @@ app.get("/health", (req, res) => {
 });
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Design System MCP Server v2.1.2 running on port ${PORT}`);
+  console.log(`🚀 Design System MCP Server v2.1.3 running on port ${PORT}`);
   console.log(`📡 SSE Endpoint: http://0.0.0.0:${PORT}/sse`);
   console.log(`🏥 Health Check: http://0.0.0.0:${PORT}/health`);
 });
