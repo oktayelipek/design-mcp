@@ -102,6 +102,138 @@ function resolveTokenValue(
   }
 }
 
+interface RegistryEntry {
+  name: string;
+  category: string;
+  file: string;
+  composedOf?: string[];
+  variants?: string[];
+  usedIn?: string[];
+}
+
+interface TreeNode {
+  name: string;
+  category: string;
+  children: TreeNode[];
+}
+
+function findComponentInRegistry(componentName: string): {
+  entry: RegistryEntry | null;
+  layer: "atom" | "molecule" | "organism" | "template" | null;
+  detail: any;
+} {
+  const lowerName = componentName.toLowerCase();
+
+  const atomsReg = readJsonFile("atoms/_registry.json");
+  const atomEntry = atomsReg?.components?.find(
+    (c: any) => c.name.toLowerCase() === lowerName,
+  );
+  if (atomEntry)
+    return {
+      entry: atomEntry,
+      layer: "atom",
+      detail: readJsonFile(`atoms/${atomEntry.file}`),
+    };
+
+  const molReg = readJsonFile("molecules/_registry.json");
+  const molEntry = molReg?.components?.find(
+    (c: any) => c.name.toLowerCase() === lowerName,
+  );
+  if (molEntry)
+    return {
+      entry: molEntry,
+      layer: "molecule",
+      detail: readJsonFile(`molecules/${molEntry.file}`),
+    };
+
+  const orgReg = readJsonFile("organisms/_registry.json");
+  const orgEntry = orgReg?.components?.find(
+    (c: any) => c.name.toLowerCase() === lowerName,
+  );
+  if (orgEntry)
+    return {
+      entry: orgEntry,
+      layer: "organism",
+      detail: readJsonFile(`organisms/${orgEntry.file}`),
+    };
+
+  const tmpReg = readJsonFile("templates/_registry.json");
+  const tmpEntry = tmpReg?.templates?.find(
+    (t: any) => t.name.toLowerCase() === lowerName,
+  );
+  if (tmpEntry)
+    return {
+      entry: { ...tmpEntry, category: "template" },
+      layer: "template",
+      detail: readJsonFile(`templates/${tmpEntry.file}`),
+    };
+
+  return { entry: null, layer: null, detail: null };
+}
+
+function buildComponentTree(
+  componentName: string,
+  visited: Set<string> = new Set(),
+): TreeNode | null {
+  if (visited.has(componentName.toLowerCase())) {
+    return { name: componentName, category: "circular-ref", children: [] };
+  }
+  visited.add(componentName.toLowerCase());
+
+  const { entry, layer, detail } = findComponentInRegistry(componentName);
+  if (!entry || !layer) return null;
+
+  const children: TreeNode[] = [];
+  const composedOf = detail?.composedOf || entry.composedOf || [];
+
+  for (const childName of composedOf) {
+    const childNode = buildComponentTree(childName, new Set(visited));
+    if (childNode) {
+      children.push(childNode);
+    } else {
+      children.push({ name: childName, category: "external", children: [] });
+    }
+  }
+
+  return { name: entry.name, category: layer, children };
+}
+
+function detectModule(componentName: string): string | null {
+  const tmpReg = readJsonFile("templates/_registry.json");
+  if (!tmpReg?.templates) return null;
+
+  for (const tmpl of tmpReg.templates) {
+    const detail = readJsonFile(`templates/${tmpl.file}`);
+    if (!detail) continue;
+    const sectionComponents = (detail.sections || []).map((s: any) =>
+      s.component?.toLowerCase(),
+    );
+    if (sectionComponents.includes(componentName.toLowerCase())) {
+      return tmpl.name;
+    }
+  }
+
+  const orgReg = readJsonFile("organisms/_registry.json");
+  for (const org of orgReg?.components || []) {
+    if (org.usedIn?.some((u: string) => u.toLowerCase().includes("wallet")))
+      if (
+        org.composedOf?.some(
+          (c: string) => c.toLowerCase() === componentName.toLowerCase(),
+        )
+      )
+        return "Wallet Page";
+    if (org.usedIn?.some((u: string) => u.toLowerCase().includes("trade")))
+      if (
+        org.composedOf?.some(
+          (c: string) => c.toLowerCase() === componentName.toLowerCase(),
+        )
+      )
+        return "Trade Pages";
+  }
+
+  return null;
+}
+
 // --- MULTI-CLIENT HANDLER FACTORY ---
 function setupHandlers(server: Server) {
   // --- RESOURCES ---
@@ -308,6 +440,70 @@ function setupHandlers(server: Server) {
               },
             },
             required: ["componentName", "variant", "state", "mode"],
+          },
+        },
+        {
+          name: "get_component_tree",
+          description:
+            "Get the full dependency tree of a component — shows which atoms, molecules, and organisms compose it, recursively.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              componentName: {
+                type: "string",
+                description:
+                  "Name of the component (e.g. 'Order Book', 'Wallet Balance Card')",
+              },
+            },
+            required: ["componentName"],
+          },
+        },
+        {
+          name: "generate_component_prompt",
+          description:
+            "Generate a comprehensive, context-aware implementation prompt for a component. Includes full spec, sub-component details, resolved tokens, layout rules, and guidelines.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              componentName: {
+                type: "string",
+                description: "Name of the component to implement",
+              },
+              platform: {
+                type: "string",
+                enum: ["react", "swiftui", "compose", "flutter"],
+                description: "Target platform for code generation",
+              },
+              mode: {
+                type: "string",
+                enum: [
+                  "Kripto Dark",
+                  "Kripto Light",
+                  "Hisse Dark",
+                  "Hisse Light",
+                  "Global Dark",
+                  "Global Light",
+                ],
+                description:
+                  "Theme mode for token resolution (default: Kripto Dark)",
+              },
+            },
+            required: ["componentName"],
+          },
+        },
+        {
+          name: "get_implementation_checklist",
+          description:
+            "Get a verification checklist for implementing a component — covers tokens, variants, states, spacing, and accessibility.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              componentName: {
+                type: "string",
+                description: "Name of the component",
+              },
+            },
+            required: ["componentName"],
           },
         },
         {
@@ -555,6 +751,349 @@ function setupHandlers(server: Server) {
       };
     }
 
+    if (name === "get_component_tree") {
+      const componentName = (args as any)?.componentName;
+      const tree = buildComponentTree(componentName);
+      if (!tree) throw new Error(`Component not found: ${componentName}`);
+
+      const flattenTree = (node: TreeNode, depth: number = 0): string => {
+        const indent = "  ".repeat(depth);
+        const badge =
+          node.category === "external" ? "[ext]" : `[${node.category}]`;
+        let line = `${indent}${badge} ${node.name}`;
+        for (const child of node.children) {
+          line += "\n" + flattenTree(child, depth + 1);
+        }
+        return line;
+      };
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                tree,
+                visualization: flattenTree(tree),
+              },
+              null,
+              2,
+            ),
+          },
+        ],
+      };
+    }
+
+    if (name === "generate_component_prompt") {
+      const componentName = (args as any)?.componentName;
+      const platform = (args as any)?.platform || "react";
+      const mode = (args as any)?.mode || "Kripto Dark";
+
+      const { entry, layer, detail } = findComponentInRegistry(componentName);
+      if (!entry || !layer)
+        throw new Error(`Component not found: ${componentName}`);
+
+      const tree = buildComponentTree(componentName);
+      const colors = readJsonFile("tokens/colors.json");
+      const typography = readJsonFile("tokens/typography.json");
+
+      // Collect sub-component specs
+      const subSpecs: Record<string, any> = {};
+      const composedOf = detail?.composedOf || entry.composedOf || [];
+      for (const childName of composedOf) {
+        const child = findComponentInRegistry(childName);
+        if (child.detail) {
+          subSpecs[childName] = child.detail;
+        }
+      }
+
+      // Resolve all tokens in the component
+      const resolvedTokens: Record<string, any> = {};
+      if (detail?.variants) {
+        for (const [variantName, variantDef] of Object.entries(
+          detail.variants,
+        )) {
+          const tokenMap = (variantDef as any)?.tokenMap;
+          if (!tokenMap) continue;
+          resolvedTokens[variantName] = {};
+          for (const [state, tokens] of Object.entries(tokenMap)) {
+            resolvedTokens[variantName][state] = {};
+            for (const [key, tokenRef] of Object.entries(tokens as any)) {
+              if (
+                typeof tokenRef === "string" &&
+                !tokenRef.startsWith("#") &&
+                tokenRef !== "transparent"
+              ) {
+                const resolved = resolveTokenValue(tokenRef, mode, colors);
+                resolvedTokens[variantName][state][key] = {
+                  token: tokenRef,
+                  hex: resolved ?? "unresolved",
+                };
+              } else {
+                resolvedTokens[variantName][state][key] = {
+                  token: tokenRef,
+                  hex: tokenRef,
+                };
+              }
+            }
+          }
+        }
+      }
+
+      // Detect module and load guidelines
+      const moduleName = detectModule(componentName);
+      let guidelines: string | null = null;
+      if (moduleName) {
+        const guidelineSlug = moduleName.toLowerCase().includes("wallet")
+          ? "wallet"
+          : moduleName.toLowerCase().includes("home")
+            ? "home"
+            : null;
+        if (guidelineSlug) {
+          const gPath = path.join(
+            __dirname,
+            "data",
+            "guidelines",
+            `${guidelineSlug}.md`,
+          );
+          if (fs.existsSync(gPath))
+            guidelines = fs.readFileSync(gPath, "utf-8");
+        }
+      }
+
+      // Build the mega prompt
+      const prompt = [
+        `# Implementation Brief: ${entry.name}`,
+        ``,
+        `## Target`,
+        `- **Component:** ${entry.name}`,
+        `- **Layer:** ${layer}`,
+        `- **Platform:** ${platform}`,
+        `- **Theme Mode:** ${mode}`,
+        moduleName ? `- **Page Context:** ${moduleName}` : "",
+        ``,
+        `## Component Spec`,
+        "```json",
+        JSON.stringify(detail, null, 2),
+        "```",
+        ``,
+        `## Dependency Tree`,
+        "```",
+        tree
+          ? (() => {
+              const renderNode = (node: TreeNode, d: number = 0): string => {
+                const ind = "  ".repeat(d);
+                const b =
+                  node.category === "external" ? "[ext]" : `[${node.category}]`;
+                let l = `${ind}${b} ${node.name}`;
+                for (const c of node.children) l += "\n" + renderNode(c, d + 1);
+                return l;
+              };
+              return renderNode(tree);
+            })()
+          : "(no tree)",
+        "```",
+      ];
+
+      if (Object.keys(subSpecs).length > 0) {
+        prompt.push("", "## Sub-Component Specs");
+        for (const [childName, spec] of Object.entries(subSpecs)) {
+          prompt.push(
+            `### ${childName}`,
+            "```json",
+            JSON.stringify(spec, null, 2),
+            "```",
+          );
+        }
+      }
+
+      if (Object.keys(resolvedTokens).length > 0) {
+        prompt.push(
+          "",
+          `## Resolved Tokens (${mode})`,
+          "```json",
+          JSON.stringify(resolvedTokens, null, 2),
+          "```",
+        );
+      }
+
+      if (guidelines) {
+        prompt.push("", "## Design Guidelines", guidelines);
+      }
+
+      prompt.push(
+        "",
+        "## Implementation Rules",
+        `1. Use the exact design tokens listed above — do NOT hardcode hex values`,
+        `2. Implement ALL variants: ${(entry.variants || Object.keys(detail?.variants || {})).join(", ") || "default"}`,
+        `3. Implement ALL states from the tokenMap`,
+        `4. Follow the layout structure exactly as specified`,
+        `5. Use semantic naming matching the design system`,
+        detail?.sizes
+          ? `6. Support all sizes: ${Object.keys(detail.sizes).join(", ")}`
+          : "",
+        detail?.props
+          ? `7. Expose these props: ${Object.keys(detail.props).join(", ")}`
+          : "",
+      );
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: prompt.filter(Boolean).join("\n"),
+          },
+        ],
+      };
+    }
+
+    if (name === "get_implementation_checklist") {
+      const componentName = (args as any)?.componentName;
+      const { entry, layer, detail } = findComponentInRegistry(componentName);
+      if (!entry || !layer)
+        throw new Error(`Component not found: ${componentName}`);
+
+      const composedOf = detail?.composedOf || entry.composedOf || [];
+      const variants = entry.variants || Object.keys(detail?.variants || {});
+      const states = detail?.states || [];
+      const props = detail?.props ? Object.keys(detail.props) : [];
+      const sizes = detail?.sizes ? Object.keys(detail.sizes) : [];
+
+      // Gather all token paths used
+      const tokenPaths = new Set<string>();
+      if (detail?.variants) {
+        for (const vDef of Object.values(detail.variants)) {
+          const tMap = (vDef as any)?.tokenMap;
+          if (!tMap) continue;
+          for (const stateMap of Object.values(tMap)) {
+            for (const tokenRef of Object.values(stateMap as any)) {
+              if (
+                typeof tokenRef === "string" &&
+                !tokenRef.startsWith("#") &&
+                tokenRef !== "transparent"
+              )
+                tokenPaths.add(tokenRef);
+            }
+          }
+        }
+      }
+
+      const checklist = {
+        component: entry.name,
+        layer,
+        checks: [
+          {
+            category: "Structure",
+            items: [
+              {
+                check: `Component renders correctly`,
+                required: true,
+              },
+              ...composedOf.map((c: string) => ({
+                check: `Sub-component "${c}" integrated`,
+                required: true,
+              })),
+              detail?.layout
+                ? {
+                    check: `Layout direction: ${detail.layout.direction || detail.layout.type}`,
+                    required: true,
+                  }
+                : null,
+            ].filter(Boolean),
+          },
+          {
+            category: "Variants & States",
+            items: [
+              ...variants.map((v: string) => ({
+                check: `Variant "${v}" implemented`,
+                required: true,
+              })),
+              ...states.map((s: string) => ({
+                check: `State "${s}" handled`,
+                required: true,
+              })),
+            ],
+          },
+          {
+            category: "Design Tokens",
+            items: [
+              ...Array.from(tokenPaths).map((t: string) => ({
+                check: `Token "${t}" applied`,
+                required: true,
+              })),
+              {
+                check: "No hardcoded hex values",
+                required: true,
+              },
+              {
+                check: "Supports theme mode switching",
+                required: true,
+              },
+            ],
+          },
+          {
+            category: "Props",
+            items: props.map((p: string) => ({
+              check: `Prop "${p}" exposed with correct type: ${detail.props[p].type}`,
+              required: true,
+            })),
+          },
+          {
+            category: "Sizing",
+            items: sizes.map((s: string) => ({
+              check: `Size "${s}" implemented`,
+              required: true,
+            })),
+          },
+          {
+            category: "Accessibility",
+            items: [
+              {
+                check: "Semantic HTML elements used",
+                required: true,
+              },
+              {
+                check: "ARIA labels for interactive elements",
+                required: detail?.category !== "atom" || composedOf.length > 0,
+              },
+              {
+                check: "Keyboard navigation support",
+                required: [
+                  "button",
+                  "input",
+                  "toggle",
+                  "checkbox",
+                  "radio",
+                  "tabs",
+                  "segmented control",
+                ].some((k) => entry.name.toLowerCase().includes(k)),
+              },
+            ],
+          },
+        ].filter((section) => section.items.length > 0),
+        totalChecks: 0,
+        requiredChecks: 0,
+      };
+
+      checklist.totalChecks = checklist.checks.reduce(
+        (sum, s) => sum + s.items.length,
+        0,
+      );
+      checklist.requiredChecks = checklist.checks.reduce(
+        (sum, s) => sum + s.items.filter((i: any) => i.required).length,
+        0,
+      );
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(checklist, null, 2),
+          },
+        ],
+      };
+    }
+
     if (name === "get_guidelines") {
       const module = (args as any)?.module;
       const filePath = path.join(
@@ -635,7 +1174,7 @@ app.get("/sse", authMiddleware, async (req, res) => {
     const transport = new SSEServerTransport("/message", res);
 
     const connectionServer = new Server(
-      { name: "design-system-mcp", version: "2.1.6" },
+      { name: "design-system-mcp", version: "2.2.0" },
       { capabilities: { resources: {}, tools: {}, prompts: {} } },
     );
 
@@ -690,5 +1229,5 @@ app.use(
 app.get("/health", (req, res) => res.status(200).send("OK"));
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Design System MCP v2.1.6 running on port ${PORT}`);
+  console.log(`🚀 Design System MCP v2.2.0 running on port ${PORT}`);
 });
