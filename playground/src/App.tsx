@@ -18,16 +18,16 @@ function App() {
         <section>
           <h2 className="text-xl font-bold text-[var(--text-focus)] mb-4">Button Component (FK-Button)</h2>
           <div className="flex flex-wrap gap-4 items-center">
-            <Button variant="Solid">Solid</Button>
-            <Button variant="Solid Focus">Solid Focus</Button>
-            <Button variant="Outline">Outline</Button>
-            <Button variant="Outline Focus">Outline Focus</Button>
-            <Button variant="Solid" disabled>Disabled</Button>
+            <Button variant="Solid">CTA Text</Button>
+            <Button variant="Solid Focus">CTA Text</Button>
+            <Button variant="Outline">CTA Text</Button>
+            <Button variant="Outline Focus">CTA Text</Button>
+            <Button variant="Solid" disabled>CTA Text</Button>
           </div>
           <div className="flex gap-4 items-center mt-6 p-4 rounded bg-[#ffffff08]">
-            <Button variant="Solid" size="Small">Small App</Button>
-            <Button variant="Solid" size="Medium">Medium App</Button>
-            <Button variant="Solid" size="Large" typeProps="Icon+Text">Large App</Button>
+            <Button variant="Solid" size="Small">CTA Text</Button>
+            <Button variant="Solid" size="Medium">CTA Text</Button>
+            <Button variant="Solid" size="Large" typeProps="Icon+Text">CTA Text</Button>
           </div>
         </section>
 

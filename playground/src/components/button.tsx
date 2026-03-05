@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'Solid (Primary)' | 'Solid (Focus Mode)' | 'Outline' | 'Ghost';
+  variant?: 'Solid' | 'Solid Focus' | 'Outline' | 'Outline Focus';
   size?: 'Large' | 'Medium' | 'Small';
   presence?: 'Default' | 'Subtle';
   typeProps?: 'Text Only' | 'Icon+Text' | 'Text + Icon' | 'Icon Only';
@@ -12,7 +12,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ 
-    variant = 'Solid (Primary)', 
+    variant = 'Solid', 
     size = 'Large', 
     presence = 'Default',
     typeProps = 'Text Only',
@@ -37,12 +37,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     // Variant Styles Mappings (Adapted for APP - No Hover & True Colors)
-    // Primary Button in Figma is mapped to secondary/elevation tones instead of raw 'blue'
     const variants = {
-      'Solid (Primary)': "bg-[var(--button-muted)] text-[var(--semantic-on-color)] border border-transparent active:opacity-80 active:scale-[0.98]",
-      'Solid (Focus Mode)': "bg-[var(--text-primary)] text-[var(--level-basement)] border border-transparent active:opacity-80 active:scale-[0.98]",
-      'Outline': "bg-transparent text-[var(--text-primary)] border border-[var(--form-border-default)] active:bg-[var(--level-elevation-\\+1)] active:scale-[0.98]",
-      'Ghost': "bg-transparent text-[var(--text-primary)] border border-transparent active:bg-[var(--level-elevation-\\+1)] active:scale-[0.98]",
+      'Solid': "bg-[var(--button-primary)] text-[var(--inverse-pureWhite)] border border-transparent active:opacity-80 active:scale-[0.98]",
+      'Solid Focus': "bg-[var(--text-focus)] text-[var(--level-basement)] border border-transparent active:opacity-80 active:scale-[0.98]",
+      'Outline': "bg-transparent text-[var(--text-focus)] border border-[var(--level-elevation-\\+3)] active:bg-[#ffffff08] active:scale-[0.98]",
+      'Outline Focus': "bg-transparent text-[var(--text-focus)] border border-[var(--text-focus)] active:bg-[#ffffff08] active:scale-[0.98]",
     };
 
     // Presence adjustment (e.g. Subtle lowers opacity or alters state logic if needed)
