@@ -1,4 +1,4 @@
-# 🎨 Design System MCP Server (v2.1.6)
+# 🎨 Design System MCP Server (v2.2.0)
 
 > **Model Context Protocol (MCP)** server that exposes a complete UI Design System to AI assistants — enabling pixel-perfect, design-compliant code generation.
 
@@ -109,7 +109,15 @@ A zero-dependency bridge script is included for offline or custom setups:
 
 ---
 
-## 🛠️ MCP Tools (12)
+## 🛠️ MCP Tools (15)
+
+### Prompt Engine v2 Tools (New)
+
+| Tool                           | Description                                                                                     |
+| ------------------------------ | ----------------------------------------------------------------------------------------------- |
+| `generate_component_prompt`    | Generate a comprehensive, context-aware implementation prompt including specs, tokens, & rules. |
+| `get_component_tree`           | Get the full dependency tree of a component (atoms, molecules, and organisms).                  |
+| `get_implementation_checklist` | Get a verification checklist covering structure, variants, tokens, and accessibility.           |
 
 ### Token & Color Tools
 
@@ -267,7 +275,7 @@ The design system supports **6 theme modes** for token resolution:
 - [x] API key authentication
 - [x] Prompt templates for common tasks
 - [ ] Automated Figma-to-JSON extraction pipeline
-- [ ] Component implementation prompt generators
+- [x] Component implementation prompt generators (Prompt Engine v2)
 - [ ] Streaming token resolution for batch queries
 
 ---
