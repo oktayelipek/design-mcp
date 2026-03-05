@@ -507,6 +507,22 @@ function setupHandlers(server: Server) {
           },
         },
         {
+          name: "get_code_snippet",
+          description:
+            "Get a production-ready code snippet (Code Connect) for a component.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              componentName: { type: "string" },
+              platform: {
+                type: "string",
+                enum: ["react", "swiftui", "compose"],
+              },
+            },
+            required: ["componentName", "platform"],
+          },
+        },
+        {
           name: "get_guidelines",
           description: "Get module guidelines.",
           inputSchema: {
@@ -1109,6 +1125,38 @@ function setupHandlers(server: Server) {
       throw new Error(`Guidelines for module "${module}" not found.`);
     }
 
+    if (name === "get_code_snippet") {
+      const { componentName, platform } = args as any;
+      const lowerName = componentName.toLowerCase().replace(/\s+/g, "-");
+      let ext = "tsx";
+      if (platform === "swiftui") ext = "swift";
+      if (platform === "compose") ext = "kt";
+
+      const filePath = path.join(
+        __dirname,
+        "data",
+        "snippets",
+        platform,
+        `${lowerName}.${ext}`,
+      );
+
+      if (!fs.existsSync(filePath)) {
+        throw new Error(
+          `Code snippet not found for ${componentName} on ${platform} platform.`,
+        );
+      }
+
+      const code = fs.readFileSync(filePath, "utf-8");
+      return {
+        content: [
+          {
+            type: "text",
+            text: code,
+          },
+        ],
+      };
+    }
+
     throw new Error(`Tool not found: ${name}`);
   });
 
@@ -1174,7 +1222,7 @@ app.get("/sse", authMiddleware, async (req, res) => {
     const transport = new SSEServerTransport("/message", res);
 
     const connectionServer = new Server(
-      { name: "design-system-mcp", version: "2.2.0" },
+      { name: "design-system-mcp", version: "2.3.0" },
       { capabilities: { resources: {}, tools: {}, prompts: {} } },
     );
 
@@ -1229,5 +1277,5 @@ app.use(
 app.get("/health", (req, res) => res.status(200).send("OK"));
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Design System MCP v2.2.0 running on port ${PORT}`);
+  console.log(`🚀 Design System MCP v2.3.0 running on port ${PORT}`);
 });
