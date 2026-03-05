@@ -621,15 +621,21 @@ function setupHandlers(server: Server) {
 // --- SSE SERVER APP ---
 const transports = new Map<string, SSEServerTransport>();
 
+// mcp-remote tries POST /sse first (Streamable HTTP strategy) — return 405 cleanly
+app.post("/sse", (req, res) => {
+  res
+    .status(405)
+    .json({ error: "Method Not Allowed. Use GET for SSE connections." });
+});
+
 app.get("/sse", authMiddleware, async (req, res) => {
   console.log(`[SSE] New client connection: ${req.ip}`);
 
   try {
     const transport = new SSEServerTransport("/message", res);
 
-    // 🔥 COMPLETE ISOLATION: New Server instance for every request
     const connectionServer = new Server(
-      { name: "design-system-mcp", version: "2.1.5" },
+      { name: "design-system-mcp", version: "2.1.6" },
       { capabilities: { resources: {}, tools: {}, prompts: {} } },
     );
 
@@ -642,24 +648,19 @@ app.get("/sse", authMiddleware, async (req, res) => {
       transports.delete(transport.sessionId);
     };
 
-    // Attempt to connect
     await connectionServer.connect(transport);
     console.log(`[SSE] Session established: ${transport.sessionId}`);
   } catch (err: any) {
     console.error(`[SSE] FATAL:`, err);
     if (!res.headersSent) {
-      // Return detail to help us debug the "Already connected" mystery
-      res.status(500).json({
-        error: "SSE Connection Failed",
-        message: err.message,
-        stack: err.stack,
-        hint: "Check if Server instance is being reused or if transport is faulty",
-      });
+      res.status(500).json({ error: err.message });
     }
   }
 });
 
-app.post("/message", authMiddleware, express.json(), async (req, res) => {
+// NO authMiddleware here — session was already authenticated during SSE connection.
+// mcp-remote POSTs to /message?sessionId=xxx WITHOUT apiKey, causing OAuth loop if auth is required.
+app.post("/message", express.json(), async (req, res) => {
   const sessionId = req.query.sessionId as string;
   const transport = transports.get(sessionId);
   if (!transport) return res.status(400).send(`Unknown session: ${sessionId}`);
@@ -671,7 +672,7 @@ app.post("/message", authMiddleware, express.json(), async (req, res) => {
   }
 });
 
-// Global Error Handler for Express
+// Global Error Handler
 app.use(
   (
     err: any,
@@ -689,5 +690,5 @@ app.use(
 app.get("/health", (req, res) => res.status(200).send("OK"));
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Design System MCP v2.1.4 running on port ${PORT}`);
+  console.log(`🚀 Design System MCP v2.1.6 running on port ${PORT}`);
 });
