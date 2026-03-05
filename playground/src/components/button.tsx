@@ -36,12 +36,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'Large': "h-[44px] px-[48px] py-[12px] text-base",
     };
 
-    // Variant Styles Mappings
+    // Variant Styles Mappings (Adapted for APP - No Hover & True Colors)
+    // Primary Button in Figma is mapped to secondary/elevation tones instead of raw 'blue'
     const variants = {
-      'Solid (Primary)': "bg-[var(--button-solid)] text-[var(--semantic-on-color)] border border-transparent hover:opacity-90",
-      'Solid (Focus Mode)': "bg-[var(--text-primary)] text-[var(--level-basement)] border border-transparent hover:opacity-90",
-      'Outline': "bg-transparent text-[var(--button-solid)] border border-[var(--button-solid)] hover:bg-[var(--button-solid)] hover:bg-opacity-10",
-      'Ghost': "bg-transparent text-[var(--button-solid)] border border-transparent hover:bg-[var(--button-solid)] hover:bg-opacity-10",
+      'Solid (Primary)': "bg-[var(--button-muted)] text-[var(--semantic-on-color)] border border-transparent active:opacity-80 active:scale-[0.98]",
+      'Solid (Focus Mode)': "bg-[var(--text-primary)] text-[var(--level-basement)] border border-transparent active:opacity-80 active:scale-[0.98]",
+      'Outline': "bg-transparent text-[var(--text-primary)] border border-[var(--form-border-default)] active:bg-[var(--level-elevation-\\+1)] active:scale-[0.98]",
+      'Ghost': "bg-transparent text-[var(--text-primary)] border border-transparent active:bg-[var(--level-elevation-\\+1)] active:scale-[0.98]",
     };
 
     // Presence adjustment (e.g. Subtle lowers opacity or alters state logic if needed)
