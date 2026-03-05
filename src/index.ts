@@ -622,14 +622,14 @@ function setupHandlers(server: Server) {
 const transports = new Map<string, SSEServerTransport>();
 
 app.get("/sse", authMiddleware, async (req, res) => {
-  console.log(`[SSE] Connection from ${req.ip}`);
+  console.log(`[SSE] New client connection: ${req.ip}`);
 
   try {
     const transport = new SSEServerTransport("/message", res);
 
-    // 🔥 FIX: Create a NEW Server instance for EVERY connection
+    // 🔥 COMPLETE ISOLATION: New Server instance for every request
     const connectionServer = new Server(
-      { name: "design-system-mcp", version: "2.1.4" },
+      { name: "design-system-mcp", version: "2.1.5" },
       { capabilities: { resources: {}, tools: {}, prompts: {} } },
     );
 
@@ -642,11 +642,20 @@ app.get("/sse", authMiddleware, async (req, res) => {
       transports.delete(transport.sessionId);
     };
 
+    // Attempt to connect
     await connectionServer.connect(transport);
-    console.log(`[SSE] Active session: ${transport.sessionId}`);
+    console.log(`[SSE] Session established: ${transport.sessionId}`);
   } catch (err: any) {
-    console.error(`[SSE] Fail:`, err);
-    if (!res.headersSent) res.status(500).send(err.message);
+    console.error(`[SSE] FATAL:`, err);
+    if (!res.headersSent) {
+      // Return detail to help us debug the "Already connected" mystery
+      res.status(500).json({
+        error: "SSE Connection Failed",
+        message: err.message,
+        stack: err.stack,
+        hint: "Check if Server instance is being reused or if transport is faulty",
+      });
+    }
   }
 });
 
