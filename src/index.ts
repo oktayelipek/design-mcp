@@ -25,19 +25,33 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors());
 
+// Process-level error handling to prevent unhandled crashes on Railway
+process.on("uncaughtException", (err) => {
+  console.error("CRITICAL: Uncaught Exception:", err);
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error(
+    "CRITICAL: Unhandled Rejection at:",
+    promise,
+    "reason:",
+    reason,
+  );
+});
+
 // Simple Auth Middleware
 const authMiddleware = (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  if (!API_KEY) {
-    return next(); // If no key defined in env, allow all (local dev)
+  if (!API_KEY || API_KEY === "YOUR_API_KEY_HERE") {
+    return next(); // Safe fallback for local or unset keys
   }
 
   const key = req.headers["x-api-key"] || req.query.apiKey;
   if (key !== API_KEY) {
-    console.log("Unauthorized access attempt");
+    console.log(`[AUTH] Unauthorized access attempt from ${req.ip}`);
     res.status(401).send("Unauthorized: Invalid API Key");
     return;
   }
@@ -46,12 +60,22 @@ const authMiddleware = (
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
+/**
+ * Robust JSON reader with error handling
+ */
 function readJsonFile(relativePath: string): any {
-  const filePath = path.join(__dirname, "data", relativePath);
-  if (fs.existsSync(filePath)) {
-    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  try {
+    const filePath = path.join(__dirname, "data", relativePath);
+    if (!fs.existsSync(filePath)) {
+      console.warn(`[DATA] File not found: ${filePath}`);
+      return null;
+    }
+    const content = fs.readFileSync(filePath, "utf-8");
+    return JSON.parse(content);
+  } catch (error) {
+    console.error(`[DATA] Error reading ${relativePath}:`, error);
+    return null;
   }
-  return null;
 }
 
 function resolveTokenValue(
@@ -59,26 +83,30 @@ function resolveTokenValue(
   mode: string,
   colors: any,
 ): string | null {
-  const modeColors = colors?.modes?.[mode];
-  if (!modeColors) return null;
+  try {
+    const modeColors = colors?.modes?.[mode];
+    if (!modeColors) return null;
 
-  const parts = tokenPath.split(".");
-  let current: any = modeColors;
-  for (const part of parts) {
-    if (current && typeof current === "object" && part in current) {
-      current = current[part];
-    } else {
-      return null;
+    const parts = tokenPath.split(".");
+    let current: any = modeColors;
+    for (const part of parts) {
+      if (current && typeof current === "object" && part in current) {
+        current = current[part];
+      } else {
+        return null;
+      }
     }
+    return typeof current === "string" ? current : null;
+  } catch (err) {
+    return null;
   }
-  return typeof current === "string" ? current : null;
 }
 
 // Initialize MCP Server
 const server = new Server(
   {
     name: "design-system-mcp",
-    version: "2.1.0",
+    version: "2.1.2",
   },
   {
     capabilities: {
@@ -96,51 +124,41 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
       {
         uri: "design-system://tokens/colors",
         name: "Design Tokens — Colors",
-        description:
-          "Semantic color tokens for BtcTurk design system (Kripto, Hisse, Global)",
         mimeType: "application/json",
       },
       {
         uri: "design-system://tokens/typography",
         name: "Design Tokens — Typography",
-        description: "Typography tokens",
         mimeType: "application/json",
       },
       {
         uri: "design-system://atoms",
         name: "Atoms Registry",
-        description: "Index of all UI atoms",
         mimeType: "application/json",
       },
       {
         uri: "design-system://molecules",
         name: "Molecules Registry",
-        description: "Index of all UI molecules",
         mimeType: "application/json",
       },
       {
         uri: "design-system://organisms",
         name: "Organisms Registry",
-        description: "Index of all UI organisms",
         mimeType: "application/json",
       },
       {
         uri: "design-system://templates",
         name: "Templates Registry",
-        description: "Index of all UI templates (combined organisms)",
         mimeType: "application/json",
       },
       {
         uri: "design-system://guidelines/wallet",
         name: "Wallet Module Guidelines",
-        description:
-          "Visual rules, spacing, and patterns for the Wallet module",
         mimeType: "text/markdown",
       },
       {
         uri: "design-system://guidelines/home",
         name: "Home Page Module Guidelines",
-        description: "Visual rules, spacing, and patterns for the Home page",
         mimeType: "text/markdown",
       },
     ],
@@ -180,13 +198,12 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
       `${module}.md`,
     );
     if (fs.existsSync(guidelinePath)) {
-      const text = fs.readFileSync(guidelinePath, "utf-8");
       return {
         contents: [
           {
             uri: request.params.uri,
             mimeType: "text/markdown",
-            text,
+            text: fs.readFileSync(guidelinePath, "utf-8"),
           },
         ],
       };
@@ -202,76 +219,68 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: "get_tokens",
-        description: "Get all design tokens (colors and typography).",
+        description: "Get all design tokens.",
         inputSchema: { type: "object", properties: {} },
       },
       {
         name: "get_atoms_list",
-        description: "Get a summary list of all UI atoms.",
+        description: "List all UI atoms.",
         inputSchema: { type: "object", properties: {} },
       },
       {
         name: "get_atom_detail",
-        description: "Get the full detail of a specific atom.",
+        description: "Get detail of an atom.",
         inputSchema: {
           type: "object",
-          properties: {
-            atomName: { type: "string" },
-          },
+          properties: { atomName: { type: "string" } },
           required: ["atomName"],
         },
       },
       {
         name: "get_molecules_list",
-        description: "Get a summary list of all UI molecules.",
+        description: "List all UI molecules.",
         inputSchema: { type: "object", properties: {} },
       },
       {
         name: "get_molecule_detail",
-        description: "Get the full detail of a specific molecule.",
+        description: "Get detail of a molecule.",
         inputSchema: {
           type: "object",
-          properties: {
-            moleculeName: { type: "string" },
-          },
+          properties: { moleculeName: { type: "string" } },
           required: ["moleculeName"],
         },
       },
       {
         name: "get_organisms_list",
-        description: "Get a summary list of all UI organisms.",
+        description: "List all UI organisms.",
         inputSchema: { type: "object", properties: {} },
       },
       {
         name: "get_organism_detail",
-        description: "Get the full detail of a specific organism.",
+        description: "Get detail of an organism.",
         inputSchema: {
           type: "object",
-          properties: {
-            organismName: { type: "string" },
-          },
+          properties: { organismName: { type: "string" } },
           required: ["organismName"],
         },
       },
       {
         name: "get_templates_list",
-        description: "Get a summary list of all UI templates.",
+        description: "List all UI templates.",
         inputSchema: { type: "object", properties: {} },
       },
       {
         name: "get_template_detail",
-        description: "Get the full detail of a specific template.",
+        description: "Get detail of a template.",
         inputSchema: {
           type: "object",
-          properties: {
-            templateName: { type: "string" },
-          },
+          properties: { templateName: { type: "string" } },
           required: ["templateName"],
         },
       },
       {
         name: "resolve_token",
-        description: "Resolve a semantic design token to its actual value.",
+        description: "Resolve token to value.",
         inputSchema: {
           type: "object",
           properties: {
@@ -293,8 +302,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "get_component_colors",
-        description:
-          "Get the resolved color values for a specific component (atom or molecule).",
+        description: "Get colors for component.",
         inputSchema: {
           type: "object",
           properties: {
@@ -318,13 +326,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "get_guidelines",
-        description:
-          "Get design guidelines and visual rules for a specific module.",
+        description: "Get module guidelines.",
         inputSchema: {
           type: "object",
-          properties: {
-            module: { type: "string", enum: ["wallet", "home"] },
-          },
+          properties: { module: { type: "string", enum: ["wallet", "home"] } },
           required: ["module"],
         },
       },
@@ -345,105 +350,146 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     };
   }
 
-  // ATOMS
   if (name === "get_atoms_list") {
-    const registry = readJsonFile("atoms/_registry.json");
     return {
-      content: [{ type: "text", text: JSON.stringify(registry, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(readJsonFile("atoms/_registry.json"), null, 2),
+        },
+      ],
     };
   }
 
   if (name === "get_atom_detail") {
-    const atomName = (args as any)?.atomName;
-    if (!atomName) throw new Error("atomName is required");
-
-    const registry = readJsonFile("atoms/_registry.json");
-    const entry = registry?.components?.find(
-      (c: any) => c.name.toLowerCase() === atomName.toLowerCase(),
+    const name = (args as any)?.atomName;
+    const reg = readJsonFile("atoms/_registry.json");
+    const entry = reg?.components?.find(
+      (c: any) => c.name.toLowerCase() === name.toLowerCase(),
     );
-    if (!entry) throw new Error(`Atom not found: ${atomName}`);
-
-    const detail = readJsonFile(`atoms/${entry.file}`);
+    if (!entry) throw new Error(`Atom not found: ${name}`);
     return {
-      content: [{ type: "text", text: JSON.stringify(detail, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(readJsonFile(`atoms/${entry.file}`), null, 2),
+        },
+      ],
     };
   }
 
-  // MOLECULES
   if (name === "get_molecules_list") {
-    const registry = readJsonFile("molecules/_registry.json");
     return {
-      content: [{ type: "text", text: JSON.stringify(registry, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            readJsonFile("molecules/_registry.json"),
+            null,
+            2,
+          ),
+        },
+      ],
     };
   }
 
   if (name === "get_molecule_detail") {
-    const moleculeName = (args as any)?.moleculeName;
-    if (!moleculeName) throw new Error("moleculeName is required");
-
-    const registry = readJsonFile("molecules/_registry.json");
-    const entry = registry?.components?.find(
-      (c: any) => c.name.toLowerCase() === moleculeName.toLowerCase(),
+    const name = (args as any)?.moleculeName;
+    const reg = readJsonFile("molecules/_registry.json");
+    const entry = reg?.components?.find(
+      (c: any) => c.name.toLowerCase() === name.toLowerCase(),
     );
-    if (!entry) throw new Error(`Molecule not found: ${moleculeName}`);
-
-    const detail = readJsonFile(`molecules/${entry.file}`);
+    if (!entry) throw new Error(`Molecule not found: ${name}`);
     return {
-      content: [{ type: "text", text: JSON.stringify(detail, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            readJsonFile(`molecules/${entry.file}`),
+            null,
+            2,
+          ),
+        },
+      ],
     };
   }
 
-  // ORGANISMS
   if (name === "get_organisms_list") {
-    const registry = readJsonFile("organisms/_registry.json");
     return {
-      content: [{ type: "text", text: JSON.stringify(registry, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            readJsonFile("organisms/_registry.json"),
+            null,
+            2,
+          ),
+        },
+      ],
     };
   }
 
   if (name === "get_organism_detail") {
-    const organismName = (args as any)?.organismName;
-    const registry = readJsonFile("organisms/_registry.json");
-    const entry = registry?.components?.find(
-      (c: any) => c.name.toLowerCase() === organismName.toLowerCase(),
+    const name = (args as any)?.organismName;
+    const reg = readJsonFile("organisms/_registry.json");
+    const entry = reg?.components?.find(
+      (c: any) => c.name.toLowerCase() === name.toLowerCase(),
     );
-    if (!entry) throw new Error(`Organism not found: ${organismName}`);
-
-    const detail = readJsonFile(`organisms/${entry.file}`);
+    if (!entry) throw new Error(`Organism not found: ${name}`);
     return {
-      content: [{ type: "text", text: JSON.stringify(detail, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            readJsonFile(`organisms/${entry.file}`),
+            null,
+            2,
+          ),
+        },
+      ],
     };
   }
 
-  // TEMPLATES (Higher-level groups of organisms)
   if (name === "get_templates_list") {
-    const registry = readJsonFile("templates/_registry.json");
     return {
-      content: [{ type: "text", text: JSON.stringify(registry, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            readJsonFile("templates/_registry.json"),
+            null,
+            2,
+          ),
+        },
+      ],
     };
   }
 
   if (name === "get_template_detail") {
-    const templateName = (args as any)?.templateName;
-    const registry = readJsonFile("templates/_registry.json");
-    const entry = registry?.templates?.find(
-      (t: any) => t.name.toLowerCase() === templateName.toLowerCase(),
+    const name = (args as any)?.templateName;
+    const reg = readJsonFile("templates/_registry.json");
+    const entry = reg?.templates?.find(
+      (t: any) => t.name.toLowerCase() === name.toLowerCase(),
     );
-    if (!entry) throw new Error(`Template not found: ${templateName}`);
-
-    const detail = readJsonFile(`templates/${entry.file}`);
+    if (!entry) throw new Error(`Template not found: ${name}`);
     return {
-      content: [{ type: "text", text: JSON.stringify(detail, null, 2) }],
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            readJsonFile(`templates/${entry.file}`),
+            null,
+            2,
+          ),
+        },
+      ],
     };
   }
 
-  // RESOLVE TOKEN
   if (name === "resolve_token") {
-    const tokenPath = (args as any)?.tokenPath;
-    const mode = (args as any)?.mode;
+    const { tokenPath, mode } = args as any;
     const colors = readJsonFile("tokens/colors.json");
     const resolved = resolveTokenValue(tokenPath, mode, colors);
-
     return {
       content: [
         {
@@ -454,41 +500,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     };
   }
 
-  // GET COMPONENT COLORS
   if (name === "get_component_colors") {
     const { componentName, variant, state, mode } = args as any;
-
-    let targetFile = null;
     let component = null;
 
-    // Search in atoms
+    // Search Atomic
     const atomsReg = readJsonFile("atoms/_registry.json");
     const atomEntry = atomsReg?.components?.find(
       (c: any) => c.name.toLowerCase() === componentName.toLowerCase(),
     );
-    if (atomEntry) {
-      component = readJsonFile(`atoms/${atomEntry.file}`);
-    } else {
-      // Search in molecules
+    if (atomEntry) component = readJsonFile(`atoms/${atomEntry.file}`);
+    else {
       const molReg = readJsonFile("molecules/_registry.json");
       const molEntry = molReg?.components?.find(
         (c: any) => c.name.toLowerCase() === componentName.toLowerCase(),
       );
-      if (molEntry) {
-        component = readJsonFile(`molecules/${molEntry.file}`);
-      }
+      if (molEntry) component = readJsonFile(`molecules/${molEntry.file}`);
     }
 
-    if (!component)
-      throw new Error(
-        `Component not found in atoms or molecules: ${componentName}`,
-      );
-
+    if (!component) throw new Error(`Component not found: ${componentName}`);
     const variantDef = component.variants?.[variant];
-    if (!variantDef) throw new Error(`Variant "${variant}" not found.`);
-
-    const tokenMap = variantDef.tokenMap?.[state];
-    if (!tokenMap) throw new Error(`State "${state}" not found.`);
+    const tokenMap = variantDef?.tokenMap?.[state];
+    if (!tokenMap) throw new Error(`Variant/State not found.`);
 
     let effectiveTokenMap = { ...tokenMap };
     const modeOverrides = component.modeOverrides?.[mode];
@@ -501,7 +534,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const colors = readJsonFile("tokens/colors.json");
     const resolvedColors: Record<string, any> = {};
-
     for (const [key, tokenRef] of Object.entries(effectiveTokenMap)) {
       if (
         typeof tokenRef === "string" &&
@@ -518,13 +550,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         resolvedColors[key] = { token: tokenRef, value: tokenRef };
       }
     }
-
     return {
       content: [
         {
           type: "text",
           text: JSON.stringify(
-            { component: componentName, variant, state, mode, resolvedColors },
+            { componentName, variant, state, mode, resolvedColors },
             null,
             2,
           ),
@@ -536,12 +567,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (name === "get_guidelines") {
     const module = (args as any)?.module;
     const filePath = path.join(__dirname, "data", "guidelines", `${module}.md`);
-    if (fs.existsSync(filePath)) {
-      const text = fs.readFileSync(filePath, "utf-8");
+    if (fs.existsSync(filePath))
       return {
-        content: [{ type: "text", text }],
+        content: [{ type: "text", text: fs.readFileSync(filePath, "utf-8") }],
       };
-    }
     throw new Error(`Guidelines for module "${module}" not found.`);
   }
 
@@ -554,28 +583,16 @@ server.setRequestHandler(ListPromptsRequestSchema, async () => {
     prompts: [
       {
         name: "implement-wallet-part",
-        description:
-          "Guided prompt to implement a part of the Wallet module following design rules.",
+        description: "Implement Wallet part.",
         arguments: [
-          {
-            name: "partName",
-            description:
-              "Name of the wallet part (e.g., BalanceCard, AssetList)",
-            required: true,
-          },
+          { name: "partName", description: "e.g. BalanceCard", required: true },
         ],
       },
       {
         name: "implement-home-part",
-        description:
-          "Guided prompt to implement a part of the Home page following design rules.",
+        description: "Implement Home part.",
         arguments: [
-          {
-            name: "partName",
-            description:
-              "Name of the home page part (e.g., PositionsList, MarketingBanner)",
-            required: true,
-          },
+          { name: "partName", description: "e.g. AssetList", required: true },
         ],
       },
     ],
@@ -583,64 +600,54 @@ server.setRequestHandler(ListPromptsRequestSchema, async () => {
 });
 
 server.setRequestHandler(GetPromptRequestSchema, async (request) => {
-  if (request.params.name === "implement-wallet-part") {
-    const partName = request.params.arguments?.partName;
-    return {
-      description: `Implement the ${partName} part of the Wallet module.`,
-      messages: [
-        {
-          role: "user",
-          content: {
-            type: "text",
-            text: `I need to implement the "${partName}" for the Wallet module. 
-Before starting, please read the design guidelines from 'design-system://guidelines/wallet' and ensure all spacing, colors (PNL indicators), and typography rules are followed strictly.`,
-          },
+  const { name, arguments: args } = request.params;
+  const partName = args?.partName;
+  const module = name.includes("wallet") ? "wallet" : "home";
+  return {
+    description: `Implement ${partName}`,
+    messages: [
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `I need to implement ${partName} for the ${module} page. See 'design-system://guidelines/${module}'`,
         },
-      ],
-    };
-  }
-  if (request.params.name === "implement-home-part") {
-    const partName = request.params.arguments?.partName;
-    return {
-      description: `Implement the ${partName} part of the Home page.`,
-      messages: [
-        {
-          role: "user",
-          content: {
-            type: "text",
-            text: `I need to implement the "${partName}" for the Home page. 
-Before starting, please read the design guidelines from 'design-system://guidelines/home' and ensure all spacing, colors, and marketing banner rules are followed strictly.`,
-          },
-        },
-      ],
-    };
-  }
-  throw new Error("Prompt not found");
+      },
+    ],
+  };
 });
 
+// --- SSE TRANSPORT MANAGEMENT ---
 const transports = new Map<string, SSEServerTransport>();
 
 app.get("/sse", authMiddleware, async (req, res) => {
-  console.log("New SSE connection attempt...");
+  console.log(`[SSE] New connection attempt from ${req.ip}`);
 
-  // SSE Headers & Varnish Fix
+  // Set headers to prevent buffering
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache, no-transform");
   res.setHeader("Connection", "keep-alive");
   res.setHeader("X-Accel-Buffering", "no");
 
-  const transport = new SSEServerTransport("/message", res);
-  // The transport.sessionId is generated automatically by SSEServerTransport
-  transports.set(transport.sessionId, transport);
+  try {
+    const transport = new SSEServerTransport("/message", res);
+    const sessionId = transport.sessionId;
 
-  console.log(`Connection established. Session: ${transport.sessionId}`);
+    transports.set(sessionId, transport);
+    console.log(`[SSE] Connected. Session: ${sessionId}`);
 
-  transport.onclose = () => {
-    console.log(`Connection closed. Session: ${transport.sessionId}`);
-    transports.delete(transport.sessionId);
-  };
+    transport.onclose = () => {
+      console.log(`[SSE] Disconnected. Session: ${sessionId}`);
+      transports.delete(sessionId);
+    };
 
-  await server.connect(transport);
+    await server.connect(transport);
+  } catch (err) {
+    console.error(`[SSE] Failed to establish transport:`, err);
+    if (!res.headersSent) {
+      res.status(500).send("Failed to establish SSE transport");
+    }
+  }
 });
 
 app.post("/message", authMiddleware, express.json(), async (req, res) => {
@@ -648,18 +655,28 @@ app.post("/message", authMiddleware, express.json(), async (req, res) => {
   const transport = transports.get(sessionId);
 
   if (!transport) {
-    console.log(`Message received for unknown session: ${sessionId}`);
+    console.warn(`[MSG] Unknown session: ${sessionId}`);
     res.status(400).send(`Unknown session: ${sessionId}`);
     return;
   }
 
-  await transport.handlePostMessage(req, res);
+  try {
+    await transport.handlePostMessage(req, res);
+  } catch (err) {
+    console.error(`[MSG] Error handling message for ${sessionId}:`, err);
+    if (!res.headersSent) {
+      res.status(500).send("Error handling message");
+    }
+  }
+});
+
+// Health check endpoint for Railway
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
 });
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Design System MCP Server v2.1.1 is running!`);
-  console.log(`📡 SSE Endpoint: http://localhost:${PORT}/sse`);
-  console.log(
-    `\n📦 Available tools: get_atoms_list, get_molecules_list, get_guidelines...`,
-  );
+  console.log(`🚀 Design System MCP Server v2.1.2 running on port ${PORT}`);
+  console.log(`📡 SSE Endpoint: http://0.0.0.0:${PORT}/sse`);
+  console.log(`🏥 Health Check: http://0.0.0.0:${PORT}/health`);
 });
