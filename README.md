@@ -129,7 +129,7 @@ A zero-dependency bridge script is included for offline or custom setups:
 
 | Tool                   | Description                                                  |
 | ---------------------- | ------------------------------------------------------------ |
-| `get_tokens`           | Fetch all raw design tokens (colors + typography)            |
+| `get_tokens`           | Fetch all raw design tokens (colors + typography + spacing)  |
 | `resolve_token`        | Resolve a semantic token path to its hex value for a mode    |
 | `get_component_colors` | Get resolved colors for a component variant/state/mode combo |
 
@@ -154,7 +154,7 @@ A zero-dependency bridge script is included for offline or custom setups:
 
 ---
 
-## 📚 MCP Resources (8)
+## 📚 MCP Resources (9)
 
 The server also exposes read-only resources that clients can browse:
 
@@ -162,6 +162,7 @@ The server also exposes read-only resources that clients can browse:
 | ----------------------------------- | ------------------ | ------------------------ |
 | `design-system://tokens/colors`     | `application/json` | Color token definitions  |
 | `design-system://tokens/typography` | `application/json` | Typography tokens        |
+| `design-system://tokens/spacing`    | `application/json` | Spacing & Radius tokens  |
 | `design-system://atoms`             | `application/json` | Atoms registry           |
 | `design-system://molecules`         | `application/json` | Molecules registry       |
 | `design-system://organisms`         | `application/json` | Organisms registry       |
@@ -193,7 +194,9 @@ design-mcp/
 │   └── data/
 │       ├── tokens/
 │       │   ├── colors.json       # Semantic color tokens (6 modes)
-│       │   └── typography.json   # Typography scale & weights
+│       │   ├── typography.json   # Typography scale & weights
+│       │   ├── spacing.json      # Spacing scale & semantic tokens
+│       │   └── spacing.js        # ESM export for JS/TS projects
 │       ├── atoms/                # 26 atom definitions
 │       │   ├── _registry.json
 │       │   ├── button.json
