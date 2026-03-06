@@ -38,23 +38,32 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Variant Styles Mappings (Adapted for APP - No Hover & True Colors)
     const variants = {
-      'Solid': "bg-[var(--button-primary)] text-[var(--inverse-pureWhite)] border border-transparent active:opacity-80 active:scale-[0.98]",
+      'Solid': "bg-[var(--level-elevation-\\+1)] text-[var(--text-focus)] border border-transparent active:opacity-80 active:scale-[0.98]",
       'Solid Focus': "bg-[var(--text-focus)] text-[var(--level-basement)] border border-transparent active:opacity-80 active:scale-[0.98]",
       'Outline': "bg-transparent text-[var(--text-focus)] border border-[var(--level-elevation-\\+3)] active:bg-[#ffffff08] active:scale-[0.98]",
       'Outline Focus': "bg-transparent text-[var(--text-focus)] border border-[var(--text-focus)] active:bg-[#ffffff08] active:scale-[0.98]",
+    };
+
+    // Precise Disabled (State=OFF) colors from Figma
+    const disabledStyles = {
+      'Solid': "bg-[var(--level-elevation)] text-[var(--level-elevation-\\+2)] border-transparent",
+      'Solid Focus': "bg-[var(--level-elevation)] text-[var(--level-elevation-\\+2)] border-transparent",
+      'Outline': "bg-transparent text-[var(--level-elevation-\\+2)] border-[var(--level-elevation)]",
+      'Outline Focus': "bg-transparent text-[var(--level-elevation-\\+2)] border-[var(--level-elevation)]",
     };
 
     // Presence adjustment (e.g. Subtle lowers opacity or alters state logic if needed)
     const presenceClass = presence === 'Subtle' ? 'opacity-70' : '';
 
     const btnDisabled = isLoading || props.disabled;
-    const disabledClass = btnDisabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "";
+    const currentVariantClasses = btnDisabled ? disabledStyles[variant] : variants[variant];
+    const disabledClass = btnDisabled ? "cursor-not-allowed pointer-events-none" : "";
 
     return (
       <button
         ref={ref}
         disabled={btnDisabled}
-        className={`${baseClasses} ${sizes[size]} ${variants[variant]} ${presenceClass} ${disabledClass} ${className || ''}`}
+        className={`${baseClasses} ${sizes[size]} ${currentVariantClasses} ${presenceClass} ${disabledClass} ${className || ''}`}
         {...props}
       >
         {isLoading ? (

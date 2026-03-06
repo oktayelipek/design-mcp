@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* ========================================
+   Tailwind v4 @theme — Spacing / Gap / Radius
+   ======================================== */
+@theme {
+  /* Spacing Scale (space-*, gap-*, p-*, m-*, etc.) */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-14: 56px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-0.5: 2px;
+  --spacing-1.5: 6px;
+  --spacing-2.5: 10px;
+
+  /* Semantic Spacing */
+  --spacing-button-padding-x-sm: 12px;
+  --spacing-button-padding-x-md: 16px;
+  --spacing-button-padding-x-lg: 20px;
+  --spacing-card-padding: 16px;
+  --spacing-section-gap: 24px;
+  --spacing-drawer-padding: 24px;
+  --spacing-drawer-padding-lg: 32px;
+  --spacing-balance-gap-header: 20px;
+  --spacing-balance-gap-actions: 16px;
+  --spacing-button-group-gap: 10px;
+  --spacing-list-padding: 0px;
+  --spacing-page-padding-x: 16px;
+
+  /* Radius Scale (rounded-*) */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-DEFAULT: 8px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-full: 9999px;
+
+  /* Semantic Radius */
+  --radius-button: 8px;
+  --radius-card: 10px;
+  --radius-input: 8px;
+  --radius-dropdown: 8px;
+  --radius-segmented: 8px;
+  --radius-chip: 16px;
+  --radius-badge: 9999px;
+  --radius-toast: 12px;
+}
+
+:root {
+  /* Core BTCTurk Tokens (Kripto Dark) */
+  --text-focus: #f0f4f7;
+  --text-secondary: #858fa6;
+  --text-tertiary: #4c5d72;
+  --icon-focus: #f0f4f7;
+  --icon-inactive: #858fa6;
+  --icon-disabled: #4c5d72;
+  --level-basement: #070910;
+  --level-basement-opacity-80: #070910cc;
+  --level-surface: #0b0f1a;
+  --level-surface-opacity-80: #0b0f1acc;
+  --level-surface-opacity-0: #0b0f1a00;
+  --level-elevation: #131f2f;
+  --level-elevation-+1: #17273a;
+  --level-elevation-+2: #192f43;
+  --level-elevation-+3: #21374a;
+  --level-elevation-+4: #4c5d72;
+  --brand-primary: #005fae;
+  --brand-secondary: #005fae;
+  --brand-tertiary: #005fae;
+  --brand-primary-10: #005fae1a;
+  --inverse-pureWhite: #ffffff;
+  --inverse-pureDark: #000000;
+  --inverse-swap: #000000;
+  --inverse-focus: #ffffff;
+  --inverse-brand: #ffffff;
+  --actions-action-01: #4fa963;
+  --actions-action-01-20%: #4fa96333;
+  --actions-action-01-10%: #4fa9631a;
+  --actions-action-02: #e93a40;
+  --actions-action-02-20%: #e93a4033;
+  --actions-action-02-10%: #e93a401a;
+  --actions-action-03: #ffac2b;
+  --actions-action-03-20%: #ffac2b33;
+  --actions-action-03-10%: #ffac2b1a;
+  --actions-gradients-gradient-01: #15ed45;
+  --actions-gradients-gradient-02: #b32b31;
+  --button-primary: #005fae;
+  --button-secondary: #131f2f;
+  --button-focus: #f0f4f7;
+  --button-buy: #48aa5c;
+  --button-sell: #b32b31;
+  --dedicated-segmented-Active: #192f43;
+  --dedicated-overlay: #000000d9;
+  --theme: dark;
+  --debug: #c5ff00;
+  --section-bg: #000000;
+
+  /* Spacing Tokens (Semantic) */
+  --spacing-button-padding-x-sm: 12px;
+  --spacing-button-padding-x-md: 16px;
+  --spacing-button-padding-x-lg: 20px;
+  --spacing-card-padding: 16px;
+  --spacing-section-gap: 24px;
+  --spacing-drawer-padding: 24px;
+  --spacing-drawer-padding-lg: 32px;
+  --spacing-balance-gap-header: 20px;
+  --spacing-balance-gap-actions: 16px;
+  --spacing-button-group-gap: 10px;
+  --spacing-list-padding: 0px;
+  --spacing-page-padding-x: 16px;
+
+  /* Radius Tokens (Semantic) */
+  --radius-button: 8px;
+  --radius-card: 10px;
+  --radius-input: 8px;
+  --radius-dropdown: 8px;
+  --radius-segmented: 8px;
+  --radius-chip: 16px;
+  --radius-badge: 9999px;
+  --radius-toast: 12px;
+
+  /* Semantic Button Tokens */
+  --button-solid: var(--button-primary);
+  --button-solid-text: var(--inverse-pureWhite);
+  --button-muted: var(--button-secondary);
+  --button-muted-text: var(--text-focus);
+  --semantic-on-color: var(--inverse-pureWhite);
+
+  /* Semantic Form/Radio/Input Tokens */
+  --form-background-default: var(--level-surface);
+  --form-background-disabled: var(--level-basement);
+  --form-background-focus: var(--level-basement);
+  --form-border-default: var(--text-tertiary);
+  --form-border-focus: var(--brand-primary);
+  --form-border-disabled: var(--level-elevation-+1);
+  --semantic-success-border: var(--actions-action-01);
+  --semantic-warning-border: var(--actions-action-03);
+  --semantic-error-border: var(--actions-action-02);
+
+  /* Semantic Text Tokens */
+  --text-primary: var(--text-focus);
+  --text-secondary: var(--text-secondary);
+  --text-tertiary: var(--text-tertiary);
+  --text-quaternary: #3d4a5c; /* form placeholder */
+  
+  /* Semantic Icon */
+  --icon-tertiary: var(--icon-disabled);
+}
+
+
+body {
+  background-color: var(--level-basement);
+  color: var(--text-primary);
+}
