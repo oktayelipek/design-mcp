@@ -251,6 +251,11 @@ function setupHandlers(server: Server) {
           mimeType: "application/json",
         },
         {
+          uri: "design-system://tokens/spacing",
+          name: "Design Tokens — Spacing & Radius",
+          mimeType: "application/json",
+        },
+        {
           uri: "design-system://atoms",
           name: "Atoms Registry",
           mimeType: "application/json",
@@ -288,6 +293,7 @@ function setupHandlers(server: Server) {
     const uriMap: Record<string, string> = {
       "design-system://tokens/colors": "tokens/colors.json",
       "design-system://tokens/typography": "tokens/typography.json",
+      "design-system://tokens/spacing": "tokens/spacing.json",
       "design-system://atoms": "atoms/_registry.json",
       "design-system://molecules": "molecules/_registry.json",
       "design-system://organisms": "organisms/_registry.json",
@@ -543,11 +549,12 @@ function setupHandlers(server: Server) {
     if (name === "get_tokens") {
       const colors = readJsonFile("tokens/colors.json");
       const typography = readJsonFile("tokens/typography.json");
+      const spacing = readJsonFile("tokens/spacing.json");
       return {
         content: [
           {
             type: "text",
-            text: JSON.stringify({ colors, typography }, null, 2),
+            text: JSON.stringify({ colors, typography, spacing }, null, 2),
           },
         ],
       };
